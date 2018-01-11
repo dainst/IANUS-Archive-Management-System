@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="overviewForm">
+			
+			<h:panelGrid id="overviewDCPage" columns="1" styleClass="pagePanel">
+				
+				<p:dataTable value="#{sessionBean.overviewDCPage.tree}"
+					var="tpTree"
+					styleClass="dataTable"
+					emptyMessage=" - ">
+					
+					<f:facet name="header">Information Package Overview</f:facet>
+					
+					<p:columnGroup type="header">
+			            <p:row>
+			                <p:column colspan="5" headerText="Transfer Packages" />
+			                <p:column colspan="5" headerText="Submission IP" />
+			                <p:column colspan="3" headerText="Archival IP" />
+			                <p:column colspan="3" headerText="Dissemination IP" />
+			            </p:row>
+			            <p:row>
+			                <p:column headerText="ID" />
+			                <p:column headerText="Label" />
+			                <p:column headerText="IANUS-ID"/>
+			                <p:column headerText="Date" />
+			                <p:column headerText=" "/>	<!-- status -->
+			                
+			                <p:column headerText="ID" />
+			                <p:column headerText="Label" />
+			                <p:column headerText="IANUS-ID"/>
+			                <p:column headerText="Date" />
+			                <p:column headerText=" " />	<!-- status -->
+			                
+			                <p:column headerText="ID" />
+			                <p:column headerText="Date" />
+			                <p:column headerText=" " />	<!-- status -->
+			                
+			                <p:column headerText="ID" />
+			                <p:column headerText="Date" />
+			                <p:column headerText=" " />	<!-- status -->
+			            </p:row>
+			        </p:columnGroup>
+			        
+			        
+			        
+			        <p:column>
+			        	<h:outputLink
+							title="Details" 
+							value="#{sessionBean.appBean.contextRoot}/pages/transfer.xhtml?tpId=#{tpTree.transferP.id}">
+							<h:graphicImage value="#{sessionBean.appBean.imgShow}" style="vertical-align:bottom;margin-right:8px;"/>
+							<h:outputText value="#{tpTree.transferP.id}"/>
+						</h:outputLink>
+			        </p:column>
+			        <p:column>
+						<h:outputText value="#{tpTree.transferP.collectionLabel}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{tpTree.transferP.collectionIdentifier}"/>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{tpTree.transferP.formattedCreationDate}"/><br/>
+						<h:outputText value="#{tpTree.transferP.formattedLastChangeDate}"/>
+					</p:column>
+					<p:column>
+						<h:graphicImage value="#{sessionBean.getStatusIcon(tpTree.transferP)}"/>
+					</p:column>
+					
+					<p:column colspan="11" styleClass="subTable overView">
+						<p:dataTable var="sipTree" 
+							value="#{tpTree.submissionIPList}"
+							emptyMessage=" - ">
+							<p:column>
+								<h:outputLink
+									title="Details" 
+									value="#{sessionBean.appBean.contextRoot}/pages/submission.xhtml?sipId=#{sipTree.submissionIP.id}">
+									<h:graphicImage value="#{sessionBean.appBean.imgShow}" style="vertical-align:bottom;margin-right:8px;"/>
+									<h:outputText value="#{sipTree.submissionIP.id}"/>
+								</h:outputLink>
+							</p:column>
+							<p:column>
+								<h:outputText value="#{sipTree.submissionIP.collectionLabel}"/>
+							</p:column>
+							<p:column>
+								<h:outputText value="#{sipTree.submissionIP.collectionIdentifier}"/>
+							</p:column>
+							<p:column>
+								<h:outputText value="#{sipTree.submissionIP.formattedCreationDate}"/><br/>
+								<h:outputText value="#{sipTree.submissionIP.formattedLastChangeDate}"/>
+							</p:column>
+							<p:column>
+								<h:graphicImage value="#{sessionBean.getStatusIcon(sipTree.submissionIP)}"/>
+							</p:column>
+							
+							<p:column colspan="3" styleClass="subTable overView">
+								<p:dataTable var="aip" 
+									value="#{sipTree.archivalIPList}"
+									emptyMessage=" - ">
+									<p:column>
+										<h:outputLink
+											title="Details" 
+											value="#{sessionBean.appBean.contextRoot}/pages/archival.xhtml?aipId=#{aip.id}">
+											<h:graphicImage value="#{sessionBean.appBean.imgShow}" style="vertical-align:bottom;margin-right:8px;"/>
+											<h:outputText value="#{aip.id}"/>
+										</h:outputLink>
+									</p:column>
+									<p:column>
+										<h:outputText value="#{aip.formattedCreationDate}"/><br/>
+										<h:outputText value="#{aip.formattedLastChangeDate}"/>
+									</p:column>
+									<p:column>
+										<h:graphicImage value="#{sessionBean.getStatusIcon(aip)}"/>
+									</p:column>
+								</p:dataTable>
+							</p:column>
+							
+							<p:column colspan="3" styleClass="subTable overView">
+								<p:dataTable var="dip" 
+									value="#{sipTree.disseminationIPList}"
+									emptyMessage=" - ">
+									<p:column>
+										<h:outputLink
+											title="Details" 
+											value="#{sessionBean.appBean.contextRoot}/pages/dissemination.xhtml?dipId=#{dip.id}">
+											<h:graphicImage value="#{sessionBean.appBean.imgShow}" style="vertical-align:bottom;margin-right:8px;"/>
+											<h:outputText value="#{dip.id}"/>
+										</h:outputLink>
+									</p:column>
+									<p:column>
+										<h:outputText value="#{dip.formattedCreationDate}"/><br/>
+										<h:outputText value="#{dip.formattedLastChangeDate}"/>
+									</p:column>
+									<p:column>
+										<h:graphicImage value="#{sessionBean.getStatusIcon(dip)}"/>
+									</p:column>
+								</p:dataTable>
+							</p:column>
+							
+						</p:dataTable>
+					</p:column>
+					
+			        
+				</p:dataTable>
+					
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,78 @@
+{
+"ZVL_Ebene_0" : 
+	[
+		{"id" : "EG", "value" : "Erdgeschichte"},
+		{"id" : "UG", "value" : "Urgeschichte"},
+		{"id" : "VG", "value" : "Vorgeschichte"},
+		{"id" : "FG", "value" : "Frühgeschichte"},
+		{"id" : "MuN", "value" : "Mittelalter und Neuzeit"},
+		{"id" : "M/N", "value" : "Mittelalter/Neuzeit"}
+	]
+,
+"ZVL_Ebene_1" : 
+	[
+		{"id" : "SZ", "value" : "Steinzeit"},
+		{"id" : "SZn", "value" : "Steinzeiten"},
+		{"id" : "KuZ", "value" : "Kupferzeit"},
+		{"id" : "MZ", "value" : "Metallzeit"},
+		{"id" : "MZn", "value" : "Metallzeiten"},
+		{"id" : "MA", "value" : "Mittelalter"},
+		{"id" : "NZ", "value" : "Neuzeit"}
+	],
+"ZVL_Ebene_2" : 
+	[
+		{"id" : "PL", "value" : "Paläolithikum"},
+		{"id" : "ML", "value" : "Mesolithikum"},
+		{"id" : "NL", "value" : "Neolithikum"},
+		{"id" : "KuZ", "value" : "Kupferzeit"},
+		{"id" : "BZ", "value" : "Bronzezeit"},
+		{"id" : "EZ", "value" : "Eisenzeit"},
+		{"id" : "VEZ", "value" : "Vorröm. Eisenzeit"},
+		{"id" : "RKZ", "value" : "Römische Kaiserzeit"},
+		{"id" : "VWZ", "value" : "Völkerwanderungszeit"},
+		{"id" : "SL", "value" : "Slawenzeit"},
+		{"id" : "dMA", "value" : "deutsches Mittelalter"},
+		{"id" : "MA", "value" : "Mittelalter"},
+		{"id" : "NZ", "value" : "Neuzeit"}
+	],
+"ZVL_Ebene_3" : 
+	[
+		{"id" : "APL", "value" : "Altpaläolithikum"},
+		{"id" : "MPL", "value" : "Mittelpaläolithikum"},
+		{"id" : "JPL", "value" : "Jungpaläolithikum"},
+		{"id" : "sPL", "value" : "Spätes Paläolithikum"},
+		{"id" : "SPL", "value" : "Spätpaläolithikum"},
+		{"id" : "EPL", "value" : "Endpaläolithikum"},
+		{"id" : "ML", "value" : "Mesolithikum"},
+		{"id" : "FFM", "value" : "Frühestmesolithikum"},
+		{"id" : "FML", "value" : "Frühmesolithikum"},
+		{"id" : "äML", "value" : "Älteres Mesolithikum"},
+		{"id" : "jML", "value" : "Jüngeres Mesolithikum"},
+		{"id" : "SML", "value" : "Spätmesolithikum"},
+		{"id" : "ANL", "value" : "Altneolithikum"},
+		{"id" : "ANB", "value" : "Altneolithikum/Bandkeramik"},
+		{"id" : "FNL", "value" : "Frühneolithikum"},
+		{"id" : "fNL", "value" : "Frühes Neolithikum"},
+		{"id" : "MNL", "value" : "Mittelneolithikum"},
+		{"id" : "mNL", "value" : "Mittleres Neolithikum"},
+		{"id" : "JNL", "value" : "Jungneolithikum"},
+		{"id" : "JNM", "value" : "Jungneolithikum/Michelsberg"},
+		{"id" : "SNL", "value" : "Spätneolithikum"},
+		{"id" : "SNW", "value" : "Spätneolithikum/Wartberg"},
+		{"id" : "ENL", "value" : "Endneolithikum"},
+		{"id" : "jsN", "value" : "Junges und spätes Neolithikum"},
+		{"id" : "SEN", "value" : "Spät- / Endneolithikum"},
+		{"id" : "ENR", "value" : "Endneolithikum/Rheinische Becherkulturen"},
+		{"id" : "fKu", "value" : "Frühe Kupferzeit"},
+		{"id" : "mKu", "value" : "Mittlere Kupferzeit"},
+		{"id" : "sKu", "value" : "Späte Kupferzeit"},
+		{"id" : "FBZ", "value" : "Frühbronzezeit"},
+		{"id" : "fBZ", "value" : "Frühe Bronzezeit"},
+		{"id" : "äBZ", "value" : "Ältere Bronzezeit"},
+		{"id" : "mBZ", "value" : "Mittlere Bronzezeit"},
+		{"id" : "jBZ", "value" : "Jüngere Bronzezeit"},
+		{"id" : "jsB", "value" : "Jung- und Spätbronzezeit"},
+		{"id" : "SBU", "value" : "Späte Bronzezeit, Urnenfelderzeit"},
+		{"id" : "SBZ", "value" : "Späte Bronzezeit"}
+	]
+}

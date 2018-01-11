@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="sipListForm">
+		<h:panelGrid id="sipListPage" columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputLabel value="List of all"/>
+				<h:outputLabel value="Submission Information Packages (SIP List)" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanelSIP">
+				
+			</h:panelGrid>
+				
+			<p:dataTable value="#{sessionBean.submissionListPage.sipList}"
+				var="sip"
+				styleClass="dataTableSIP">
+				<p:column headerText="Id">
+					<h:outputText value="#{sip.id}" />
+				</p:column>
+				<p:column headerText="Metadata id">
+					<h:outputText value="#{sip.metadataId}" />
+				</p:column>
+				<p:column headerText="IANUS Id">
+					<h:outputText value="#{sip.collectionIdentifier}" />
+				</p:column>
+				<p:column headerText="Label">
+					<h:outputText value="#{sip.collectionLabel}" />
+				</p:column>
+				<p:column headerText="State">
+					<h:graphicImage value="#{sessionBean.getStatusIcon(sip)}"/>
+				</p:column>
+				
+				<p:column>
+					<p:commandButton value="View" action="#{sessionBean.submissionListPage.actionGotoSIPPage}"/>
+				
+					<p:commandButton 
+						value="Delete" 
+						title="Delete"
+						action="#{sessionBean.submissionListPage.actionDeleteSIP}"
+						rendered="#{!sessionBean.guestUser}"
+						update="sipListForm:sipListPage msgForm:msg">
+						<p:confirm header="Confirmation" message="Are you sure, you want to delete this SIP?" icon="ui-icon-alert"/>
+					</p:commandButton>
+				</p:column>	
+				
+			</p:dataTable>
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

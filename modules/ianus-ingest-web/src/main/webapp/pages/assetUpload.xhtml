@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Web Asset Upload" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2" styleClass="mainControlPanel">
+					<p:commandButton value="Back to Information Package"
+								action="#{sessionBean.assetUploadPage.gotoIPPage}"/>
+					
+				</h:panelGrid>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1" styleClass="mainControlPanel">
+			
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:outputLabel value="Data Collection Logos"/>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+						<h:outputLabel value="Id"/>
+						<h:outputText value="#{sessionBean.assetUploadPage.dc.collectionIdentifier}"/>
+						
+						<h:outputLabel value="Label"/>
+						<h:outputText value="#{sessionBean.assetUploadPage.dc.collectionLabel}"/>
+						
+						<h:outputLabel value="Default Header" rendered="#{sessionBean.assetUploadPage.defaultImagesAvailable}"/>
+						<p:graphicImage value="#{sessionBean.assetUploadPage.defaultHeader}" cache="false" />
+						
+						<h:outputLabel value="Default Preview" rendered="#{sessionBean.assetUploadPage.defaultImagesAvailable}"/>
+						<p:graphicImage value="#{sessionBean.assetUploadPage.defaultPreview}" cache="false" />
+						
+						<h:outputLabel value="Default License" rendered="#{sessionBean.assetUploadPage.defaultLicenseImageAvailable}"/>
+						<p:graphicImage value="#{sessionBean.assetUploadPage.defaultLicense}" cache="false" />
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+						<h:outputLabel value="Header Image"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							<h:outputLabel value="Upload" rendered="#{!sessionBean.guestUser}"/>
+							<h:panelGrid columns="3" rendered="#{!sessionBean.guestUser}">
+								<p:column rendered="#{sessionBean.assetUploadPage.defaultImagesAvailable}">
+									<p:commandButton
+										value="Use Default Header"
+										action="#{sessionBean.assetUploadPage.saveDefaultHeader}"/>
+								</p:column>
+								<p:column rendered="#{!sessionBean.guestUser}">
+									<h:outputText value=" upload a custom header image "/>
+									<h:form id="headerUploadForm">
+										<p:fileUpload 
+											fileUploadListener="#{sessionBean.assetUploadPage.handleHeaderUpload}"
+											mode="advanced"
+											auto="true"
+											oncomplete="javascript:window.location.reload()"
+											dragDropSupport="true"
+									        update="messagesHeader"
+									        sizeLimit="100000000"
+									        fileLimit="1"
+									        allowTypes="/(\.|\/)png$/" />
+									 	<p:growl id="messagesHeader" showDetail="true" />
+								 	</h:form>
+								</p:column>
+								<p:column rendered="#{sessionBean.assetUploadPage.headerImageExists}">
+									<p:commandButton
+										value="Delete Current Image"
+										action="#{sessionBean.assetUploadPage.deleteHeaderImage}"/>
+								</p:column>
+							</h:panelGrid>
+							
+							<h:outputLabel value="Current Header"/>
+							<h:panelGrid columns="1">
+								<p:graphicImage value="#{sessionBean.assetUploadPage.currentHeaderImage}" cache="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+						<h:outputLabel value="Preview Image"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							<h:outputLabel value="Upload" rendered="#{!sessionBean.guestUser}"/>
+							<h:panelGrid columns="3" rendered="#{!sessionBean.guestUser}">
+								<p:column rendered="#{sessionBean.assetUploadPage.defaultImagesAvailable}">
+									<p:commandButton
+										value="Use Default Preview"
+										action="#{sessionBean.assetUploadPage.saveDefaultPreview}"/>
+								</p:column>
+								<p:column rendered="#{!sessionBean.guestUser}">
+									<h:outputText value=" upload a custom preview image "/>
+									<h:form id="previewUploadForm">
+										<p:fileUpload 
+											fileUploadListener="#{sessionBean.assetUploadPage.handlePreviewUpload}"
+											mode="advanced"
+											auto="true"
+											oncomplete="javascript:window.location.reload()"
+											dragDropSupport="true"
+									        update="messagesPreview"
+									        sizeLimit="100000000"
+									        fileLimit="1"
+									        allowTypes="/(\.|\/)png$/" />
+									 	<p:growl id="messagesPreview" showDetail="true" />
+									 </h:form>
+								</p:column>
+								<p:column rendered="#{sessionBean.assetUploadPage.previewImageExists}">
+									<p:commandButton
+										value="Delete Current Image"
+										action="#{sessionBean.assetUploadPage.deletePreviewImage}"/>
+								</p:column>
+							</h:panelGrid>
+							
+							<h:outputLabel value="Current Preview"/>
+							<h:panelGrid columns="1">
+								<p:graphicImage value="#{sessionBean.assetUploadPage.currentPreviewImage}" cache="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+						<h:outputLabel value="License Image"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							<h:outputLabel value="Upload" rendered="#{!sessionBean.guestUser}"/>
+							<h:panelGrid columns="3" rendered="#{!sessionBean.guestUser}">
+								<p:column rendered="#{sessionBean.assetUploadPage.defaultLicenseImageAvailable}">
+									<p:commandButton
+										value="Use Default License Logo"
+										action="#{sessionBean.assetUploadPage.saveDefaultLicense}"
+										rendered="#{!sessionBean.guestUser}"/>
+								</p:column>
+								<p:column rendered="#{!sessionBean.guestUser}">
+									<h:outputText value="upload a custom license image "/>
+									<h:form id="licenseUploadForm">
+										<p:fileUpload 
+											fileUploadListener="#{sessionBean.assetUploadPage.handleLicenseUpload}"
+											mode="advanced"
+											auto="true"
+											oncomplete="javascript:window.location.reload()"
+											dragDropSupport="true"
+									        update="messagesLicense"
+									        sizeLimit="100000000"
+									        fileLimit="1"
+									        allowTypes="/(\.|\/)png$/" />
+									 	<p:growl id="messagesLicense" showDetail="true" />
+									 </h:form>
+								</p:column>
+								<p:column rendered="#{sessionBean.assetUploadPage.licenseImageExists}">
+									<p:commandButton
+										value="Delete Current Image"
+										action="#{sessionBean.assetUploadPage.deleteLicenseImage}"/>
+								</p:column>
+							</h:panelGrid>
+							
+							<h:outputLabel value="Current License Logo"/>
+							<h:panelGrid columns="1">
+								<p:graphicImage value="#{sessionBean.assetUploadPage.currentLicenseImage}" cache="false" />
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGrid>
+				
+				</h:panelGrid>
+					
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="2" styleClass="mainControlPanel">
+					<p:commandButton value="Back to Information Package"
+								action="#{sessionBean.assetUploadPage.gotoIPPage}"/>
+				</h:panelGrid>
+			</h:panelGrid>
+			
+		
+		
+	</ui:define>
+	
+</ui:composition>

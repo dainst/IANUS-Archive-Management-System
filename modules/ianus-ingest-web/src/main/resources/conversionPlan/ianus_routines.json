@@ -1,0 +1,1352 @@
+[
+	{	
+		inputPid = ["fmt/95", "fmt/354", "fmt/476", "fmt/477"],
+		name = "Adobe PDF/A - Portable Document Format (Ver. 1a, 1b, 2a, 2b)",
+		inputExtension = ["pdf"],
+		type="prefered",
+		actionName = "pdf_TO_pdf/A-2a",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+	{	
+		inputPid = ["fmt/476"],
+		name = "Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+	{	
+		inputPid = ["fmt/479", "fmt/480"],
+		name = "Adobe PDF/A - Portable Document Format (Ver. 3a, 3b)",
+		inputExtension = ["pdf"],
+		type="accepted",
+		actionName = "pdf_TO_pdf/A-2a",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+	{	
+		inputPid = ["fmt/476"],
+		name = "Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/559", "fmt/560", "fmt/561", "fmt/562", "fmt/563", "fmt/564", "fmt/565", "fmt/558"],
+		name = "Adobe PDF/A - Portable Document Format (Ver. 10, 11, 12, 13, 14, 15, 16)",
+		inputExtension = ["pdf"],
+		type="accepted",
+		actionName = "pdf_TO_pdf/A-2a",
+		scope = "SIP-AIP",
+		outputPid=["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+	{	
+		inputPid = ["fmt/476"],
+		name = "Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/136", "fmt/290", "fmt/291"],
+		name = "OpenDocument Text (Ver. 1.0, 1.1, 1.2)",
+		inputExtension = ["odt"],
+		type="prefered",
+		actionName = "odt_TO_pdf/A-2a",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/136", "fmt/290", "fmt/291", "fmt/476"],
+		outputExtension = ["odt", pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/136", "fmt/290", "fmt/291", "fmt/476"],
+		name = "OpenDocument Text (Ver. 1.0, 1.1, 1.2) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["odt", pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/412"],
+		name = "Microsoft Word Document(Ver. 2007 ff.)",
+		inputExtension = ["docx"],
+		type="prefered",
+		actionName = "docx_TO_pdf/A-2a",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/412", "fmt/476"],
+		outputExtension = ["docx", pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/412", "fmt/476"],
+		name = "Microsoft Word Document(Ver. 2007 ff.) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["docx", pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/38", "fmt/39", "fmt/40"],
+		name = "Microsoft Word Document (Ver. 2.0, 6.0/95, 97-2003)",
+		inputExtension = ["doc"],
+		type="accepted",
+		actionName = "doc_TO_docx",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/412", "fmt/476"],
+		outputExtension = ["docx", pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/412", "fmt/476"],
+		name = "Microsoft Word Document(Ver. 2007 ff.) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["docx", pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/52", "fmt/53", "fmt/355"],
+		name = "Rich Text Format, Ver. 1.7, 1.8, 1.9",
+		inputExtension = ["rtf"],
+		type="accepted",
+		actionName = "rtf_TO_docx",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/412", "fmt/476"],
+		outputExtension = ["docx", pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/412", "fmt/476"],
+		name = "Microsoft Word Document(Ver. 2007 ff.) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["docx", pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+
+	{	
+		inputPid = ["fmt/128"],
+		name = "OpenOffice Writer",
+		inputExtension = ["sxw"],
+		type="accepted",
+		actionName = "sxw_TO_odt",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/291", "fmt/476"],
+		outputExtension = ["docx", pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/291", "fmt/476"],
+		name = "OpenDocument Text (Ver. 1.2) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["odt", pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/476"],
+		outputExtension = ["pdf"]
+		},
+
+	{	
+		inputPid = ["x-fmt/111"],
+		name = "plain text file",
+		inputExtension = ["txt"],
+		type="prefered",
+		actionName = "txt_encoding?",
+		scope = "SIP-AIP",
+		outputPid= ["x-fmt/111"],
+		outputExtension = ["docx", pdf"]
+		},
+
+	{	
+		inputPid = ["x-fmt/111"],
+		name = "plain text file",
+		inputExtension = ["txt"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["x-fmt/111"],
+		outputExtension = ["txt"]
+		},
+
+
+	{	
+		inputPid = ["fmt/101", "x-fmt/315", "x-fmt/280", "x-fmt/281", "fmt/875"],
+		name = "Extensible Markup, Document Type Definition, XML Schema Definition, Extensible Stylesheet Language, Resource Description Framework (XML)",
+		inputExtension = ["xml", "dtd", "xsd", "xsl", "rdf"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/101", "x-fmt/315", "x-fmt/280", "x-fmt/281", "fmt/875"],
+		outputExtension = ["xml", pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/101", "x-fmt/315", "x-fmt/280", "x-fmt/281", "fmt/875"],
+		name = "plain text file",
+		inputExtension = ["xml", "dtd", "xsd", "xsl", "rdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/101", "x-fmt/315", "x-fmt/280", "x-fmt/281", "fmt/875"],
+		outputExtension = ["xml", "dtd", "xsd", "xsl", "rdf"]
+		},
+
+	{	
+		inputPid = ["fmt/98", "fmt/99", "fmt/471", "x-fmt/195", "fmt/244"],
+		name = "Hypertext Markup Language (Ver. 3.2, 4.0, 5.0,), Standard Generalized Markup Language, Keyhole Markup Language",
+		inputExtension = ["html", "htm", "sgml", "sgm", "kml"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/98", "fmt/99", "fmt/471", "x-fmt/195", "fmt/244"],
+		outputExtension = ["html", "htm", "sgml", "sgm", "kml"]
+		},
+
+	{	
+		inputPid = ["fmt/98", "fmt/99", "fmt/471", "x-fmt/195", "fmt/244"],
+		name = "Hypertext Markup Language (Ver. 3.2, 4.0, 5.0,), Standard Generalized Markup Language, Keyhole Markup Language",
+		inputExtension = ["html", "htm", "sgml", "sgm", "kml"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/98", "fmt/99", "fmt/471", "x-fmt/195", "fmt/244"],
+		outputExtension = ["html", "htm", "sgml", "sgm", "kml"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tiff", "tif"],
+		type="prefered",
+		actionName = "tif_uncompress?",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tiff", "tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format, unkomprimiert",
+		inputExtension = ["tiff", "tif"],
+		actionName = "tif_TO_jpg",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44"],
+		outputExtension = ["jpg"]
+		},
+
+	{	
+		inputPid = ["fmt/155"],
+		name = "Geographic Tagged Image File Format (GeoTIFF)",
+		inputExtension = ["tiff", "tif", "geotiff"],
+		type="prefered",
+		actionName = "tif_uncompress?",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/155"],
+		outputExtension = ["tiff", "tif", "geotiff"]
+		},
+
+	{	
+		inputPid = ["fmt/155"],
+		name = "Geographic Tagged Image File Format (GeoTIFF)",
+		inputExtension = ["tiff", "tif", "geotiff"],
+		actionName = "tif_TO_jpg",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44" , "x-fmt/263"],
+		outputExtension = ["jpg" , "zip"]
+		},
+
+	{	
+		inputPid = ["fmt/152"],
+		name = "Digital Negative Format",
+		inputExtension = ["dng"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/152"],
+		outputExtension = ["dng"]
+		},
+
+	{	
+		inputPid = ["fmt/152"],
+		name = "Digital Negative Format",
+		inputExtension = ["dng"],
+		actionName = "dng_TO_jpg",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44"],
+		outputExtension = ["jpg"]
+		},
+
+	{	
+		inputPid = ["fmt/42", "fmt/43", "fmt/44"],
+		name = "JPEG File Interchange Format (Ver. 1.00, 1.01, 1.02)",
+		inputExtension = ["jpg"],
+		type="accepted",
+		actionName = "jpg_TO_tif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tif"],
+		actionName = "tif_TO_jpg",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44"],
+		outputExtension = ["jpg"]
+		},
+
+	{	
+		inputPid = ["x-fmt/392", "fmx/151"],
+		name = "JPEG 2000",
+		inputExtension = ["jp2", "jpx"],
+		type="accepted",
+		actionName = "jpg_TO_tif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tif"],
+		actionName = "tif_TO_jpg",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44"],
+		outputExtension = ["jpg"]
+		},
+
+	{	
+		inputPid = ["fmt/11", "fmt/12", "fmt/13"],
+		name = "Portable Network Graphics (Vers. 1.0, 1.1, 1.2)",
+		inputExtension = ["png"],
+		type="accepted",
+		actionName = "png_TO_tif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tif"],
+		actionName = "tif_TO_png",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/13"],
+		outputExtension = ["png"]
+		},
+
+	{	
+		inputPid = ["fmt/3", "fmt/4"],
+		name = "Graphics Interchange Format (Ver. 87a, 89a)",
+		inputExtension = ["gif"],
+		type="accepted",
+		actionName = "gif_TO_tif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tif"],
+		actionName = "tif_TO_png",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/13"],
+		outputExtension = ["png"]
+		},
+
+	{	
+		inputPid = ["fmt/114", "fmt/115", "fmt/116", "fmt/118", "fmt/119"],
+		name = "Windows Bitmap (Ver. 1, 2, 3, 4, 5)",
+		inputExtension = ["bmp"],
+		type="accepted",
+		actionName = "bmp_TO_tif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tif"],
+		actionName = "tif_TO_png",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/13"],
+		outputExtension = ["png"]
+		},
+
+	{	
+		inputPid = ["x-fmt/92"],
+		name = "Adobe Photoshop",
+		inputExtension = ["psd"],
+		type="accepted",
+		actionName = "psd_TO_tif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/353"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/353"],
+		name = "Tagged Image File Format",
+		inputExtension = ["tif"],
+		actionName = "tif_TO_png",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44"],
+		outputExtension = ["jpg"]
+		},
+
+
+	{	
+		inputPid = ["fmt/202", "fmt/593", "fmt/668"],
+		name = "Nikon Digital SLR Camera Raw Image File,Canon RAW (Vers. 1, 2), Oympus RAW, Minolta RAW",
+		inputExtension = ["nef", "crw", "cr2", "orf", "mrw"],
+		type="accepted",
+		actionName = "raw_TO_dng",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/152"],
+		outputExtension = ["tif"]
+		},
+
+	{	
+		inputPid = ["fmt/152"],
+		name = "Digital Negative Format",
+		inputExtension = ["dng"],
+		actionName = "dng_TO_jpg",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/44"],
+		outputExtension = ["jpg"]
+		},
+
+
+	{	
+		inputPid = ["fmt/91", "fmt/92"],
+		name = "Scalable Vector Graphics (Vers. 1.0, 1.1)",
+		inputExtension = ["svg"],
+		type="prefered",
+		actionName = "svg1.0_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Scalable Vector Graphics (Vers. 1.1) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["svg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+
+	{	
+		inputPid = ["fmt/301", "fmt/302"],
+		name = "Computer Graphics Metafile (ASCII) (Vers. 3, 4)",
+		inputExtension = ["cgm"],
+		type="accepted",
+		actionName = "cgm_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Scalable Vector Graphics (Vers. 1.1) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["svg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/305", "fmt/306"],
+		name = "Computer Graphics Metafile (Binary) (Vers. 3, 4)",
+		inputExtension = ["cgm"],
+		type="accepted",
+		actionName = "cgm_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Scalable Vector Graphics (Vers. 1.1) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["svg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/63", "fmt/78", "fmt/79", "fmt/433", "fmt/435"],
+		name = "Drawing Interchange File Format (ASCII) (versch. Ver.en)",
+		inputExtension = ["dxf"],
+		type="accepted",
+		actionName = "dxf_TO_dxf2010",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		name = "Drawing Interchange File Format (ASCII) (Ver. 2010-2012)+ AutoCAD Drawing (Ver. 2010-2012)+ Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["dxf", "dwg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/35", "fmt/36", "x-fmt/455", "fmt/434", "fmt/531"],
+		name = "AutoCAD Drawing (versch. Ver.en)",
+		inputExtension = ["dwg"],
+		type="accepted",
+		actionName = "dwg_TO_dwg2010",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		name = "Drawing Interchange File Format (ASCII) (Ver. 2010-2012) + AutoCAD Drawing (Ver. 2010-2012) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["dxf", "dwg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+
+	{	
+		inputPid = ["x-fmt/91", "x-fmt/406", "x-fmt/407", "x-fmt/408", "fmt/501"],
+		name = "PostScript File Format (Ver. 1.0, 2.0, 2.1, 3.0, 3.1)",
+		inputExtension = ["ps"],
+		type="accepted",
+		actionName = "ps_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Drawing Interchange File Format (ASCII) (Ver. 2010-2012) + AutoCAD Drawing (Ver. 2010-2012) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["dxf", "dwg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/122", "fmt/123", "fmt/124"],
+		name = "Encapsulated PostScript File Format (Ver. 1.2, 2.0, 3)",
+		inputExtension = ["eps"],
+		type="accepted",
+		actionName = "ps_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Drawing Interchange File Format (ASCII) (Ver. 2010-2012) + AutoCAD Drawing (Ver. 2010-2012) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["dxf", "dwg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/559", "fmt/560", "fmt/561", "fmt/562", "fmt/563", "fmt/564", "fmt/565"],
+		name = "Adobe Illustrator",
+		inputExtension = ["ai"],
+		type="accepted",
+		actionName = "ai_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Drawing Interchange File Format (ASCII) (Ver. 2010-2012) + AutoCAD Drawing (Ver. 2010-2012) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["dxf", "dwg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/549", "fmt/550", "fmt/551", "fmt/552"],
+		name = "Adobe InDesign Document",
+		inputExtension = ["ind", "indd"],
+		type="accepted",
+		actionName = "indd_TO_svg1.1",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/92", "fmt/476"],
+		outputExtension = ["svg", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/92", "fmt/476"],
+		name = "Drawing Interchange File Format (ASCII) (Ver. 2010-2012) + AutoCAD Drawing (Ver. 2010-2012) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["dxf", "dwg", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/435", "fmt/434", "fmt/476"],
+		outputExtension = ["dxf", "dwg", "pdf"]
+		},
+
+	{	
+		inputPid = ["x-fmt/18"],
+		name = "Comma Separated Values",
+		inputExtension = ["csv"],
+		type="prefered",
+		actionName = "txt_encoding?",
+		scope = "SIP-AIP",
+		outputPid= ["x-fmt/18"],
+		outputExtension = ["csv"]
+		},
+
+	{	
+		inputPid = ["x-fmt/18"],
+		name = "Comma Separated Values",
+		inputExtension = ["csv"],
+		actionName = "csv_TO_xlsx",
+		scope = "AIP-DIP",
+		outputPid = ["x-fmt/18", "fmt/214"],
+		outputExtension = ["csv", "xlsx"]
+		},
+
+
+	{	
+		inputPid = ["x-fmt/13"],
+		name = "Tab Separated Values",
+		inputExtension = ["tsv"],
+		type="prefered",
+		actionName = "txt_encoding?",
+		scope = "SIP-AIP",
+		outputPid= ["x-fmt/18"],
+		outputExtension = ["csv"]
+		},
+
+	{	
+		inputPid = ["x-fmt/18"],
+		name = "Comma Separated Values",
+		inputExtension = ["csv"],
+		actionName = "csv_TO_xlsx",
+		scope = "AIP-DIP",
+		outputPid = ["x-fmt/18", "fmt/214"],
+		outputExtension = ["csv", "xlsx"]
+		},
+
+	{	
+		inputPid = ["fmt/137", "fmt/294", "fmt/295"],
+		name = "OpenDocument Spreadsheet (Ver. 1.0, 1.1, 1.2)",
+		inputExtension = ["ods"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/137", "fmt/294", "fmt/295"],
+		outputExtension = ["ods"]
+		},
+
+	{	
+		inputPid = ["fmt/137", "fmt/294", "fmt/295"],
+		name = "OpenDocument Spreadsheet (Ver. 1.0, 1.1, 1.2)",
+		inputExtension = ["ods"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/137", "fmt/294", "fmt/295"],
+		outputExtension = ["ods"]
+		},
+
+	{	
+		inputPid = ["fmt/129"],
+		name = "OpenOffice Calc",
+		inputExtension = ["sxc"],
+		type="accepted",
+		actionName = "sxc_TO_ods",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/137", "fmt/294", "fmt/295"],
+		outputExtension = ["ods"]
+		},
+
+	{	
+		inputPid = ["fmt/137", "fmt/294", "fmt/295"],
+		name = "OpenDocument Spreadsheet (Ver. 1.0, 1.1, 1.2)",
+		inputExtension = ["ods"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/295"],
+		outputExtension = ["ods"]
+		},
+
+	{	
+		inputPid = ["fmt/214"],
+		name = "Microsoft Excel for Windows",
+		inputExtension = ["xlsx"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/214"],
+		outputExtension = ["ods"]
+		},
+
+	{	
+		inputPid = ["fmt/214"],
+		name = "Microsoft Excel for Windows",
+		inputExtension = ["xlsx"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/214"],
+		outputExtension = ["xlsx"]
+		},
+
+	{	
+		inputPid = ["fmt/56", "fmt/57", "fmt/175", "fmt/176", "fmt/177"],
+		name = "Microsoft Excel Worksheet / for Macintosh (Ver. 3, 4, 2001, 2002, 2004,",
+		inputExtension = ["xls"],
+		type="accepted",
+		actionName = "xls_TO_xlsx",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/214"],
+		outputExtension = ["ods"]
+		},
+
+	{	
+		inputPid = ["fmt/214"],
+		name = "Microsoft Excel for Windows",
+		inputExtension = ["xlsx"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/214"],
+		outputExtension = ["xlsx"]
+		},
+
+	{	
+		inputPid = ["s.o."],
+		name = "Strukturierter Text / Markup",
+		inputExtension = ["xml", "dtd", "xsd", "xsl", "rdf"],
+		type="prefered",
+		actionName = "s.o.",
+		scope = "SIP-AIP",
+		outputPid= ["s.o."],
+		outputExtension = ["s.o."]
+		},
+
+	{	
+		inputPid = ["s.o."],
+		name = "s.o.",
+		inputExtension = ["s.o."],
+		actionName = "s.o.",
+		scope = "AIP-DIP",
+		outputPid = ["s.o."],
+		outputExtension = ["s.o."]
+		},
+
+	{	
+		inputPid = ["fmt/161", "fmt/995"],
+		name = "Software Independent Archiving of Relational Databases (SIARD) (Ver. 1.0, 2.0)",
+		inputExtension = ["siard"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/161", "fmt/995"],
+		outputExtension = ["siard"]
+		},
+
+	{	
+		inputPid = ["fmt/161", "fmt/995"],
+		name = "Software Independent Archiving of Relational Databases (SIARD) (Ver. 1.0, 2.0)",
+		inputExtension = ["s.o."],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/161", "fmt/995"],
+		outputExtension = ["siard"]
+		},
+
+	{	
+		inputPid = ["fmt/206"],
+		name = "Structured Query Language Data",
+		inputExtension = ["sql"],
+		type="prefered",
+		actionName = "txt_encoding?",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/206"],
+		outputExtension = ["sql"]
+		},
+
+	{	
+		inputPid = ["fmt/206"],
+		name = "Structured Query Language Data",
+		inputExtension = ["sql"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/206"],
+		outputExtension = ["sql"]
+		},
+
+
+	{	
+		inputPid = ["s.o."],
+		name = "Strukturierter Text / Markup",
+		inputExtension = ["xml", "dtd", "xsd", "xsl", "rdf"],
+		type="prefered",
+		actionName = "s.o.",
+		scope = "SIP-AIP",
+		outputPid= ["s.o."],
+		outputExtension = ["s.o."]
+		},
+
+	{	
+		inputPid = ["s.o."],
+		name = "s.o.",
+		inputExtension = ["s.o."],
+		actionName = "s.o.",
+		scope = "AIP-DIP",
+		outputPid = ["s.o."],
+		outputExtension = ["s.o."]
+		},
+
+	{	
+		inputPid = ["s.o."],
+		name = "Comma Separated Values",
+		inputExtension = ["csv"],
+		type="accepted",
+		actionName = "s.o.",
+		scope = "SIP-AIP",
+		outputPid= ["s.o."],
+		outputExtension = ["s.o."]
+		},
+
+	{	
+		inputPid = ["s.o."],
+		name = "s.o.",
+		inputExtension = ["s.o."],
+		actionName = "s.o.",
+		scope = "AIP-DIP",
+		outputPid = ["s.o."],
+		outputExtension = ["s.o."]
+		},
+
+	{	
+		inputPid = ["fmt/817"],
+		name = "Javascript Object Notation (JSON)",
+		inputExtension = ["json"],
+		type="accepted",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/817"],
+		outputExtension = ["json"]
+		},
+
+	{	
+		inputPid = ["fmt/817"],
+		name = "Javascript Object Notation (JSON)",
+		inputExtension = ["fmt/817"],
+		actionName = "Javascript Object Notation (JSON)",
+		scope = "AIP-DIP",
+		outputPid = ["json"],
+		outputExtension = ["json"]
+		},
+
+
+	{	
+		inputPid = ["x-fmt/240", "x-fmt/241", "fmt/275"],
+		name = "Microsoft Access Database (Ver. 2000, 2002, 2007)",
+		inputExtension = ["mdb", "accdb"],
+		type="accepted",
+		actionName = "mdb_TO_siard",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/995", "fmt/476"],
+		outputExtension = ["siard", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/995", "fmt/476"],
+		name = "Software Independent Archiving of Relational Databases (SIARD) (Ver. 2.0) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["siard", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/995", "fmt/476"],
+		outputExtension = ["siard", "pdf"]
+		},
+
+	{	
+		inputPid = ["x-fmt/318", "x-fmt/319", "fmt/194"],
+		name = "FileMaker Pro Database (Ver. 3, 5, 7)",
+		inputExtension = ["fp3", "fp5", "fp7", "fmp12"],
+		type="accepted",
+		actionName = "fmp_TO_sql",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/206", "fmt/101"],
+		outputExtension = ["sql", "xml"]
+		},
+
+	{	
+		inputPid = ["fmt/206", "fmt/101"],
+		name = "Structured Query Language (SQL) + Extender Markup Language",
+		inputExtension = ["sql", "xml"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/206", "fmt/101"],
+		outputExtension = ["sql", "xml"]
+		},
+
+
+	{	
+		inputPid = ["x-fmt/10", "x-fmt/272"],
+		name = "dBase Database (Vers. IV, V)",
+		inputExtension = ["dbf"],
+		type="accepted",
+		actionName = "dbf_TO_siard",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/995", "fmt/476"],
+		outputExtension = ["siard", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/995", "fmt/476"],
+		name = "Software Independent Archiving of Relational Databases (SIARD) (Ver. 2.0) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["siard", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/995", "fmt/476"],
+		outputExtension = ["siard", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/140", "fmt/144", "fmt/424"],
+		name = "OpenDocument Database Format (1.0, 1.1, 1.2)",
+		inputExtension = ["odb"],
+		type="accepted",
+		actionName = "odb_TO_siard",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/995", "fmt/476"],
+		outputExtension = ["siard", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/995", "fmt/476"],
+		name = "Software Independent Archiving of Relational Databases (SIARD) (Ver. 2.0) + Adobe PDF/A - Portable Document Format (Ver. 2a)",
+		inputExtension = ["siard", "pdf"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/995", "fmt/476"],
+		outputExtension = ["siard", "pdf"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska",
+		inputExtension = ["mkv"],
+		type="prefered",
+		actionName = "change_codec?",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/337"],
+		name = "Motion JPEG 2000",
+		inputExtension = ["mj2"],
+		type="accepted",
+		actionName = "mj2_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/199"],
+		name = "MPEG-4 Media File",
+		inputExtension = ["mp4"],
+		type="accepted",
+		actionName = "mp4_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/785", "fmt/786", "fmt/787", "fmt/788", "fmt/789", "fmt/790"],
+		name = "Material eXchange Format (Ver. 2a, 2b, 2c, 3a, 3b, 3c)",
+		inputExtension = ["mxf"],
+		type="accepted",
+		actionName = "mxf_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/640", "x-fmt/386"],
+		name = "MPEG-2",
+		inputExtension = ["mpeg", "mpg"],
+		type="accepted",
+		actionName = "mp2_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/649", "x-fmt/385"],
+		name = "MPEG-1",
+		inputExtension = ["mpeg", "mpg"],
+		type="accepted",
+		actionName = "mp1_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/5"],
+		name = "Audio Video Interleave",
+		inputExtension = ["avi"],
+		type="accepted",
+		actionName = "avi_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["x-fmt/385"],
+		name = "Quicktime",
+		inputExtension = ["mov"],
+		type="accepted",
+		actionName = "mov_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["fmt/133"],
+		name = "Windows Media Video",
+		inputExtension = ["wmv", "asf"],
+		type="accepted",
+		actionName = "wmv_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["x-fmt/382"],
+		name = "Macromedia Flash",
+		inputExtension = ["flv", "f4v"],
+		type="accepted",
+		actionName = "flv_TO_mkv",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/569"],
+		outputExtension = ["mkv"]
+		},
+
+	{	
+		inputPid = ["fmt/569"],
+		name = "Matroska (mit Codec FFV1 und FLAC)",
+		inputExtension = ["mkv"],
+		actionName = "compress_mkv",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/569", "fmt/199"],
+		outputExtension = ["mkv", "mp4"]
+		},
+
+	{	
+		inputPid = ["x-fmt/235", "fmt/277", "fmt/272"],
+		name = "ESRI Arc/View Shapefile",
+		inputExtension = ["shp", "shx", "dbf"],
+		type="prefered",
+		actionName = "shp_TO_gml",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/1047"],
+		outputExtension = ["gml"]
+		},
+
+	{	
+		inputPid = ["fmt/1047"],
+		name = "Geographic Markup Language (Vers. 3.2)",
+		inputExtension = ["gml"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/1047", "x-fmt/263", "x-fmt/235", "fmt/277", "fmt/272"],
+		outputExtension = ["gml", "zip", "shx", "dbf"]
+		},
+
+	{	
+		inputPid = ["fmt/1047", "x-fmt/227"],
+		name = "Geographic Markup Language (Ver. 3.2)",
+		inputExtension = ["gml"],
+		type="prefered",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/1047", "x-fmt/227"],
+		outputExtension = ["gml"]
+		},
+
+	{	
+		inputPid = ["fmt/1047", "x-fmt/227"],
+		name = "Geographic Markup Language (Vers. 3.2)",
+		inputExtension = ["gml"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/1047", "x-fmt/277", "x-fmt/263", "x-fmt/235", "fmt/277", "fmt/272"],
+		outputExtension = ["gml", "zip", "shx", "dbf"]
+		},
+
+	{	
+		inputPid = ["fmt/155"],
+		name = "Geographic Tagged Image File Format (GeoTIFF)",
+		inputExtension = ["tif", "tiff"],
+		type="prefered",
+		actionName = "tif_uncompress?",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/155"],
+		outputExtension = ["tif", "tiff"]
+		},
+
+	{	
+		inputPid = ["fmt/155"],
+		name = "Geographic Tagged Image File Format (GeoTIFF)",
+		inputExtension = ["tif", "tiff"],
+		actionName = "geotif_compress",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/155", "x-fmt/263", "fmt/44", "fmt/367"],
+		outputExtension = ["tif", "zip", "jpg", "jgw"]
+		},
+
+	{	
+		inputPid = ["fmt/353", "fmt/367"],
+		name = "Tagged Image File Format + ESRI World File Format",
+		inputExtension = ["tif", "tfw"],
+		type="prefered",
+		actionName = "tfw_TO_geotiff",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/155"],
+		outputExtension = ["tif", "tiff"]
+		},
+
+	{	
+		inputPid = ["fmt/155"],
+		name = "Geographic Tagged Image File Format (GeoTIFF)",
+		inputExtension = ["tif", "tiff"],
+		actionName = "geotif_compress",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/155", "x-fmt/263", "fmt/44", "fmt/367"],
+		outputExtension = ["tif", "zip", "jpg", "jgw"]
+		},
+
+	{	
+		inputPid = ["fmt/42", "fmt/43", "fmt/44", "fmt/367"],
+		name = "JPEG File Interchange Format (Ver. 1.02) + ESRI World File Format",
+		inputExtension = ["jpg", "jgw", "jpgw"],
+		type="accepted",
+		actionName = "jpw_TO_geotif",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/155"],
+		outputExtension = ["tif", "tiff"]
+		},
+
+	{	
+		inputPid = ["fmt/155"],
+		name = "Geographic Tagged Image File Format (GeoTIFF)",
+		inputExtension = ["tif", "tiff"],
+		actionName = "geotif_compress",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/155", "x-fmt/263", "fmt/44", "fmt/367"],
+		outputExtension = ["tif", "zip", "jpg", "jgw"]
+		},
+
+	{	
+		inputPid = ["x-fmt/226"],
+		name = "ArcInfo Interchange",
+		inputExtension = ["e00"],
+		type="accepted",
+		actionName = "e00_TO_gml",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/1047"],
+		outputExtension = ["gml"]
+		},
+
+	{	
+		inputPid = ["fmt/1047"],
+		name = "Geographic Markup Language (Vers. 3.2)",
+		inputExtension = ["gml"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/1047", "x-fmt/263", "x-fmt/235", "fmt/277", "fmt/272"],
+		outputExtension = ["gml", "zip", "shp", "shx", "dbf"]
+		},
+
+	{	
+		inputPid = ["x-fmt/231", "noPID"],
+		name = "MapInfo Interchange Format",
+		inputExtension = ["mif", "mid"],
+		type="accepted",
+		actionName = "mif_TO_gml",
+		scope = "SIP-AIP",
+		outputPid= ["fmt/1047"],
+		outputExtension = ["gml"]
+		},
+
+	{	
+		inputPid = ["fmt/1047"],
+		name = "Geographic Markup Language (Vers. 3.2)",
+		inputExtension = ["gml"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["fmt/1047", "x-fmt/263", "x-fmt/235", "fmt/277", "fmt/272"],
+		outputExtension = ["gml", "zip", "shp", "shx", "dbf"]
+		},
+
+	{	
+		inputPid = ["noPID"],
+		name = "ESRI GRID (ascii)",
+		inputExtension = ["asc", "grd"],
+		type="accepted",
+		actionName = "copy",
+		scope = "SIP-AIP",
+		outputPid= ["noPID"],
+		outputExtension = ["asc", "grd"]
+		},
+
+	{	
+		inputPid = ["noPID"],
+		name = "ESRI GRID (ascii)",
+		inputExtension = ["asc", "grd"],
+		actionName = "copy",
+		scope = "AIP-DIP",
+		outputPid = ["noPID"],
+		outputExtension = ["asc", "grd"]
+		}
+
+	]

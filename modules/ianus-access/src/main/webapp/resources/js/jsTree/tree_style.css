@@ -1,0 +1,11 @@
+#containe {
+	    width: 200px;
+	    height: 200px;
+	    border-top: solid 1px #BBB;
+	    border-left: solid 1px #BBB;
+	    border-bottom: solid 1px #BBB;
+	    border-right: solid 1px #BBB;
+	    background: #FFF;
+	    overflow: scroll;
+	    padding: 5px;
+	}

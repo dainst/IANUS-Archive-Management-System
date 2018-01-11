@@ -1,0 +1,35 @@
+
+
+span.icon {
+	background: url(../images/researchdata-icon.png) no-repeat;
+	display: block;
+    position: relative;
+    margin-left: 0.5em;
+    text-align: left;
+    border: none;
+    height: 100px;
+    width: 100px;
+	span.corner {
+		display: none;
+	}
+	span.ext {
+		font-weight: bold;
+        border: none;
+        color: #fff;
+        display:inline-block;
+        padding: 0;
+        margin: 0;
+        text-transform: lowercase;
+        position: relative;
+        left: 10px;
+        top: 50px;
+        font-size: 13px;
+	}
+}
+
+/*
+<span class="icon">
+	<span class="corner"></span>
+	<span class="ext">pdf</span>
+</span>
+*/

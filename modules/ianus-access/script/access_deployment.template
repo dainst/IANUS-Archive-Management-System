@@ -1,0 +1,123 @@
+#!/bin/bash
+
+echo Access Module Auto Deployment START
+
+#### Individula Project Address NEED TO CHAGE FOR INDIVIDUAL
+##### Please add your project address for example "/Users/mostafizur/Desktop/software"
+personAddress=/Users/mostafizur/Desktop/software
+
+######## ianus.core address of the Project
+ianusCoreAddress=$personAddress/workspace/ianus.core
+
+####### Properties File address
+propertiesFile=$ianusCoreAddress/modules/ianus-access/src/main/resources/ianus-access.properties
+
+######## Server Address where it shoud go
+destination="/var/lib/tomcat8/webapps"
+
+######### Server SSL access key account
+######### Please change your Server username @ 195.37.32.7
+hostKey=USERNAME@195.37.32.7
+
+
+######### First remove all content of the Properties file then insert only the
+########## Production Configuration for Server level Deployment
+function build(){
+
+    : > $propertiesFile
+
+    echo "## Production Configuration----##" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "home.url=http://195.37.32.7" >> $propertiesFile
+    echo "home.url=http://datenportal.ianus-fdz.de" >> $propertiesFile
+    echo "debug.mode=false" >> $propertiesFile
+    echo "document.root=/var/lib/tomcat8/webapps/ROOT" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "content.path=/data/ianus-storage" >> $propertiesFile
+
+}
+build
+
+###### This function goes to the ianus.core address then make a MAVEN PACKAGE
+function mvPackage(){
+
+    cd $ianusCoreAddress
+    pwd
+    mvn clean package -Dmaven.test.skip=true
+
+    STATUS=$?
+    if [ $STATUS -eq 0 ]; then
+    echo "Maven Package install Successful"
+    else
+    echo "Maven Package install Failed"
+    fi
+
+}
+mvPackage
+
+#### This function works for Server, first it stop the tomcat server then change the destination folder permission level
+#### After that remove ROOT.war and ROOT folder. Then copy the ianus-access.war file to the server destination folder as
+#### ROOT.war. Again change the destination folder permission level as before. after that start the tomcat8 server and
+#### Restart the apache2 server.
+function deploy {
+
+    ssh $hostKey sudo service tomcat8 stop
+
+    ssh $hostKey sudo chmod 777 $destination
+
+    ssh $hostKey rm -rf $destination/ROOT.war
+
+    ssh $hostKey sudo "rm -rf $destination/ROOT"
+
+    scp -r $ianusCoreAddress/modules/ianus-access/target/ianus-access.war $hostKey:$destination/ROOT.war
+
+    ssh $hostKey sudo chmod 775 $destination
+
+    ssh $hostKey sudo service tomcat8 start
+
+    ssh $hostKey sudo service apache2 restart
+
+    STATUS=$?
+    if [ $STATUS -eq 0 ]; then
+    echo "Deployment Successful"
+    else
+    echo "Deployment Failed"
+    fi
+
+}
+deploy
+
+###### Rewrite the properties file as it was before.
+function reBuildPropertiesFile {
+
+   : > $propertiesFile
+
+    echo "## Test & Development ##" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "home.url=http://localhost:8080/ianus-access" >> $propertiesFile
+    echo "#home.url=http://ianus-testing.dainst.de:8080/ianus-access" >> $propertiesFile
+    echo "debug.mode=true" >> $propertiesFile
+    echo "document.root=$coreAddress/modules/ianus-access/target/ianus-access" >> $propertiesFile
+
+    echo "" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "" >> $propertiesFile
+
+    echo "## Production Configuration ##" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "#home.url=http://195.37.32.7" >> $propertiesFile
+    echo "#home.url=http://datenportal.ianus-fdz.de" >> $propertiesFile
+    echo "#debug.mode=false" >> $propertiesFile
+    echo "#document.root=/var/lib/tomcat8/webapps/ROOT" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "content.path=/data/ianus-storage" >> $propertiesFile
+
+}
+reBuildPropertiesFile
+
+
+
+
+read -s -n 1 -p "Press any key..."

@@ -1,0 +1,31 @@
+﻿Dies ist der Titel
+
+In diesem Textdokument geht es um übliche Formatierungen in Manuskripten, egal ob Haus- oder Abschlussarbeit
+
+Inhaltsverzeichnis
+1. Dies ist die erste Überschrift
+1.1. Dies ist eine Überschrift 2. Ordnung
+1.2. Verweis auf Informationen aus anderen Quellen
+3. Überschrift
+4. Textarbeiten
+
+1. Dies ist die erste Überschrift
+In einfachen Textdokumenten können die Zeichen nicht formatiert werden. Ein Ausweg ist das Einfügen von Absätzen, um die Struktur des Textes auch visuell erfassbar zu machen. Welche Möglichkeiten gibt es noch? Im folgenden ein paar Beispiele.
+
+1.1. Dies ist eine Überschrift 2. Ordnung
+Listen mit Tabstop und einem +Zeichen
+	+ Listeneintrag
+	+ Listeneintrag
+	
+1.2 Aufzählungen, ebenfalls eingerückt
+	1.Eintrag Aufzählung
+	2.Eintrag Aufzählung
+	
+1.3. Verweis auf Informationen aus anderen Quellen
+- c:\EVAD\Dateien\WeschWeb2v2.wmv
+- http://www.youtube.com/watch?v=whIJdMvHmCs
+- J. Conolly/M. Lake, Geographical Information Systems in Archaeology (2005)
+3. Überschrift
+4. Textarbeiten
+Textteile, die mir wichtig erscheinen können GROSS geschrieben werden oder g e s p e r r t.
+Daneben gäbe es noch Formatierungen wie fett, kursiv, Kapitälchen, unterstrichen usw., die kann ich aber in einem Texteditor nicht erkennen.

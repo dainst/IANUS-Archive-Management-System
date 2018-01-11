@@ -1,0 +1,502 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="collectionFileForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Collection File Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="3">
+						<p:commandButton
+							value="Add file"
+							action="#{sessionBean.collectionFilePage.actionAddFile}"/>
+						<p:commandButton
+							value="Back to data collection"
+							action="#{sessionBean.collectionFilePage.actionBack2MetadataDcPage}"/>
+						<h:outputLink
+							title="files to json" 
+							value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/dataCollection/collectionFiles/?id=#{sessionBean.collectionFilePage.dc.id}" 
+							styleClass="outputLinkImage"
+							target="_blank">
+							<h:graphicImage value="#{sessionBean.appBean.imgFiles}"/>
+						</h:outputLink>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.collectionFilePage.file == null}">
+					<p:dataTable value="#{sessionBean.collectionFilePage.fileList}" var="file"
+						rendered="#{!empty sessionBean.collectionFilePage.fileList}">
+						<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{file.id}" />
+						</p:column>
+						<p:column headerText="Store place">
+							<h:outputText value="#{file.storePlace}" />
+						</p:column>
+						<p:column>
+							<p:commandButton
+								value="Edit"
+								action="#{sessionBean.collectionFilePage.actionSelectFile}"/>
+							<h:outputLink
+								title="file to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/collectionFile/?id=#{file.id}" 
+								styleClass="outputLinkImage"
+								target="_blank">
+								<h:graphicImage value="#{sessionBean.appBean.imgFile}"/>
+							</h:outputLink>
+						</p:column>
+					</p:dataTable>
+					<h:outputText value="No files found" rendered="#{empty sessionBean.collectionFilePage.fileList}"/>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.collectionFilePage.file != null}">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+								
+						<h:outputText/>
+						<h:panelGrid columns="3">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.collectionFilePage.actionSaveFile}"/>
+							<p:commandButton
+								value="Cancel"
+								action="#{sessionBean.collectionFilePage.actionCancelEdition}"/>
+							<h:outputLink
+								title="file to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/collectionFile/?id=#{sessionBean.collectionFilePage.file.id}" 
+								styleClass="outputLinkImage"
+								target="_blank">
+								<h:graphicImage value="#{sessionBean.appBean.imgFile}"/>
+							</h:outputLink>
+						</h:panelGrid>								
+								
+						<h:outputLabel value="Id"/>
+						<h:outputText value="#{sessionBean.collectionFilePage.file.id}"/>
+						
+						<h:outputLabel value="Internal identfier" />
+						<h:panelGrid columns="1">
+							<p:dataTable value="#{sessionBean.collectionFilePage.file.internalIdList}" var="internalId"
+								rendered="#{!empty sessionBean.collectionFilePage.file.internalIdList}">
+									
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{internalId.id}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{internalId.value}"/>
+								</p:column>
+								<p:column headerText="Type">
+									<h:outputText value="#{internalId.type}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeleteInternalId}"/>
+								</p:column>
+							</p:dataTable>
+							<h:panelGrid columns="4">
+								<h:outputText value="Value"/>
+								<h:outputText value="Type"/>
+								<h:outputText value=""/>
+								<h:outputText value=""/>
+									
+								<h:inputText value="#{sessionBean.collectionFilePage.internalId.value}"/>
+								<p:selectOneMenu value="#{sessionBean.collectionFilePage.internalId.type}">
+									<f:selectItems value="#{sessionBean.appBean.identifierSuggestList}" />
+								</p:selectOneMenu>
+								
+								<p:commandButton value="Add"
+									action="#{sessionBean.collectionFilePage.actionAddInternalId}"/>
+								<p:commandButton value="Reset"
+									action="#{sessionBean.collectionFilePage.actionResetInternalId}"/>
+							</h:panelGrid>
+						</h:panelGrid>
+							
+						<h:outputLabel value="External identfier" />
+						<h:panelGrid columns="1">
+							<p:dataTable value="#{sessionBean.collectionFilePage.file.externalIdList}" var="externalId"
+								rendered="#{!empty sessionBean.collectionFilePage.file.externalIdList}">
+									
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{externalId.id}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{externalId.value}"/>
+								</p:column>
+								<p:column headerText="Type">
+									<h:outputText value="#{externalId.type}"/>
+								</p:column>
+								<p:column headerText="Institution">
+									<h:outputText value="#{externalId.institution}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeleteExternalId}"/>
+								</p:column>
+							</p:dataTable>
+							<h:panelGrid columns="5">
+								<h:outputText value="External id"/>
+								<h:outputText value="Identificator type"/>
+								<h:outputText value="Institution"/>
+								<h:outputText value=""/>
+								<h:outputText value=""/>
+									
+								<h:inputText value="#{sessionBean.collectionFilePage.externalId.value}"/>
+								<h:inputText value="#{sessionBean.collectionFilePage.externalId.type}"/>
+								<h:inputText value="#{sessionBean.collectionFilePage.externalId.institution}"/>
+								<p:commandButton value="Add"
+									action="#{sessionBean.collectionFilePage.actionAddExternalId}"/>
+								<p:commandButton value="Reset"
+									action="#{sessionBean.collectionFilePage.actionResetExternalId}"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Version"/>
+						<h:inputText value="#{sessionBean.collectionFilePage.file.version}"/>
+						
+						<h:outputLabel value="Category"/>
+						<p:selectOneMenu value="#{sessionBean.collectionFilePage.file.category}">
+							<f:selectItems value="#{sessionBean.appBean.fileCategorySuggestList}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel value="Extension"/>
+						<h:inputText value="#{sessionBean.collectionFilePage.file.extension}"/>
+						
+						<h:outputLabel value="File format"/>
+						<h:outputText value="TODO"/>
+						
+						<h:outputLabel value="Metadata Languages" />
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.collectionFilePage.file.metadataLanguageList}" var="metadataLanguage"
+								rendered="#{!empty sessionBean.collectionFilePage.file.metadataLanguageList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{metadataLanguage.id}"/>
+								</p:column>
+								<p:column headerText="code">
+									<h:outputText value="#{metadataLanguage.code}"/>
+								</p:column>
+								<p:column headerText="label">
+									<h:outputText value="#{metadataLanguage.label}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										update="collectionFileForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerDeleteMetadataLanguage}"/>
+								</p:column>
+							</p:dataTable>
+							<h:panelGrid columns="2">
+								<p:autoComplete value="#{sessionBean.collectionFilePage.metadataLanguageName}" 
+									completeMethod="#{sessionBean.appBean.searchDataLanguage}"
+	                       			var="theme" 
+	                       			itemLabel="#{theme}" itemValue="#{theme.name}" 
+	                       			forceSelection="true" />
+								<p:commandButton value="Add language" update="collectionFileForm msgForm:msg"
+									actionListener="#{sessionBean.collectionFilePage.listenerAddMetadataLanguage}"/>
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Software"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.collectionFilePage.file.softwareList}" var="software"
+								rendered="#{!empty sessionBean.collectionFilePage.file.softwareList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{software.id}"/>
+								</p:column>								
+								<p:column headerText="Name">
+									<h:outputText value="#{software.name}"/>
+								</p:column>
+								<p:column headerText="Version">
+									<h:outputText value="#{software.version}"/>
+								</p:column>
+								<p:column headerText="Operating system">
+									<h:outputText value="#{software.operatingSystem}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton 
+										value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeleteSoftware}"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="5">
+								<h:outputText value="Name"/>
+								<h:outputText value="Version"/>
+								<h:outputText value="Hardware type"/>
+								<h:outputText value="Hardware specification"/>
+								<h:outputText value="Operating system"/>
+								
+								<h:inputText value="#{sessionBean.collectionFilePage.software.name}"/>
+								<h:inputText value="#{sessionBean.collectionFilePage.software.version}"/>
+								<h:inputText value="#{sessionBean.collectionFilePage.software.hardwareType}"/>
+								<h:inputText value="#{sessionBean.collectionFilePage.software.hardwareSpecification}"/>
+								<h:inputText value="#{sessionBean.collectionFilePage.software.operatingSystem}"/>
+							</h:panelGrid>
+							<h:panelGrid columns="3">
+								<p:commandButton
+									value="Add software"
+									action="#{sessionBean.collectionFilePage.actionAddSoftware}"/>
+								<p:commandButton
+									value="Reset"
+									action="#{sessionBean.collectionFilePage.actionResetSoftware}"/>
+							</h:panelGrid>
+							
+							
+						</h:panelGrid>
+						
+						<h:outputLabel value="Store place"/>
+						<h:inputText value="#{sessionBean.collectionFilePage.file.storePlace}"/>
+						
+						<h:outputLabel value="Memory size (in KB)"/>
+						<h:inputText value="#{sessionBean.collectionFilePage.file.memorySize}"/>
+
+						<h:outputLabel value="File creation"/>
+						<p:calendar value="#{sessionBean.collectionFilePage.file.fileCreation}"/>
+												
+						<h:outputLabel value="File modification"/>
+						<p:calendar value="#{sessionBean.collectionFilePage.file.fileModification}"/>
+						
+						<h:outputLabel value="Checksum"/>
+						<h:inputText value="#{sessionBean.collectionFilePage.file.checksum}"/>
+						
+						<h:outputLabel value="checksumAlgorithm"/>
+						<h:inputText value="#{sessionBean.collectionFilePage.file.checksumAlgorithm}"/>
+						
+						<h:outputLabel value="Short description"/>
+						<h:panelGrid>
+								<p:dataTable value="#{sessionBean.collectionFilePage.file.shortDescriptionList}" var="shortDescription"
+									rendered="#{!empty sessionBean.collectionFilePage.file.shortDescriptionList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{shortDescription.id}"/>
+									</p:column>
+									<p:column headerText="Value" >
+										<h:outputText value="#{shortDescription.valueShort}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{shortDescription.language}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="collectionFileForm msgForm:msg"
+											actionListener="#{sessionBean.collectionFilePage.shortDescription.actionDelete}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="3">
+									<h:inputTextarea value="#{sessionBean.collectionFilePage.shortDescription.textAtt.value}"/>
+									
+									<p:autoComplete value="#{sessionBean.collectionFilePage.shortDescription.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.appBean.searchDataLanguage}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									
+									<p:commandButton value="Add short description"
+										update="collectionFileForm msgForm:msg"
+										actionListener="#{sessionBean.collectionFilePage.shortDescription.actionAdd}"/>
+								</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Long description"/>
+						<h:panelGrid>
+								<p:dataTable value="#{sessionBean.collectionFilePage.file.longDescriptionList}" var="longDescription"
+									rendered="#{!empty sessionBean.collectionFilePage.file.longDescriptionList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{longDescription.id}"/>
+									</p:column>
+									<p:column headerText="Value" >
+										<h:outputText value="#{longDescription.valueShort}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{longDescription.language}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="collectionFileForm msgForm:msg"
+											actionListener="#{sessionBean.collectionFilePage.longDescription.actionDelete}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="3">
+									<h:inputTextarea value="#{sessionBean.collectionFilePage.longDescription.textAtt.value}"/>
+									
+									<p:autoComplete value="#{sessionBean.collectionFilePage.longDescription.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.appBean.searchDataLanguage}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									
+									<p:commandButton value="Add long description"
+										update="collectionFileForm msgForm:msg"
+										actionListener="#{sessionBean.collectionFilePage.longDescription.actionAdd}"/>
+								</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Places"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.collectionFilePage.file.placeList}" var="place"
+								rendered="#{!empty sessionBean.collectionFilePage.file.placeList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{place.id}"/>
+								</p:column>
+								<p:column headerText="Label">
+									<h:outputText value="#{place.dynamicLabel}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeletePlace}"/>
+									<p:commandButton value="Edit"
+										action="#{sessionBean.collectionFilePage.actionEditPlace}"/>
+								</p:column>
+							</p:dataTable>
+							<h:panelGrid columns="1">
+								<p:commandButton value="Add place"
+									action="#{sessionBean.collectionFilePage.actionAddPlace}"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="References"/>
+						<h:panelGrid columns="1">
+							<p:dataTable var="reference" value="#{sessionBean.collectionFilePage.file.referenceList}"
+								rendered="#{!empty sessionBean.collectionFilePage.file.referenceList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{reference.id}"/>
+								</p:column>
+								<p:column headerText="Label">
+									<h:outputText value="#{reference.labelWithPublication}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeleteReference}"/>
+									<p:commandButton
+										value="Edit"
+										action="#{sessionBean.collectionFilePage.actionEditReference}"/>
+								</p:column>
+							</p:dataTable>
+							<p:commandButton value="Add reference"
+								action="#{sessionBean.collectionFilePage.actionAddReference}"/>
+						</h:panelGrid>
+							
+						<h:outputLabel value="Related sources"/>
+						<h:panelGrid columns="1">
+							<p:dataTable var="relatedSource" value="#{sessionBean.collectionFilePage.file.relatedSourceList}"
+								rendered="#{!empty sessionBean.collectionFilePage.file.relatedSourceList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{relatedSource.id}"/>
+								</p:column>
+								<p:column headerText="Label">
+									<h:outputText value="#{relatedSource.label}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeleteRelatedSource}"/>
+									<p:commandButton
+										value="Edit"
+										action="#{sessionBean.collectionFilePage.actionEditRelatedSource}"/>
+								</p:column>
+							</p:dataTable>
+							<p:commandButton value="Add related source"
+								action="#{sessionBean.collectionFilePage.actionAddRelatedSource}"/>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Alternative Representation"/>
+						<h:panelGrid columns="1">
+							<p:dataTable var="alternativeRepresentation" value="#{sessionBean.collectionFilePage.file.alternativeRepresentationList}"
+								rendered="#{!empty sessionBean.collectionFilePage.file.alternativeRepresentationList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{alternativeRepresentation.id}"/>
+								</p:column>
+								<p:column headerText="Label">
+									<h:outputText value="#{alternativeRepresentation.label}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										action="#{sessionBean.collectionFilePage.actionDeleteAlternativeRepresentation}"/>
+									<p:commandButton
+										value="Edit"
+										action="#{sessionBean.collectionFilePage.actionEditAlternativeRepresentation}"/>
+								</p:column>
+							</p:dataTable>
+							<p:commandButton value="Add alternative representation"
+								action="#{sessionBean.collectionFilePage.actionAddAlternativeRepresentation}"/>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Metadata Editor"/>
+						<h:panelGrid>
+							<p:dataTable 
+								value="#{sessionBean.collectionFilePage.metadataEditorList}" var="actor"
+								rendered="#{!empty sessionBean.collectionFilePage.metadataEditorList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{actor.id}"/>
+								</p:column>
+								<p:column headerText="First name">
+									<h:outputText value="#{actor.label}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete" 
+										action="#{sessionBean.collectionFilePage.actionDeleteMetadataEditor}">
+										<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+									</p:commandButton>
+									<p:commandButton value="Edit" 
+										action="#{sessionBean.collectionFilePage.actionEditActor}"/>
+								</p:column>
+							</p:dataTable>	
+							<h:panelGrid columns="2">
+								<p:commandButton value="Add person"
+									action="#{sessionBean.collectionFilePage.actionAddPerson}"/>
+								<p:commandButton value="Add institution"
+									action="#{sessionBean.collectionFilePage.actionAddInstitution}"/>
+							</h:panelGrid>
+						</h:panelGrid>	
+						
+						<h:outputText/>
+						<h:panelGrid columns="3">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.collectionFilePage.actionSaveFile}"/>
+							<p:commandButton
+								value="Cancel"
+								action="#{sessionBean.collectionFilePage.actionCancelEdition}"/>
+							<h:outputLink
+								title="file to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/collectionFile/?id=#{sessionBean.collectionFilePage.file.id}" 
+								styleClass="outputLinkImage"
+								target="_blank">
+								<h:graphicImage value="#{sessionBean.appBean.imgFile}"/>
+							</h:outputLink>
+						</h:panelGrid>		
+						
+					</h:panelGrid>	
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="3">
+						<p:commandButton
+							value="Add file"
+							action="#{sessionBean.collectionFilePage.actionAddFile}"/>
+						<p:commandButton
+							value="Back to data collection"
+							action="#{sessionBean.collectionFilePage.actionBack2MetadataDcPage}"/>
+						<h:outputLink
+							title="files to json" 
+							value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/dataCollection/collectionFiles/?id=#{sessionBean.collectionFilePage.dc.id}" 
+							styleClass="outputLinkImage"
+							target="_blank">
+							<h:graphicImage value="#{sessionBean.appBean.imgFiles}"/>
+						</h:outputLink>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

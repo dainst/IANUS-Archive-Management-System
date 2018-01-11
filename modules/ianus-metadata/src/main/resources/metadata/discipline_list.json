@@ -1,0 +1,86 @@
+{ 
+	"items" : [
+		{"label" : "Archäologie", "id" : "_e7ad4447", "type" : "main"},
+		{"label" : "Ägyptische Archäologie", "id" : "_1d40b9f0"},
+		{"label" : "Afrikanische Archäologie", "id" : "_b189d13f"},
+		{"label" : "Altamerikanische Archäologie", "id" : "_5fe5046d"},
+		{"label" : "Biblische Archäologie", "id" : "_da2f7098"},
+		{"label" : "Byzantinische Archäologie", "id" : "_d9e23b78"},
+		{"label" : "Christliche Archäologie", "id" : "_b6f68133"},
+		{"label" : "Klassische Archäologie", "id" : "_0f84e6e3"},
+		{"label" : "Mittelalterarchäologie", "id" : "_799d17b8"},
+		{"label" : "Provinzialrömische Archäologie", "id" : "_4d5f985d"},
+		{"label" : "Prähistorische und historische Archäologie", "id" : "_8dcfed63"},
+		{"label" : "Vorderasiatische Archäologie", "id" : "_546deb86"},
+		
+		
+		{"label" : "Philologie", "id" : "_e46572f1", "type" : "main"},
+		{"label" : "Altamerikanistik", "id" : "_2ff1dafc"},
+		{"label" : "Altorientalistik", "id" : "_556df59a"},
+		{"label" : "Lateinische Philologie", "id" : "_0b83f301"},
+		{"label" : "Griechische Philologie", "id" : "_db6b5f2"},
+		{"label" : "Ägyptische Philologie", "id" : "_e410919d"},
+		
+		{"label" : "Geschichtswissenschaften", "id" : "_a4ef7591", "type" : "main"},
+		{"label" : "Alte Geschichte ", "id" : "_a2a28fb4"},
+		{"label" : "Byzantinische Geschichte", "id" : "_f20eb2df"},
+		{"label" : "Mittlere und Neuere Geschichte", "id" : "_f9ef1469"},
+		{"label" : "Kunstgeschichte", "id" : "_1f71d5dc"},
+		{"label" : "Islamische Geschichte", "id" : "_032f2d33"},
+		{"label" : "Wissenschaftsgeschichte", "id" : "_6fe45c97"},
+		{"label" : "Papyrologie", "id" : "_7df250af"},
+		{"label" : "Epigraphik", "id" : "_48943c59"},
+		{"label" : "Numismatik", "id" : "_5222c31e"},
+		{"label" : "Architekturgeschichte", "id" : "_90b5feb6"},
+		
+		{"label" : "Naturwissenschaften", "id" : "_5677c98f", "type" : "main"},
+		{"label" : "Archäometrie", "id" : "_a5d5d015"},
+		{"label" : "Anthropologie", "id" : "_81040b31"},
+		{"label" : "Archäozoologie", "id" : "_d613c54c"},
+		{"label" : "Archäobotantik", "id" : "_ada8c3a5"},
+		{"label" : "Geowissenschaften", "id" : "_1138a290"},
+		
+		{"label" : "Ethnologie", "id" : "_4aab6eb7", "type" : "main"},
+		
+		{"label" : "Soziologie", "id" : "_e93c0b3e", "type" : "main"}
+			],
+	"dependencies" : [
+					
+		{"parent" : "_e7ad4447", "child" : "_1d40b9f0"},
+		{"parent" : "_e7ad4447", "child" : "_b189d13f"},
+		{"parent" : "_e7ad4447", "child" : "_5fe5046d"},
+		{"parent" : "_e7ad4447", "child" : "_da2f7098"},
+		{"parent" : "_e7ad4447", "child" : "_d9e23b78"},
+		{"parent" : "_e7ad4447", "child" : "_b6f68133"},
+		{"parent" : "_e7ad4447", "child" : "_0f84e6e3"},
+		{"parent" : "_e7ad4447", "child" : "_799d17b8"},
+		{"parent" : "_e7ad4447", "child" : "_4d5f985d"},
+		{"parent" : "_e7ad4447", "child" : "_8dcfed63"},
+		{"parent" : "_e7ad4447", "child" : "_546deb86"},
+		
+		
+		{"parent" : "_e46572f1", "child" : "_2ff1dafc"},
+		{"parent" : "_e46572f1", "child" : "_556df59a"},
+		{"parent" : "_e46572f1", "child" : "_0b83f301"},
+		{"parent" : "_e46572f1", "child" : "_db6b5f2"},
+		{"parent" : "_e46572f1", "child" : "_e410919d"},
+		
+		
+		{"parent" : "_a4ef7591", "child" : "_a2a28fb4"},
+		{"parent" : "_a4ef7591", "child" : "_f20eb2df"},
+		{"parent" : "_a4ef7591", "child" : "_f9ef1469"},
+		{"parent" : "_a4ef7591", "child" : "_1f71d5dc"},
+		{"parent" : "_a4ef7591", "child" : "_032f2d33"},
+		{"parent" : "_a4ef7591", "child" : "_6fe45c97"},
+		{"parent" : "_a4ef7591", "child" : "_7df250af"},
+		{"parent" : "_a4ef7591", "child" : "_48943c59"},
+		{"parent" : "_a4ef7591", "child" : "_5222c31e"},
+		{"parent" : "_a4ef7591", "child" : "_90b5feb6"},
+		
+		{"parent" : "_5677c98f", "child" : "_a5d5d015"},
+		{"parent" : "_5677c98f", "child" : "_81040b31"},
+		{"parent" : "_5677c98f", "child" : "_d613c54c"},
+		{"parent" : "_5677c98f", "child" : "_ada8c3a5"},
+		{"parent" : "_5677c98f", "child" : "_1138a290"}
+			]
+}

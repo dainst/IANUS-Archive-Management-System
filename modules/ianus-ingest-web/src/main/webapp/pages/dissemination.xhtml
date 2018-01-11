@@ -1,0 +1,184 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		
+		<h:form id="disseminationForm">
+		
+		<p:poll 
+			interval="3" update="disseminationForm" listener="#{sessionBean.disseminationPage.reload}"
+			stop="#{sessionBean.disseminationPage.pollingStop}" 
+			widgetVar="submissionPolling"
+			autoStart="true"/>		
+		
+		<h:panelGrid id="disseminationPage" columns="1" styleClass="pagePanel" rendered="#{sessionBean.disseminationPage.dip != null}">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Dissemination Information Package" />
+				<h:outputText value="#{sessionBean.disseminationPage.dip.collectionLabel} [#{sessionBean.disseminationPage.dip.collectionIdentifier}]" />
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanelDIP" columns="6">
+				<p:commandButton value="Go to archival package" action="#{sessionBean.disseminationPage.gotoAipPage}"/>
+				<p:commandButton value="Files" action="#{sessionBean.disseminationPage.gotoFilesPage}"/>
+				<p:commandButton value="Main MD" action="#{sessionBean.disseminationPage.gotoDataCollectionPage}"/>
+				<!-- 
+				<p:commandButton value="Asset Upload" action="#{sessionBean.disseminationPage.gotoAssetUploadPage}"/>
+				-->
+				
+				<h:outputLink value="#{sessionBean.appBean.dataPortalUrl}/pages/collectionView.jsp?dipId=#{sessionBean.disseminationPage.dip.id}">
+					<h:outputText value="Preview in Data Portal"/>
+				</h:outputLink>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid id="dipDataPanel" styleClass="mainControlPanelDIP" columns="2">
+			
+				<h:outputLabel value="Id"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.id}"/>
+				
+				<h:outputLabel value="State"/>
+				<h:panelGrid columns="2">
+					<h:graphicImage value="#{sessionBean.disseminationPage.stateIcon}"/>
+					<h:outputText value="#{sessionBean.disseminationPage.dip.state}"/>
+				</h:panelGrid>
+				
+				<h:outputLabel value="Process instance id"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.processInstanceId}"/>
+				
+				<h:outputLabel value="Package folder name"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.packageFolderName}"/>
+				
+				<h:outputLabel value="Collection identifier"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.collectionIdentifier}"/>
+				
+				<h:outputLabel value="Collection label"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.collectionLabel}"/>
+				
+				<h:outputLabel value="Size"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.sizeFormatted}"/>
+				
+				<h:outputLabel value="Size (data)"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.dataSizeFormatted}"/>
+				
+				<h:outputLabel value="Files amount (data)"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.dataFilesAmount}"/>
+				
+				<h:outputLabel value="Creation time"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.formattedCreationTime}"/>
+					
+				<h:outputLabel value="Last change"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.formattedLastChange}"/>
+				
+				<h:outputLabel value="Absolute path"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.absolutePath}"/>
+				
+				<h:outputLabel value="Location purpose"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.location.purpose}"/>
+				
+				<h:outputLabel value="Location free space"/>
+				<h:outputText value="#{sessionBean.disseminationPage.dip.location.freeSpaceInBytes}"/>
+				
+			</h:panelGrid>		
+			
+			<h:panelGrid>
+				<h:outputText value="Workflow Tasks"/>
+				
+				<h:panelGrid columns="1">
+					
+					<h:panelGrid columns="3" rendered="#{sessionBean.disseminationPage.wfInProgressState}">
+						<h:outputLabel value="Polling"/>
+						<p:commandButton
+							value="#{sessionBean.disseminationPage.pollingButtonLabel}"
+							update="disseminationForm:disseminationPage msgForm:msg"
+							action="#{sessionBean.disseminationPage.actionChangePollingState}"
+							oncomplete="changePollingState('#{sessionBean.disseminationPage.pollingState}', '#{sessionBean.disseminationPage.wfInProgressState}');"/>
+						<h:outputText value="Last update: #{sessionBean.disseminationPage.lastWFUpdate}"/>
+					</h:panelGrid>
+					<h:panelGrid columns="3"  rendered="#{sessionBean.disseminationPage.wfInProgressState}">
+						<h:outputText value="Task Id"/>
+						<h:inputText value="#{sessionBean.disseminationPage.taskId}"/>
+						<p:commandButton
+							value="Complete"
+							action="#{sessionBean.disseminationPage.actionCompleteTask}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid id="dipTaskPanel">
+					<p:dataTable id="tasksTable" value="#{sessionBean.disseminationPage.activities}" var="wrapper" styleClass="dataTableDIP">
+						<f:facet name="header">
+        					Workflow Tasks
+	        				<p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+	        				<p:columnToggler datasource="tasksTable" trigger="toggler" />
+    					</f:facet>					
+						<p:column headerText="Id" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.activity.id}"/>
+						</p:column>
+						<p:column headerText="Task id" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{wrapper.activity.taskId}"/>
+						</p:column>
+						
+						<p:column headerText="Type" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.activity.activityType}"/>
+						</p:column>
+						<p:column headerText="executionId" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};" rendered="false">
+							<h:outputText value="#{wrapper.activity.executionId}"/>
+						</p:column>
+						
+						<p:column headerText="processInstanceId" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};" rendered="false">
+							<h:outputText value="#{wrapper.activity.processInstanceId}"/>
+						</p:column>
+						<p:column headerText="Task" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputLabel value="#{wrapper.activity.name}"/>
+						</p:column>
+						<p:column headerText="Start Time" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.startTime}"/>
+						</p:column>
+						<p:column headerText="End Time" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.endTime}"/>
+						</p:column>
+						<p:column headerText="Options" style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<p:selectOneMenu 
+								value="#{sessionBean.disseminationPage.userDecision}" 
+								required="#{wrapper.userTask}" 
+								rendered="#{wrapper.hasFormField}"
+								valueChangeListener="#{sessionBean.disseminationPage.changeUserDecision}">
+								<f:selectItems value="#{wrapper.userSuggestList}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column headerText="User support" style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<p:commandButton
+								value="user support"
+								action="#{sessionBean.disseminationPage.actionToUserSupportPage}"
+								rendered="#{wrapper.hasUserSupport}"/>
+							<h:outputText rendered="#{!wrapper.hasUserSupport and wrapper.userTask and !wrapper.completed}"
+								value="Task not supported"/>
+						</p:column>
+						<p:column headerText="Process Output" style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputLink
+				            	value="#{sessionBean.appBean.contextRoot}/pages/activityOutput.xhtml?ianusActivityId=#{wrapper.output.ianusActivityId}&amp;wfipId=#{sessionBean.disseminationPage.dip.id}" target="_blank"
+				                rendered="#{wrapper.output != null}">
+				                <h:graphicImage value="#{sessionBean.appBean.imgInformation}"/>
+							</h:outputLink>
+						</p:column>
+						<p:column style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<!-- update="@([id$=dipTaskPanel]) @([id$=dipDataPanel]) @([id$=msg])" -->
+							<p:commandButton value="Complete" 
+								actionListener="#{sessionBean.disseminationPage.listenerCompleteTask}"
+								update="disseminationForm msgForm:msg"
+								rendered="#{wrapper.showCompleteButton}"/>
+							<h:graphicImage value="#{sessionBean.appBean.imgWorking}"
+								rendered="#{wrapper.showWorkingIcon}"/>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>			
+			</h:panelGrid>					
+			
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

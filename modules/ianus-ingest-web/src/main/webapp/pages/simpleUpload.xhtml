@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="privateContent">
+
+
+    	   	
+		<h:panelGrid columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Documentation Upload" />
+			</h:panelGrid>
+			<h:panelGrid styleClass="mainControlPanel">
+			
+					<h:panelGrid columns="1">
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.simpleUploadPage.gotoIPPage}"/>
+					</h:panelGrid>	
+			
+
+				<h:form id="uploadForm" enctype="multipart/form-data">
+	
+					<p:fileUpload id="fileUpload" mode="simple"
+						value="#{sessionBean.simpleUploadPage.file}"
+						styleClass="fileUploadClass"
+						rendered="#{!sessionBean.guestUser}"/>
+	
+					<p:commandButton widgetVar="button" value="Upload"
+						actionListener="#{sessionBean.simpleUploadPage.actionUpload}"
+						ajax="false"
+						update="uploadForm uploadStatusForm msgForm:msg" 
+						rendered="#{!sessionBean.guestUser}"/>
+				</h:form>
+				
+
+				<h:form id="uploadStatusForm">
+					<p:dataTable value="#{sessionBean.simpleUploadPage.fileList}"
+						var="fileName">
+						<p:column headerText="File name">
+							<h:outputText value="#{fileName}" />
+						</p:column>
+						<p:column>
+							<p:commandButton
+								value="Delete"
+								action="#{sessionBean.simpleUploadPage.actionDeleteUploadedFile}"
+								rendered="#{!sessionBean.guestUser}">
+							</p:commandButton> 
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</h:panelGrid>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>

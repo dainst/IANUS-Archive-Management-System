@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:outputScript target="body">
+			function expandTree(widgetVar){}
+			function collapseTree(widgetVar){}
+		</h:outputScript>	
+	
+	
+		<h:form id="filesForm">
+			<h:panelGrid id="filesPage" columns="1" styleClass="pagePanel filesPanel">
+				
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Files" />
+				</h:panelGrid>
+	
+				<h:panelGrid styleClass="#{sessionBean.filesPage.styleClass}">
+					<h:panelGrid>
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.filesPage.gotoIPPage}"/>
+						<p:commandButton value="Bagit Upload"
+							action="#{sessionBean.filesPage.gotoUploadPage}"
+							rendered="#{sessionBean.filesPage.inProgress}"/>
+					</h:panelGrid>	
+					<h:panelGrid columns="2">
+						<h:outputText value="IP id"/>
+						<h:outputText value="#{sessionBean.filesPage.ip.id}"/>
+						
+						<h:outputText value="IP prefix"/>
+						<h:outputText value="#{sessionBean.filesPage.ip.prefix}"/>
+						
+						<h:outputText value="Location absolute path"/>
+						<h:outputText value="#{sessionBean.filesPage.ip.location.absolutePath}"/>
+						
+						<h:outputText value="Rights"/>
+						<h:outputText value="#{sessionBean.filesPage.rightsAsString}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<p:panelGrid id="filesContent" columns="2" styleClass="filesPanel">
+					<p:panelGrid id="test01" columns="1">
+						<p:panel style="width:400px;height:400px; overflow:auto !important" >
+							<p:tree  id="tree"
+								widgetVar="fileTree"
+								value="#{sessionBean.filesPage.root}" var="fileNode"
+								selectionMode="multiple"
+				                dynamic="true"
+				                cache="true"
+				                scrollable="true"
+				                styleClass="filesTreePanel"
+				                draggable="#{sessionBean.filesPage.canMove}" droppable="#{sessionBean.filesPage.canMove}">
+				                
+				                <p:ajax 
+				                	event="dragdrop" 
+				                	listener="#{sessionBean.filesPage.onDragDrop}" 
+				                	update="tree filesForm msgForm:msg" />
+				                	
+				                <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed" scrollable="true">
+				        			<p:commandLink actionListener="#{sessionBean.filesPage.listenerSelectFile}" 
+				        				update=":#{component.namingContainer.parent.namingContainer.clientId}:displayFile filesForm:metadataPanel msgForm:msg">
+										<h:outputText value="#{fileNode.label}" styleClass="treeFileNode"/>
+									</p:commandLink>
+				        		</p:treeNode>
+				        		
+				        		<p:treeNode type="document" icon="ui-icon-document" scrollable="true">
+									<p:commandLink actionListener="#{sessionBean.filesPage.listenerSelectFile}" 
+										update=":#{component.namingContainer.parent.namingContainer.clientId}:displayFile filesForm:metadataPanel msgForm:msg">
+										<h:outputText value="#{fileNode.label}" styleClass="treeFileNode"/>
+									</p:commandLink>
+								</p:treeNode>
+								
+							</p:tree>
+						</p:panel>
+						<p:panelGrid columns="1" style="width: 400px;">
+							<h:outputLabel value="File actions" rendered="#{sessionBean.filesPage.selectedNode != null}"/>
+							<h:panelGrid id="displayFile" columns="1" styleClass="#{sessionBean.filesPage.styleClass}">
+								<h:panelGrid columns="2" rendered="#{sessionBean.filesPage.selectedNode != null and sessionBean.filesPage.canDownload}">
+								
+								</h:panelGrid>
+							
+								<h:panelGrid columns="1" rendered="#{sessionBean.filesPage.selectedNode != null and !sessionBean.guestUser}">
+									
+									<h:outputText value="Selected file: #{sessionBean.filesPage.selectedNode.relativePath}"/>
+									
+									<h:panelGrid columns="2" rendered="#{!sessionBean.filesPage.selectedNode.directory and sessionBean.filesPage.canDownload}">
+										<h:outputText value="Download file"/>
+										<h:outputLink target="_blank" value="#{sessionBean.filesPage.linkDisplayFile}">
+											<h:graphicImage value="#{sessionBean.appBean.imgShow}"/>
+										</h:outputLink>
+									</h:panelGrid>
+									
+									<h:panelGrid columns="2" rendered="#{sessionBean.filesPage.canMove}">
+										<h:inputText value="#{sessionBean.filesPage.newFileName}"/>
+										<p:commandButton value="Rename file" action="#{sessionBean.filesPage.actionRenameFile}"/>
+									</h:panelGrid>
+									
+									<h:panelGrid columns="2" rendered="#{sessionBean.filesPage.canUpdate}">
+										<h:inputText value="#{sessionBean.filesPage.childFolderName}" 
+											rendered="#{sessionBean.filesPage.selectedNode.directory}"/>
+										<p:commandButton value="Add sub folder" 
+											action="#{sessionBean.filesPage.actionAddSubFolder}" 
+											rendered="#{sessionBean.filesPage.selectedNode.directory}"/>
+									</h:panelGrid>
+									
+									<h:panelGrid columns="2" rendered="#{sessionBean.filesPage.canDelete}">
+										<p:commandButton value="Delete file" action="#{sessionBean.filesPage.actionDeleteFile}"/>
+									</h:panelGrid>
+								</h:panelGrid>
+								
+							</h:panelGrid>						
+						</p:panelGrid>	
+				</p:panelGrid>
+					
+					
+					<p:panelGrid columns="1" id="metadataPanel" styleClass="#{sessionBean.filesPage.styleClass}" style="width:100%;">
+						
+						<p:panel rendered="#{!empty sessionBean.filesPage.selectedDirectoryList}">
+							<h:outputText value="Files Metadata" styleClass="filesPanelTitle"/>
+							<p:dataTable value="#{sessionBean.filesPage.selectedDirectoryList}" 
+								var="fileItem"
+								rows="5"
+	                         	paginator="true"
+	                         	paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                         	rowsPerPageTemplate="5,10,15">
+								<p:column headerText="Instance id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{fileItem.instance.id}"/>
+								</p:column>
+								<p:column headerText="Instance file name">
+									<h:outputText value="#{fileItem.instance.fileName}"/>
+								</p:column>
+								<p:column headerText="Instance location">
+									<h:outputText value="#{fileItem.instance.location}"/>
+								</p:column>
+								<p:column headerText="Concept id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{fileItem.concept.id}"/>
+								</p:column>
+								<p:column headerText="Group id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{fileItem.group.id}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="View"
+										actionListener="#{sessionBean.filesPage.listenerSelectFileItem}"
+										update="filesForm:metadataPanel msgForm:msg "
+										rendered="#{!sessionBean.guestUser}"/>
+									<p:commandButton
+										value="Edit group"
+										actionListener="#{sessionBean.filesPage.listenerEditGroup}"
+										update="filesForm:metadataPanel msgForm:msg"
+										rendered="#{!sessionBean.guestUser}"/>
+									<p:commandButton
+										value="Add to group"
+										actionListener="#{sessionBean.filesPage.listenerAddInstanceToGroup}"
+										update="filesForm:metadataPanel msgForm:msg"
+										rendered="#{sessionBean.filesPage.editingGroup and !sessionBean.guestUser}"/>
+										
+								</p:column>
+							</p:dataTable>
+						</p:panel>
+						
+						
+						<h:outputLabel value="No file instance found" rendered="#{sessionBean.filesPage.selectedFile != null and sessionBean.filesPage.selectedFile.instance == null}"/>
+						
+						<p:panel rendered="#{sessionBean.filesPage.selectedFile != null and sessionBean.filesPage.selectedFile.instance != null}">
+							<h:outputText value="File Instance" styleClass="filesPanelTitle"/>
+							<p:panelGrid columns="2">
+								<h:outputLabel value="Instance id"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.id}"/>
+								<h:outputLabel value="Instance file name"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.fileName}"/>
+								<h:outputLabel value="File location"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.location}"/>
+								<h:outputLabel value="Checksum"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.checksum}"/>
+								<h:outputLabel value="Extension"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.ext}"/>
+								
+								<h:outputLabel value="Created"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.fileCreated}"/>
+								<h:outputLabel value="Last modified"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.fileLastModified}"/>
+								
+								<h:outputLabel value="Valid"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.valid}"/>
+								<h:outputLabel value="Well-Formed"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.wellFormed}"/>
+								
+								<h:outputLabel value="PUID"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.puid}"/>
+								<h:outputLabel value="Mime type"/>
+								<h:outputText value="#{sessionBean.filesPage.selectedFile.instance.mimeType}"/>
+								
+								<h:outputLabel value="Format name"/>
+								<h:outputText value="#{sessionBean.filesPage.formatName}"/>
+								
+								<h:outputLabel value="Concept"/>
+								<p:dataTable value="#{sessionBean.filesPage.selectedFile.concept.fileInstanceList}" var="instanceInConcept">
+									<p:column headerText="id">
+										<h:outputText value="#{instanceInConcept.id}"/>
+									</p:column>
+									<p:column headerText="File name">
+										<h:outputText value="#{instanceInConcept.fileName}"/>
+									</p:column>
+								</p:dataTable>
+									
+								<h:outputLabel value="Group"/>
+								<p:dataTable value="#{sessionBean.filesPage.selectedFile.group.fileInstanceList}" var="instanceInGroup">
+									<p:column headerText="id">
+										<h:outputText value="#{instanceInGroup.id}"/>
+									</p:column>
+									<p:column headerText="File name">
+										<h:outputText value="#{instanceInGroup.fileName}"/>
+									</p:column>
+								</p:dataTable>
+								
+								
+							</p:panelGrid>
+							<p:commandButton value="Close view"
+								actionListener="#{sessionBean.filesPage.listenerCloseFileInstancePanel}"
+								update="filesForm:metadataPanel msgForm:msg"/>
+							<p:commandButton value="Add to group"
+								actionListener="#{sessionBean.filesPage.listenerAddInstanceFromDetailsToGroup}"
+								update="filesForm:metadataPanel msgForm:msg"
+								rendered="#{sessionBean.filesPage.editingGroup}"/>
+							<p:commandButton value="Edit group"
+								actionListener="#{sessionBean.filesPage.listenerEditGroupFromInstanceDetails}"
+								update="filesForm:metadataPanel msgForm:msg"
+								rendered="#{!sessionBean.guestUser}"/>
+						</p:panel>
+
+						<p:panel rendered="#{sessionBean.filesPage.editingGroup}">
+							<h:outputText value="Group Editor [Id=#{sessionBean.filesPage.selectedFileGroup.id}]" styleClass="filesPanelTitle"/>
+							
+							<p:dataTable id="groupTable" value="#{sessionBean.filesPage.tmpFileInstanceListInGroup}" var="groupInstance">
+								<p:column headerText="Id">
+									<h:outputText value="#{groupInstance.id}"/>
+								</p:column>
+								<p:column headerText="File name">
+									<h:outputText value="#{groupInstance.fileName}"/>
+								</p:column>
+								<p:column headerText="File location">
+									<h:outputText value="#{groupInstance.location}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Remove"
+										actionListener="#{sessionBean.filesPage.listenerRemoveInstanceFromGroup}"
+										update="filesForm:metadataPanel  msgForm:msg "/>
+								</p:column>
+							</p:dataTable>						
+							<p:commandButton value="Save Group" action="#{sessionBean.filesPage.actionSaveGroup}"/>
+							<p:commandButton value="Cancel" action="#{sessionBean.filesPage.actionCancelGroupEdition}"/>		
+						</p:panel>	
+
+					</p:panelGrid>
+					
+				
+					
+				</p:panelGrid>
+				
+				
+				
+			</h:panelGrid>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

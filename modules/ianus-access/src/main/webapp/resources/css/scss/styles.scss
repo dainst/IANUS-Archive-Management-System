@@ -1,0 +1,52 @@
+
+/*!
+Theme Name: IANUS Presentation Frontend
+Theme URI: http://www.ianus-fdz.de
+Version: 1.0.0
+Description: Prototype project for IANUS Presentation
+Author: Hendrik Schmeer
+Author URI: 
+License: GNU General Public License v3.0
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+*/
+ 
+@import '_bootstrap';
+
+/* consider the corresponding javascript */
+@import 'bootstrap/_ie10-viewport-bug-workaround';
+
+
+/* general settings */
+@import '_ianus-colors';
+
+@import '_basic';
+
+@import '_ribbons';
+
+@import '_cssIcon';
+ 
+/* Settings for all */
+
+/* general layout partials */
+@import '_header';
+
+@import '_content';
+
+@import '_footer';
+
+@import '_fancybox';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="content">
+	
+		<h:form id="alternativeRepresentationForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Alternative Representation Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2">
+						<p:commandButton
+							value="Add alternative representation"
+							action="#{sessionBean.alternativeRepresentationPage.actionAdd}"/>
+						<p:commandButton
+								value="Show all representations"
+								action="#{sessionBean.alternativeRepresentationPage.actionShowAll}"/>
+						<p:commandButton
+							value="Back to #{sessionBean.alternativeRepresentationPage.sourceLabel}"
+							action="#{sessionBean.alternativeRepresentationPage.actionBack2MetadataDcPage}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.alternativeRepresentationPage.alternativeRepresentation != null}">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+					
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.alternativeRepresentationPage.actionSave}"/>
+							
+						</h:panelGrid>
+						
+						<h:outputLabel value="Id"/>
+						<h:outputText value="#{sessionBean.alternativeRepresentationPage.alternativeRepresentation.id}"/>
+						
+						<h:outputLabel value="Type"/>
+						<p:selectOneMenu value="#{sessionBean.alternativeRepresentationPage.alternativeRepresentation.type}">
+							<f:selectItems value="#{sessionBean.appBean.alternativeRepresentationType}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel value="Relation to data collection"/>
+						<p:selectOneMenu value="#{sessionBean.alternativeRepresentationPage.alternativeRepresentation.relation}">
+							<f:selectItems value="#{sessionBean.appBean.daraRelationSuggestion}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel value="Date"/>
+						<p:calendar value="#{sessionBean.alternativeRepresentationPage.alternativeRepresentation.date}"/>
+						
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.alternativeRepresentationPage.actionSave}"/>
+						</h:panelGrid>
+						
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		
+		<h:form id="referenceForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Reference Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2">
+						<p:commandButton
+							value="Add reference"
+							action="#{sessionBean.referencePage.actionAddReference}"/>
+						<p:commandButton
+							value="Back to #{sessionBean.referencePage.sourceLabel}"
+							action="#{sessionBean.referencePage.actionBack2MetadataDcPage}"/>
+							
+						<p:commandButton 
+							value="Search publications"
+							action="#{sessionBean.referencePage.actionSearchPublication}"/>
+						<p:commandButton 
+							value="New publication"
+							action="#{sessionBean.referencePage.actionNewPublication}"/>
+							
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.referencePage.reference != null}">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+					
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.referencePage.actionSaveReference}"/>
+							<p:commandButton
+								value="Cancel"
+								action="#{sessionBean.referencePage.actionCancelReferenceEdition}"/>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Id"/>
+						<h:outputText value="#{sessionBean.referencePage.reference.id}"/>
+						
+						<h:outputLabel value="Art der Beziehung"/>
+						<p:selectOneMenu value="#{sessionBean.referencePage.reference.relationType}">
+							<f:selectItems value="#{sessionBean.appBean.referenceRelationTypeGerList}" />
+						</p:selectOneMenu>
+												
+						<h:outputLabel value="Publication"/>
+						<h:panelGrid columns="1">
+							<h:panelGrid columns="2" rendered="#{sessionBean.referencePage.publication.persistent}">
+								<h:outputText value="#{sessionBean.referencePage.publication.label}"/>
+								<p:commandButton value="Edit publication"
+									action="#{sessionBean.referencePage.actionEditPublication}"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Page numbers"/>
+						<h:inputText value="#{sessionBean.referencePage.reference.pagesNumber}"/>
+												
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.referencePage.actionSaveReference}"/>
+							<p:commandButton
+								value="Cancel"
+								action="#{sessionBean.referencePage.actionCancelReferenceEdition}"/>
+						</h:panelGrid>
+						
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

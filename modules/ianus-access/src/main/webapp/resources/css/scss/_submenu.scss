@@ -1,0 +1,37 @@
+/* Zweitmenu direkt unter dem Header */
+#submenu{
+ 	background-color: transparent;
+    padding-top: 1.8em;
+    position: absolute;
+    right: 0;
+    bottom: -4.8em;
+    z-index: 20;
+    ul {
+        list-style: none;
+        display: block;
+        position: relative;
+        padding-bottom: 2em;
+        margin: 1.3em 0.7em 0 0;
+        @include clearfix;
+        li {
+            display: block;
+            float: right;
+            margin-right: 0.75em;
+            a {
+                color: $dark-gray;
+                font-weight: bold;
+                padding: 0.4em 0.5em 0.5em;
+                border-top: 0.55em solid $dark-blue;
+                &:hover {
+                    background-color: $dark-blue;
+                    color: $light-gray;
+                }
+                &.selected {
+                	background-color: $light-gray;
+                    color: #111;
+                    border-top: 0.55em solid $light-gray;
+                }
+            }
+        }
+    }
+}

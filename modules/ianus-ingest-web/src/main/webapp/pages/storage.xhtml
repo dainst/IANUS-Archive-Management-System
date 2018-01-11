@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form>
+		<h:panelGrid columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Working storage service" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanel">
+				<h:commandButton value="New location"
+				actionListener="#{sessionBean.storagePage.listenerNewLocation}" 
+				rendered="#{!sessionBean.guestUser}"/>
+				<h:commandButton
+					value="Init Core"
+					action="#{sessionBean.storagePage.actionInitCore}"
+					rendered="#{!sessionBean.guestUser}"/>
+			</h:panelGrid>
+				
+			<p:dataTable value="#{sessionBean.storagePage.locationList}"
+				var="location"
+				rendered="#{sessionBean.storagePage.showLocationTable}"
+				styleClass="dataTable">
+				<p:column headerText="Id">
+					<h:outputText value="#{location.id}" />
+				</p:column>
+				<p:column headerText="Purpose">
+					<h:outputText value="#{location.purpose}" />
+				</p:column>
+				<p:column headerText="Path">
+					<h:outputText value="#{location.absolutePath}" />
+				</p:column>
+				<p:column headerText="Creation">
+					<h:outputText value="#{location.formattedCreationTime}" />
+				</p:column>
+				<p:column>
+					<h:commandButton value="Edit" actionListener="#{sessionBean.storagePage.listenerSelectLocation}" rendered="#{!sessionBean.guestUser}"/>
+				</p:column>
+			</p:dataTable>
+
+			<h:panelGrid
+				columns="2" 
+				rendered="#{sessionBean.storagePage.location != null}"
+				styleClass="pageForm">
+				
+				<h:outputText value="Id" />
+				<h:outputText value="#{sessionBean.storagePage.location.id}" />
+				
+				<h:outputText value="Path"/>
+				<h:panelGrid columns="3">
+					<h:inputText value="#{sessionBean.storagePage.location.absolutePath}"/>
+					<h:commandButton value="Test connection" actionListener="#{sessionBean.storagePage.listenerTestConnection}"/>
+					<h:outputText value="#{sessionBean.storagePage.testConnection}"/>
+				</h:panelGrid>
+				
+				
+				<h:outputText value="Purpose" />
+				<p:selectOneMenu value="#{sessionBean.storagePage.location.purpose}" scrollHeight="">
+		            <f:selectItems value="#{sessionBean.storagePage.purposeList}"/>
+		        </p:selectOneMenu>				
+		        
+				<h:outputText value="Description" />
+				<h:inputTextarea value="#{sessionBean.storagePage.location.description}"/>
+				
+				<h:outputText/>
+				<h:panelGrid columns="2">
+					<h:commandButton value="Cancel" actionListener="#{sessionBean.storagePage.listenerCancelEdition}"/>
+					<h:commandButton value="Save" actionListener="#{sessionBean.storagePage.listenerSaveLocation}"/>
+				</h:panelGrid>
+				
+			</h:panelGrid>
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

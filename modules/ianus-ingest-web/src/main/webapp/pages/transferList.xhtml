@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="transferListForm">
+			
+			<h:panelGrid id="transferListPage" columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputLabel value="List of all"/>
+					<h:outputLabel value="Transfer Packages" />
+				</h:panelGrid>
+	
+				<h:panelGrid styleClass="mainControlPanel" columns="2">
+					<h:commandButton value="Register new data collection" action="#{sessionBean.transferListPage.actionStartTransferWF}" rendered="#{!sessionBean.guestUser}"/>
+					
+					
+					<!-- <h:commandButton value="Reload transfer packages" action="#{sessionBean.transferListPage.actionReload}"/> -->
+				</h:panelGrid>
+				
+				<p:dataTable value="#{sessionBean.transferListPage.ipList}"
+					var="ip"
+					rendered="#{sessionBean.transferListPage.showIpTable}"
+					styleClass="dataTable">
+					<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+						<h:outputText value="#{ip.id}" />
+					</p:column>
+					<p:column headerText="Metadata id" rendered="#{sessionBean.appBean.debugMode}">
+						<h:outputText value="#{ip.metadataId}" />
+					</p:column>
+					<p:column headerText="IANUS Id">
+						<h:outputText value="#{ip.collectionIdentifier}" />
+					</p:column>
+					<p:column headerText="Title (english - german)">
+						<h:outputText value="#{ip.collectionLabel}" />
+					</p:column>
+					<p:column headerText="State">
+						<h:graphicImage value="#{sessionBean.getStatusIcon(ip)}"/>
+					</p:column>
+					<p:column>
+					
+						<p:commandButton value="View" action="#{sessionBean.transferListPage.actionGotoTransferPage}"/>
+						
+						<p:commandButton 
+							value="Delete" 
+							title="Delete"
+							actionListener="#{sessionBean.transferListPage.listenerDeleteTransfer}"
+							update="transferListForm:transferListPage msgForm:msg"
+							rendered="#{!sessionBean.guestUser}">
+							<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+						</p:commandButton>
+						<!-- 
+						<h:outputLink
+							title="Details" 
+							value="#{sessionBean.appBean.contextRoot}/pages/transfer.xhtml?tpId=#{ip.id}" 
+							styleClass="outputLinkImage">
+							<h:graphicImage value="#{sessionBean.appBean.imgShow}"/>
+						</h:outputLink>
+						 -->
+					</p:column>
+				</p:dataTable>
+	
+				<h:panelGrid
+					columns="2" 
+					rendered="#{sessionBean.transferListPage.ip != null}"
+					styleClass="pageForm">
+					
+					<h:outputText value="Id" />
+					<h:outputText value="#{sessionBean.transferListPage.ip.id}" />
+					
+					<h:outputText value="Label" />
+					<h:inputText value="#{sessionBean.transferListPage.ip.label}" />
+					
+					<h:outputText/>
+					<h:panelGrid columns="2">
+						<h:commandButton value="Cancel" actionListener="#{sessionBean.transferListPage.listenerCancelEdition}"/>
+						<h:commandButton value="Add data collection" action="#{sessionBean.transferListPage.actionStartTransferWF}"/>
+					</h:panelGrid>
+					
+				</h:panelGrid>
+				
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

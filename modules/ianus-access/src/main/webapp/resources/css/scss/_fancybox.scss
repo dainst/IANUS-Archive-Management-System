@@ -1,0 +1,107 @@
+
+
+ /* FancyBox */
+.fancybox-content {
+	border-radius: 4px;
+	
+    /* the inserted "accept" button */
+    .interface {
+    	height: 60px;
+    	position: relative;
+    	.close {
+			position: absolute;
+			z-index: 100;
+			border: 1px solid #aaa;
+		    border-radius: 4px;
+		    right: 0;
+		    padding: 10px 12px;
+		    opacity: 1;
+		    color: #666;
+		    &:hover {
+		    	color: #bbb;
+		    }
+    	}
+    }
+}
+
+
+.fancybox-slide > div {
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+
+#citationOverlay {
+    max-width: 960px;
+}
+
+#downloadLicense {
+	line-height: 2.0em;
+	padding: 24px 35px;
+	img {
+		height: 6em;
+	}
+	h2, img {
+		margin-bottom: 1em;
+	}
+	a {
+		font-size: 1.2em;
+	}
+}
+
+.previewOverlay {
+	height: 80%;
+	width: 80%;
+	
+	.flex-wrapper {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: stretch;
+	
+		.info {
+			flex-basis: auto;
+			align-self: flex-start;
+			word-wrap: break-word;
+			width: 25%;
+			min-width: 166px;
+			//background-color: $light-gray;
+			border-right: 1px dashed $light-gray;
+			padding: 10px;
+			margin-right: 15px;
+			height: 100%;
+			
+			p, div {
+				margin-bottom: 10px;
+			}
+		}
+		.main {
+			flex-basis: auto;
+			width: 73%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			> span, img {
+				display: block;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		
+			object {
+				width: 100%;
+				height: 99%;
+				border-bottom: 3px solid #444;
+				border-right: 2px solid #444;
+			}
+		}
+	}
+}
+
+
+	 	
+	 		.previewOverlay {
+	 			.info {
+	 				word-wrap: break-word;
+	 			}
+	 		}

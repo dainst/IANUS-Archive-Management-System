@@ -1,0 +1,166 @@
+#!/bin/bash
+
+
+#### Individual Project Address NEED TO CHANGE FOR INDIVIDUAL
+######## ianus.core address of the Project
+ianusCoreAddress=/home/franz/tmp/workspace/ianus.core
+
+######### Server SSL access key account
+######### Please change your Server username @ 195.37.32.7
+hostKey=franz@195.37.32.7
+
+
+####### Properties File address
+propertiesFile=$ianusCoreAddress/modules/ianus-ingest-web/src/main/resources/ianus-ingest-web.properties
+coreProperties=$ianusCoreAddress/modules/ianus-ingest-core/src/main/resources/ianus-ingest-core.properties
+
+######## Server Address where it should go
+destination="/var/lib/tomcat8/webapps"
+
+
+
+
+if [ ! -d "$ianusCoreAddress" ]; then
+  echo "ianus core address not found on the system, exiting\n"
+  echo "check if the path is correct:\n"
+  echo "ianusCoreAddress = ${ianusCoreAddress}\n"
+  exit 1
+fi
+
+
+
+
+
+
+######### First remove all content of the Properties file then insert only the
+########## Production Configuration for Server level Deployment
+function build(){
+
+    : > $propertiesFile
+
+    echo "## Production Configuration----##" >> $propertiesFile
+    echo "" >> $propertiesFile
+
+    echo "home.url=http://datenportal.ianus-fdz.de/ianus-ingest-web" >> $propertiesFile
+    echo "server.ip=195.37.32.7" >> $propertiesFile
+    echo "dataportal.url=http://datenportal.ianus-fdz.de" >> $propertiesFile
+    echo "content.path=/data/ianus-storage" >> $propertiesFile
+    echo "debug.mode=true" >> $propertiesFile
+	
+	if [ -e $coreProperties ]
+	then
+		echo "using existing coreProperty file"
+	else
+		echo "coreProperty file not found, using template file"
+		cp "$coreProperties.template" $coreProperties
+	fi
+}
+
+
+###### This function goes to the ianus.core address then make a MAVEN PACKAGE
+function mvPackage(){
+
+    cd $ianusCoreAddress
+    pwd
+    mvn clean package -Dmaven.test.skip=true
+
+    STATUS=$?
+    if [ $STATUS -eq 0 ]; then
+    echo "Maven Package install Successful"
+    else
+    echo "Maven Package install Failed"
+    fi
+
+}
+
+
+#### This function works for Server, first it stop the tomcat server then change the destination folder permission level
+#### After that remove ianus-ingest-web.war and ianus-ingest-web folder. Then copy the ianus-ingest-web.war file to the server destination folder
+#### Again change the destination folder permission level as before. after that start the tomcat8 server and
+#### Restart the apache2 server.
+function deploy {
+
+    ssh $hostKey sudo service tomcat8 stop
+
+    ssh $hostKey sudo chmod 777 $destination
+
+    ssh $hostKey rm -rf $destination/ianus-ingest-web.war
+
+    ssh $hostKey sudo "rm -rf $destination/ianus-ingest-web"
+
+    scp -r $ianusCoreAddress/modules/ianus-ingest-web/target/ianus-ingest-web.war $hostKey:$destination/
+
+    ssh $hostKey sudo chmod 775 $destination
+
+    ssh $hostKey sudo service tomcat8 start
+    
+    
+    resources="${destination}/ianus-ingest-web/WEB-INF/classes/rsyncUpload"
+    
+    # wait for tomcat to unpack the .war file, for subsequent file operations
+    ssh $hostKey sleep 10
+    until ssh $hostKey "test -d $resources"; do
+    	echo "Waiting for tomcat to deploy the application before proceeding...\n"
+    	read -s -n 1 -p "Continue? [y (yes)]: " confirm && [[ $confirm == [yY] || $confirm == "" ]] || exit 1
+    done
+   
+    ssh $hostKey sudo chown root:root $resources/rsync_upload_grant_permissions.sh
+    ssh $hostKey sudo chmod 774 $resources/rsync_upload_grant_permissions.sh
+    ssh $hostKey sudo chown root:root $resources/rsync_upload_revoke_permissions.sh
+    ssh $hostKey sudo chmod 774 $resources/rsync_upload_revoke_permissions.sh
+    
+    ssh $hostKey sudo service apache2 restart
+
+    STATUS=$?
+    if [ $STATUS -eq 0 ]; then
+    echo "Deployment Successful"
+    else
+    echo "Deployment Failed"
+    fi
+
+}
+
+
+###### Rewrite the properties file as it was before.
+function reBuildPropertiesFile {
+
+   : > $propertiesFile
+
+
+    echo "## Test & Development ##" >> $propertiesFile
+
+    echo "home.url=http://localhost:8080/ianus-ingest-web" >> $propertiesFile
+
+    echo "content.path=/data/ianus-storage" >> $propertiesFile
+    echo "debug.mode=true" >> $propertiesFile
+
+    echo "" >> $propertiesFile
+    echo "" >> $propertiesFile
+    echo "" >> $propertiesFile
+
+
+    echo "## Production Configuration ##" >> $propertiesFile
+
+    echo "#home.url=http://195.37.32.7/ianus-ingest-web" >> $propertiesFile
+    echo "#home.url=http://datenportal.ianus-fdz.de/ianus-ingest-web" >> $propertiesFile
+    echo "#dataportal.url=http://datenportal.ianus-fdz.de" >> $propertiesFile
+    echo "#content.path=/data/ianus-storage" >> $propertiesFile
+    echo "#debug.mode=true" >> $propertiesFile
+
+
+}
+
+
+
+echo "Ingest Module Auto Deployment START"
+
+build
+mvPackage
+deploy
+reBuildPropertiesFile
+
+echo "Ingest Module Auto Deployment FINISHED"
+
+read -s -n 1 -p "Press any key..."
+
+

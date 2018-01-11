@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:outputScript target="body">
+			function expandTree(widgetVar){}
+			function collapseTree(widgetVar){}
+		</h:outputScript>	
+	
+	
+		<h:form id="collectionIdForm">
+			<h:panelGrid id="collectionIdPage" columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Assign collection-ID" />
+				</h:panelGrid>
+	
+				<h:panelGrid styleClass="mainControlPanel">
+					<h:panelGrid>
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.collectionIdPage.gotoIPPage}"/>
+					</h:panelGrid>	
+					<h:panelGrid columns="2">
+					
+						<h:outputText value="IP id"/>
+						<h:outputText value="#{sessionBean.collectionIdPage.dc.id}"/>
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+				
+				
+				<h:panelGrid id="collectionIdPanel" columns="2" styleClass="mainControlPanel">
+					<h:outputText/>
+					
+					<p:selectOneRadio value="#{sessionBean.collectionIdPage.selectedIdType}">
+            			<f:selectItems value="#{sessionBean.collectionIdPage.idTypeList}"/>
+            			<p:ajax update="collectionIdPanel" event="change" listener="#{sessionBean.collectionIdPage.listenerChangeIdType}"/>
+        			</p:selectOneRadio>
+				
+					<h:outputLabel value="Collection ID"/>
+					<h:inputText value="#{sessionBean.collectionIdPage.collectionId.value}"/>
+					
+					<h:outputText/>
+					<p:commandButton
+						value="Save" 
+						action="#{sessionBean.collectionIdPage.actionSave}"/>
+					
+				</h:panelGrid>				
+				
+				
+			</h:panelGrid>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

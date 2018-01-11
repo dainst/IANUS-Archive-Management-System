@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="aipListForm">
+		<h:panelGrid id="aipListPage" columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputLabel value="List of all"/>
+				<h:outputLabel value="Archival Information Packages (AIP List)" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanelAIP">
+				
+			</h:panelGrid>
+				
+			<p:dataTable value="#{sessionBean.archivalListPage.aipList}"
+				var="aip"
+				styleClass="dataTableAIP">
+				<p:column headerText="Id">
+					<h:outputText value="#{aip.id}" />
+				</p:column>
+				<p:column headerText="Metadata id">
+					<h:outputText value="#{aip.metadataId}" />
+				</p:column>
+				<p:column headerText="IANUS Id">
+					<h:outputText value="#{aip.collectionIdentifier}" />
+				</p:column>
+				<p:column headerText="Label">
+					<h:outputText value="#{aip.collectionLabel}" />
+				</p:column>
+				<p:column headerText="State">
+					<h:graphicImage value="#{sessionBean.getStatusIcon(aip)}"/>
+				</p:column>
+				<p:column>
+					<p:commandButton value="View" action="#{sessionBean.archivalListPage.actionGotoAIPPage}"/>
+					
+					<p:commandButton 
+						value="Delete" 
+						title="Delete"
+						action="#{sessionBean.archivalListPage.actionDeleteAIP}"
+						rendered="#{!sessionBean.guestUser}"
+						update="aipListForm:aipListPage msgForm:msg">
+						<p:confirm header="Confirmation" message="Are you sure, you want to delete this AIP?" icon="ui-icon-alert"/>
+					</p:commandButton>
+				</p:column>	
+				
+			</p:dataTable>
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

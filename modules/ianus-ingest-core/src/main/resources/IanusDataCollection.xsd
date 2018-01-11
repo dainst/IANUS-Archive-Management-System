@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="TextAttributeDataType">
+        <xs:complexType>
+            <xs:attribute name="Value" type="xs:string"/>
+            <xs:attribute name="LanguageCode" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ElementOfListDataType">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="TextAttributeDataType"/>
+            </xs:sequence>
+            <xs:attribute name="Value" type="xs:string"/>
+            <xs:attribute name="ValueID" type="xs:string"/>
+            <xs:attribute name="ListName" type="xs:string"/>
+            <xs:attribute name="URI" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="IdentifierDataType">
+        <xs:complexType>
+            <xs:attribute name="Value" type="xs:string"/>
+            <xs:attribute name="Type" type="xs:string"/>
+            <xs:attribute name="Institution" type="xs:string"/>
+            <xs:attribute name="URI" type="xs:anyURI"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LanguageDataType">
+    	<xs:complexType>
+    		<xs:attribute name="ISO_639_3" type="xs:string"/>
+    		<xs:attribute name="Label" type="xs:string"/>
+    		<xs:attribute name="ContentType" type="xs:string"/>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="TimeSpanDataType">
+    	<xs:complexType>
+    		<xs:attribute name="Start" type="xs:string"/>
+            <xs:attribute name="End" type="xs:string"/>
+            <xs:attribute name="ContentType" type="xs:string"/>
+            <xs:attribute name="Description" type="xs:string"/>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="TimeDataType">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="MainPeriod">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SubPeriod">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- not yet implemented
+                <xs:element name="TimeGazetteer">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="IdentifierDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                -->
+                <xs:element name="Comment">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Start" type="xs:string"/>
+            <xs:attribute name="End" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PlaceDataType">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AccuracyDescription">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GreaterRegion">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Country">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="RegionProvince">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="City">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HistoricalName">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <!-- not yet implemented
+                <xs:element name="Gazetteer">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="IdentifierDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                -->
+                <xs:element name="TypeOfArea">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="FreeDescription">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="GeometricType" type="xs:string"/>
+            <xs:attribute name="CoordinateSystem" type="xs:string"/>
+            <xs:attribute name="Accuracy" type="xs:decimal"/>
+            <xs:attribute name="WKT" type="xs:string"/>
+            <xs:attribute name="District" type="xs:string"/>
+            <xs:attribute name="PostalCode" type="xs:string"/>
+            <xs:attribute name="UrbanDistrict" type="xs:string"/>
+            <xs:attribute name="Street" type="xs:string"/>
+            <xs:attribute name="Parish" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RelatedPublicationDataType">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="Reference">
+                    <xs:complexType>
+                        <xs:attribute name="PagesNumber" type="xs:string"/>
+                        <xs:attribute name="RelationType" type="xs:string"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="Publication"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="RelatedResourceDataType">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Identifier">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="IdentifierDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Description">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="RessourceType">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="RelationType">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="Institution"></xs:element> <!-- should rather be Actor? -->
+            </xs:sequence>
+            <xs:attribute name="Scope" type="xs:string"/>
+            <xs:attribute name="Location" type="xs:string"/>
+            <!-- <xs:attribute name="Institution" type="xs:string"/> -->
+            <xs:attribute name="Date" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Place">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element ref="PlaceDataType"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="Time">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="TimeDataType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Publication">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Pid">
+                	<xs:complexType>
+                		<xs:sequence>
+                			<xs:element ref="IdentifierDataType"/>
+                		</xs:sequence>
+                	</xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Type" type="xs:string"/>
+            <xs:attribute name="Author" type="xs:string"/>
+            <xs:attribute name="Title" type="xs:string"/>
+            <xs:attribute name="Series" type="xs:string"/>
+            <xs:attribute name="CollectionEditor" type="xs:string"/>
+            <xs:attribute name="CollectionTitle" type="xs:string"/>
+            <xs:attribute name="Publisher" type="xs:string"/>
+            <xs:attribute name="City" type="xs:string"/>
+            <xs:attribute name="Year" type="xs:string"/>
+            <xs:attribute name="Volume" type="xs:string"/>
+            <xs:attribute name="Analogue" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Identifier">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="InternalID">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="IdentifierDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ExternalID">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="IdentifierDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ID" type="xs:long"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Title">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MainTitle">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AlternativeTitle">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Description">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Summary">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ProjectDescription">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DataCollectionDescription">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TextAttributeDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Classification">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Subject">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MainDiscipline">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SubDiscipline">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="MainContent">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SubContent">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="MainMethod">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SubMethod">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Coverage">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Time"/>
+                <xs:element ref="Place"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Person">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Discipline">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Gender" type="xs:string"/>
+            <xs:attribute name="Title" type="xs:string"/>
+            <xs:attribute name="FirstName" type="xs:string"/>
+            <xs:attribute name="LastName" type="xs:string"/>
+            <xs:attribute name="InstitutionName" type="xs:string"/>
+            <xs:attribute name="Department" type="xs:string"/>
+            <xs:attribute name="WorkingUnit" type="xs:string"/>
+            
+            <xs:attribute name="Street" type="xs:string"/>
+            <xs:attribute name="Postalcode" type="xs:string"/>
+            <xs:attribute name="City" type="xs:string"/>
+            <xs:attribute name="Country" type="xs:string"/>
+            <xs:attribute name="URL" type="xs:string"/>
+            <xs:attribute name="EMail" type="xs:string"/>
+            <xs:attribute name="Telephone" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Institution">
+        <xs:complexType>
+            <xs:attribute name="InstitutionName" type="xs:string"/>
+            <xs:attribute name="Department" type="xs:string"/>
+            <xs:attribute name="WorkingUnit" type="xs:string"/>
+            
+            <xs:attribute name="Street" type="xs:string"/>
+            <xs:attribute name="Postalcode" type="xs:string"/>
+            <xs:attribute name="City" type="xs:string"/>
+            <xs:attribute name="Country" type="xs:string"/>
+            <xs:attribute name="URL" type="xs:string"/>
+            <xs:attribute name="EMail" type="xs:string"/>
+            <xs:attribute name="Telephone" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RelatedPublicaton">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RelatedPublicationDataType"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RelatedRessource">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RelatedResourceDataType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DataCreation">
+	    <xs:complexType>
+	    	<xs:sequence>
+	    		<xs:element name="ProjectPeriod">
+			    	<xs:complexType>
+			            <xs:attribute name="ProjectStatus" type="xs:string"/>
+			            <xs:attribute name="ProjectStart" type="xs:string"/>
+			            <xs:attribute name="ProjectEnd" type="xs:string"/>
+			        </xs:complexType>
+			    </xs:element>
+			    <xs:element name="DataGeneration">
+			        <xs:complexType>
+			            <xs:sequence>
+			                <xs:element ref="TimeSpanDataType"/>
+			            </xs:sequence>
+			        </xs:complexType>
+			    </xs:element>
+	    	</xs:sequence>
+	    </xs:complexType>
+    </xs:element>
+   	<xs:element name="Actor">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ActorIdentifier">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="IdentifierDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ActorRoles">
+                	<xs:complexType>
+                		<xs:sequence>
+                			<xs:element ref="ActorRole"/>
+                		</xs:sequence>
+                	</xs:complexType>
+                </xs:element>
+                <xs:element ref="Person"/>
+                <xs:element ref="Institution"/>
+            </xs:sequence>
+            <xs:attribute name="ActorType" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ActorRole">
+        <xs:complexType>
+            <xs:attribute name="RoleValue"/>
+            <xs:attribute name="FunctionStart"/>
+            <xs:attribute name="FunctionEnd"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Actors">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Actor"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DataCollectionDescription">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CollectionLanguage">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="LanguageDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="RessourceType">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DataCategory">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ElementOfListDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="CustodialHistory" type="xs:string"/>
+            <xs:attribute name="FileNumber" type="xs:integer"/>
+            <xs:attribute name="MemorySize" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SignatureMetadata">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="MetadataLanguage">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="LanguageDataType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="MetadataEditor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Person"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="LastChangeMetadata" type="xs:date"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DataCollection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Identifier"/>
+                <xs:element ref="Title"/>
+                <xs:element ref="Subject"/>
+                <xs:element ref="Description"/>
+                <xs:element ref="Coverage"/>
+                <xs:element ref="RelatedPublicaton"/>
+                <xs:element ref="RelatedRessource"/>
+                <xs:element ref="DataCreation"/>
+                <xs:element ref="Actors"/>
+                <xs:element ref="DataCollectionDescription"/>
+                <xs:element ref="SignatureMetadata"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

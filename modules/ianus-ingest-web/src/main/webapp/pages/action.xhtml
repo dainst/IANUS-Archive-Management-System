@@ -1,0 +1,150 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="actionForm">
+		<h:panelGrid columns="1" styleClass="pagePanel">
+		
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Conversion Action - Editor" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanel" columns="10">
+				<p:commandButton value="Back to conversion plan editor"
+					action="#{sessionBean.actionPage.actionBackToConversionPlanePage}"/>
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="10">
+				<p:commandButton value="Save"
+					action="#{sessionBean.actionPage.actionSaveAction}"/>
+					
+				<p:commandButton value="Save and go to conversion plan"
+					action="#{sessionBean.actionPage.actionSaveActionAndGotoConversionPlan}"/>
+			</h:panelGrid>
+			<!-- 
+			<h:panelGrid styleClass="mainControlPanel" columns="2" rendered="#{sessionBean.actionPage.action == null}">
+				<p:dataTable var="action" value="#{sessionBean.actionPage.getConversionActionList}">
+					<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+						<h:outputText value="#{action.id}"/>
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{action.name}"/>
+					</p:column>
+					<p:column headerText="Actor">
+						<h:outputText value="#{action.actor}"/>
+					</p:column>
+					<p:column headerText="Scope">
+						<h:outputText value="#{action.scope}"/>
+					</p:column>
+					<p:column headerText="Tools">
+						<p:dataTable var="tool" value="#{action.toolList}">
+							<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}" style="width:50px;">
+								<h:outputText value="#{tool.id}"/>
+							</p:column>
+							<p:column headerText="Software" style="width:200px;">
+								<h:outputText value="#{tool.software}"/>
+							</p:column>
+							<p:column headerText="Version" style="width:50px;">
+								<h:outputText value="#{tool.version}"/>
+							</p:column>
+							<p:column headerText="Parameters">
+								<h:outputText value="#{tool.params}"/>
+							</p:column>
+						</p:dataTable>
+					</p:column>
+					<p:column>
+						<p:commandButton value="Delete"
+							action="#{sessionBean.actionPage.actionDeleteAction}">
+							<p:confirm header="Confirmation" message="Are you sure, you want to delete this action?" icon="ui-icon-alert" />
+						</p:commandButton>
+						<p:commandButton value="Edit"
+							action="#{sessionBean.actionPage.actionEditAction}"/>
+						</p:column>
+					</p:dataTable>
+				</p:dataTable>
+			</h:panelGrid>
+			 -->
+			<h:panelGrid styleClass="mainControlPanel" columns="2">
+				
+				<h:outputLabel value="Id"/>
+				<h:outputText value="#{sessionBean.actionPage.action.id}"/>
+				
+				<h:outputLabel value="Name"/>
+				<h:inputText value="#{sessionBean.actionPage.action.name}"/>
+				
+				<h:outputLabel value="Actor"/>
+				<p:selectOneRadio value="#{sessionBean.actionPage.action.actor}">
+            		<f:selectItem itemLabel="system" itemValue="system" />
+            		<f:selectItem itemLabel="curator" itemValue="curator" />
+        		</p:selectOneRadio>
+				
+				<h:outputLabel value="Description"/>
+				<h:inputTextarea value="#{sessionBean.actionPage.action.description}" style="width:600px;"/>
+				
+				<h:outputLabel value="Integrated"/>
+				<p:selectBooleanCheckbox value="#{sessionBean.actionPage.action.integrated}" />
+				
+				<h:outputLabel value="Tools"/>
+				<h:panelGrid columns="1">
+					<p:dataTable var="tool" value="#{sessionBean.actionPage.action.toolList}" rendered="#{!empty sessionBean.actionPage.action.toolList}">
+						<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{tool.id}"/>
+						</p:column>
+						<p:column headerText="Software">
+							<h:outputText value="#{tool.software}"/>
+						</p:column>
+						<p:column headerText="Version">
+							<h:outputText value="#{tool.version}"/>
+						</p:column>
+						<p:column headerText="Parameters">
+							<h:outputText value="#{tool.params}"/>
+						</p:column>
+						<p:column headerText="URL">
+							<h:outputText value="#{tool.url}"/>
+						</p:column>
+						<p:column>
+							<p:commandButton
+								value="Edit"
+								action="#{sessionBean.actionPage.actionEditTool}"/>
+							<p:commandButton
+								value="Delete"
+								action="#{sessionBean.actionPage.actionRemoveTool}"/>
+						</p:column>
+					</p:dataTable>
+					<h:panelGrid columns="6">
+						<h:outputText value="Software"/>
+						<h:outputText value="Version"/>
+						<h:outputText value="Parameters"/>
+						<h:outputText value="URL"/>
+						<h:outputText/>
+						<h:outputText/>
+						<h:inputText value="#{sessionBean.actionPage.tool.software}"/>
+						<h:inputText value="#{sessionBean.actionPage.tool.version}"/>
+						<h:inputText value="#{sessionBean.actionPage.tool.params}"/>
+						<h:inputText value="#{sessionBean.actionPage.tool.url}"/>
+						<p:commandButton value="Add"
+							action="#{sessionBean.actionPage.actionAddTool}"/>
+						<p:commandButton value="Cancel"
+							action="#{sessionBean.actionPage.actionCancelEditionTool}"/>
+					</h:panelGrid>
+					
+				</h:panelGrid>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="10">
+				<p:commandButton value="Save"
+					action="#{sessionBean.actionPage.actionSaveAction}"/>
+					
+				<p:commandButton value="Save and go to conversion plan"
+					action="#{sessionBean.actionPage.actionSaveActionAndGotoConversionPlan}"/>
+			</h:panelGrid>
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

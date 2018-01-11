@@ -1,0 +1,1381 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="dataCollectionForm">
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Metadata - Editor" />
+					<h:outputText value="#{sessionBean.dataCollectionPage.IPLabel}" />
+					<h:outputText value="#{sessionBean.dataCollectionPage.dc.collectionLabel} [#{sessionBean.dataCollectionPage.dc.collectionIdentifier}]" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" rendered="#{sessionBean.dataCollectionPage.dc != null}" styleClass="#{sessionBean.dataCollectionPage.styleClass}">
+					
+					<!-- Control panel -->
+					<h:panelGrid columns="1">
+						<h:panelGrid rendered="#{sessionBean.dataCollectionPage.ip != null}">
+							<p:commandButton value="Back to Information Package"
+								action="#{sessionBean.dataCollectionPage.gotoIPPage}"/>
+						</h:panelGrid>
+						<h:panelGrid columns="5">
+							<p:commandButton 
+								value="Save data collection"
+								id="saveDatacollectionBtn" 
+								actionListener="#{sessionBean.dataCollectionPage.listenerSaveDc}" 
+								update="dataCollectionForm msgForm:msg"
+								rendered="#{!sessionBean.guestUser}"/>
+							<p:commandButton value="Show metadata files"
+								action="#{sessionBean.dataCollectionPage.actionShowFilePage}"
+								rendered="#{sessionBean.dataCollectionPage.dc.persistent}"/>
+							<h:outputLink
+								title="data collection to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/dataCollection/?id=#{sessionBean.dataCollectionPage.dc.id}" 
+								styleClass="outputLinkImage"
+								target="_blank"
+								rendered="#{sessionBean.dataCollectionPage.dc.persistent and sessionBean.guestUser}">
+								<h:graphicImage value="#{sessionBean.appBean.imgCollection}"/>
+							</h:outputLink>
+							<h:outputLink
+								title="files to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/dataCollection/collectionFiles/?id=#{sessionBean.dataCollectionPage.dc.id}" 
+								styleClass="outputLinkImage"
+								target="_blank"
+								rendered="#{sessionBean.dataCollectionPage.dc.persistent}">
+								<h:graphicImage value="#{sessionBean.appBean.imgFiles}"/>
+							</h:outputLink>
+						</h:panelGrid>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+					
+						<h:outputLabel value="Debug Information" rendered="#{sessionBean.appBean.debugMode}"/>
+						
+						<h:panelGrid columns="2" columnClasses="firstColumn" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="Id" />
+							<h:outputText value="#{sessionBean.dataCollectionPage.dc.id}"/>
+							
+							<h:outputText value="Collection Label"/>
+							<h:outputText value="#{sessionBean.dataCollectionPage.dc.collectionLabel}"/>
+							
+							<h:outputText value="Collection Identifier"/>
+							<h:outputText value="#{sessionBean.dataCollectionPage.dc.collectionIdentifier}"/>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Identifikator" rendered="#{sessionBean.dataCollectionPage.dc.persistent}"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn" rendered="#{sessionBean.dataCollectionPage.dc.persistent}">
+							
+							<h:outputText value="IANUS identfier(s)" />
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.internalIdList}" var="internalId"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.internalIdList}">
+									
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{internalId.id}"/>
+									</p:column>
+									<p:column headerText="Type">
+										<h:outputText value="#{internalId.type}"/>
+									</p:column>
+									<p:column headerText="Institution">
+										<h:outputText value="#{internalId.institution}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{internalId.value}"/>
+									</p:column>
+									<p:column headerText="URI">
+										<h:outputText value="#{internalId.uri}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="Delete"
+											action="#{sessionBean.dataCollectionPage.actionDeleteInternalId}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton
+											value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditInternalId}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="6" rendered="#{!sessionBean.guestUser}">
+									<h:outputText value="Type"/>
+									<h:outputText value="Institution"/>
+									<h:outputText value="Value"/>
+									<h:outputText value="URI"/>									
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.internalId.type}">
+										<f:selectItems value="#{sessionBean.appBean.internalIdGerList}" />
+									</p:selectOneMenu>
+									<h:outputText value="IANUS"/>
+									<h:inputText value="#{sessionBean.dataCollectionPage.internalId.value}" styleClass="dcTextInput"/>
+									<h:inputText value="#{sessionBean.dataCollectionPage.internalId.uri}" styleClass="dcTextInput"/>
+									
+									<p:commandButton value="Add"
+										action="#{sessionBean.dataCollectionPage.actionAddInternalId}"/>
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.actionCancelEditionInternalId}" rendered="#{sessionBean.dataCollectionPage.internalPersistentId != null}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="External identfier(s)" />
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.externalIdList}" var="externalId"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.externalIdList}">
+									
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{externalId.id}"/>
+									</p:column>
+									<p:column headerText="Type">
+										<h:outputText value="#{externalId.type}"/>
+									</p:column>
+									<p:column headerText="Institution">
+										<h:outputText value="#{externalId.institution}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{externalId.value}"/>
+									</p:column>
+									<p:column headerText="URI">
+										<h:outputText value="#{externalId.uri}"/>
+									</p:column>
+									
+									<p:column>
+										<p:commandButton
+											value="Delete"
+											action="#{sessionBean.dataCollectionPage.actionDeleteExternalId}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton
+											value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditExternalId}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="6" rendered="#{!sessionBean.guestUser}">
+									<h:outputText value="Type"/>
+									<h:outputText value="Institution"/>
+									<h:outputText value="Value"/>
+									<h:outputText value="URI"/>
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.externalId.type}">
+										<f:selectItems value="#{sessionBean.appBean.externalIdGerList}" />
+									</p:selectOneMenu>
+									<h:inputText value="#{sessionBean.dataCollectionPage.externalId.institution}" styleClass="dcTextInput"/>
+									<h:inputText value="#{sessionBean.dataCollectionPage.externalId.value}" styleClass="dcTextInput"/>
+									<h:inputText value="#{sessionBean.dataCollectionPage.externalId.uri}" styleClass="dcTextInput"/>
+									
+									<p:commandButton value="Add"
+										action="#{sessionBean.dataCollectionPage.actionAddExternalId}"/>
+										
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.actionCancelEditionExternalId}" rendered="#{sessionBean.dataCollectionPage.externalPersistentId != null}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+								
+						</h:panelGrid>
+						
+						<h:outputLabel value="Version" rendered="#{sessionBean.dataCollectionPage.dc.persistent}"/>
+						<h:inputText value="#{sessionBean.dataCollectionPage.dc.version}" rendered="#{sessionBean.dataCollectionPage.dc.persistent and !sessionBean.guestUser}"/>
+						<h:outputText value="#{sessionBean.dataCollectionPage.dc.version}" rendered="#{sessionBean.guestUser}"/>
+						
+						
+						<h:outputLabel value="Title"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							
+							<h:outputText value="Title" rendered="#{sessionBean.dataCollectionPage.dc.persistent}"/>
+							<h:panelGrid rendered="#{sessionBean.dataCollectionPage.dc.persistent}">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.titleList}" var="title"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.titleList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{title.id}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{title.language}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{title.value}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											action="#{sessionBean.dataCollectionPage.title.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.title.actionEdit}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+								
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+									
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.title.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+			                    		var="theme" 
+			                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+			                    		forceSelection="true" />
+									<h:inputText value="#{sessionBean.dataCollectionPage.title.textAtt.value}" styleClass="dcTextInput"/>
+									
+									<p:commandButton value="Add"
+										action="#{sessionBean.dataCollectionPage.actionSaveTitle}"/>
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.title.actionCancelEdition}"
+										rendered="#{sessionBean.dataCollectionPage.title.textAttPersistent != null}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="Alternative title(s)" rendered="#{sessionBean.dataCollectionPage.dc.persistent}"/>
+							<h:panelGrid columns="1" rendered="#{sessionBean.dataCollectionPage.dc.persistent}">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.alternativeTitleList}" var="alternativeTitle"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.alternativeTitleList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{alternativeTitle.id}"/>
+									</p:column>
+									<p:column headerText="Language" >
+										<h:outputText value="#{alternativeTitle.language}"/>
+									</p:column>
+									<p:column headerText="Titel" >
+										<h:outputText value="#{alternativeTitle.value}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											action="#{sessionBean.dataCollectionPage.alternativeTitle.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.alternativeTitle.actionEdit}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+								
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+									
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.alternativeTitle.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									<h:inputText value="#{sessionBean.dataCollectionPage.alternativeTitle.textAtt.value}" styleClass="dcTextInput"/>
+									<p:commandButton value="Add"
+										action="#{sessionBean.dataCollectionPage.alternativeTitle.actionAdd}"/>
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.alternativeTitle.actionCancelEdition}"
+										rendered="#{sessionBean.dataCollectionPage.alternativeTitle.textAttPersistent != null}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							
+							
+						</h:panelGrid>						
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" rendered="#{sessionBean.dataCollectionPage.dc.persistent}" columnClasses="firstColumn">
+					
+						<h:outputLabel value="Beschreibung"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							
+							<h:outputText value="Project description"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.projectDescriptionList}" var="projectDescription"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.projectDescriptionList}" >
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{projectDescription.id}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{projectDescription.language}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{projectDescription.value}" />
+
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="dataCollectionForm msgForm:msg"
+											action="#{sessionBean.dataCollectionPage.projectDescription.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.projectDescription.actionEdit}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="3" rendered="#{!sessionBean.guestUser}">
+									
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.projectDescription.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.dataCollectionPage.appBean.searchLanguageInShortListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									<h:inputTextarea value="#{sessionBean.dataCollectionPage.projectDescription.textAtt.value}" styleClass="dcTextArea"/>
+									
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.projectDescription.actionAdd}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="Data collection description"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.dataCollectionDescriptionList}" var="dataCollectionDescription"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.dataCollectionDescriptionList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{dataCollectionDescription.id}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{dataCollectionDescription.language}"/>
+									</p:column>
+									<p:column headerText="Value" >
+										<h:outputText value="#{dataCollectionDescription.value}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.dataCollectionDescription.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.dataCollectionDescription.actionEdit}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+									
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+								
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.dataCollectionDescription.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.dataCollectionPage.appBean.searchLanguageInShortListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									<h:inputTextarea value="#{sessionBean.dataCollectionPage.dataCollectionDescription.textAtt.value}" styleClass="dcTextArea"/>
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.dataCollectionDescription.actionAdd}"/>
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.dataCollectionDescription.actionCancelEdition}"
+										rendered="#{sessionBean.dataCollectionPage.dataCollectionDescription.textAttPersistent != null}"/>										
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="Summary"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.summaryList}" var="summary"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.summaryList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{summary.id}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{summary.language}"/>
+									</p:column>
+									<p:column headerText="Value" >
+										<h:outputText value="#{summary.value}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.summary.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.summary.actionEdit}"
+											rendered="#{!sessionBean.guestUser}"/>											
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+								
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+									
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.summary.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.dataCollectionPage.appBean.searchLanguageInShortListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									<h:inputTextarea value="#{sessionBean.dataCollectionPage.summary.textAtt.value}" styleClass="dcTextArea"/>
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.summary.actionAdd}"/>
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.summary.actionCancelEdition}"
+										rendered="#{sessionBean.dataCollectionPage.summary.textAttPersistent != null}"/>	
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							
+
+					
+					
+								<!-- section for classification -->
+							<h:outputText value="Classification"/>
+							<h:panelGrid columns="1">
+								
+								
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.classificationList}" var="classification"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.classificationList}">
+									
+									<p:column headerText="Identifier">
+										<h:outputText value="#{classification.id}"/>
+									</p:column>
+									
+									<p:column headerText="Value">
+										<h:outputText value="#{classification.htmlValue}" escape="false"/>
+									</p:column>
+									
+									<p:column headerText="Value ID">
+										<h:outputText value="#{classification.valueId}"/>
+									</p:column>
+									
+									<p:column headerText="List name">
+										<h:outputText value="#{classification.listId}"/>
+									</p:column>
+									
+									<p:column>
+									<!-- commandButton: delete classification-->																				
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteClassification}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								
+								
+								<h:panelGrid columns="3" rendered="#{!sessionBean.guestUser}">
+									<p:selectOneMenu
+										value="#{sessionBean.dataCollectionPage.classificationId}">
+										<f:selectItems value="#{sessionBean.appBean.classificationGerList}" />
+									</p:selectOneMenu>
+									
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveClassification}"/>
+										
+								</h:panelGrid>
+								
+							</h:panelGrid>
+						
+						</h:panelGrid>
+						
+						<h:outputLabel value="Schlagworte"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">							
+							<h:outputText value="Discipline(s) (general)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.mainDisciplineList}" var="mainDiscipline" 
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.mainDisciplineList}">
+								
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{mainDiscipline.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{mainDiscipline.htmlValue}" escape="false"/>
+									</p:column>
+									<p:column headerText="Value Id">
+										<h:outputText value="#{mainDiscipline.valueId}"/>
+									</p:column>
+									<p:column headerText="List name">
+										<h:outputText value="#{mainDiscipline.listId}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.mainDiscipline.listenerDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+
+								<h:panelGrid columns="5" rendered="#{!sessionBean.guestUser}">
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.mainDisciplineId}">
+										<f:selectItems value="#{sessionBean.appBean.mainDisciplineGerList}" />
+									</p:selectOneMenu>
+									 																											
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveMainDiscipline}"/>
+																				
+								</h:panelGrid>
+
+							</h:panelGrid>
+							
+							<h:outputText value="Discipline(s) (detail)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.subDisciplineList}" var="subDiscipline" 
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.subDisciplineList}">
+								
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{subDiscipline.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{subDiscipline.htmlValue}" escape="false"/>
+									</p:column>
+									<p:column headerText="Value Id">
+										<h:outputText value="#{subDiscipline.valueId}"/>
+									</p:column>
+									<p:column headerText="List name">
+										<h:outputText value="#{subDiscipline.listId}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.subDiscipline.listenerDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+													
+								<h:panelGrid columns="5" rendered="#{!sessionBean.guestUser}">
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.subDisciplineId}">
+										<f:selectItems value="#{sessionBean.appBean.subDisciplineGerList}" />
+									</p:selectOneMenu>
+																																		
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveSubDiscipline}"/>
+								</h:panelGrid>
+								
+
+							</h:panelGrid>
+							
+							<h:outputText value="Content (general)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.mainContentList}" var="mainContent" 
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.mainContentList}">
+								
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{mainContent.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{mainContent.htmlValue}" escape="false"/>
+									</p:column>
+									<p:column headerText="Value Id">
+										<h:outputText value="#{mainContent.valueId}"/>
+									</p:column>
+									<p:column headerText="List name">
+										<h:outputText value="#{mainContent.listId}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteMainContent}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+
+							
+								<!-- toggled section -->
+								<h:panelGrid columns="5" rendered="#{!sessionBean.guestUser}">
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.mainContentListNameId}">
+										<p:ajax event="change" update="dataCollectionForm msgForm:msg" />
+										<f:selectItems value="#{sessionBean.appBean.mainContentNameList}" />
+									</p:selectOneMenu>
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.mainContentId}" rendered="#{sessionBean.dataCollectionPage.mainContentList != null}">
+										<f:selectItems value="#{sessionBean.dataCollectionPage.mainContentList}" />
+									</p:selectOneMenu>
+									<p:column rendered="#{sessionBean.dataCollectionPage.mainContentList == null}">
+										<p:panelGrid columns="2">
+											<h:outputText value="Value"/>
+											<h:outputText value="Value id" rendered="#{!sessionBean.dataCollectionPage.mainContentListIdEqualsFreeText}"/>
+											<p:inputText value="#{sessionBean.dataCollectionPage.mainContentValue}" styleClass="dcTextInput"/>
+											<p:inputText value="#{sessionBean.dataCollectionPage.mainContentValueId}"  rendered="#{!sessionBean.dataCollectionPage.mainContentListIdEqualsFreeText}"/>
+										</p:panelGrid>
+									</p:column>
+									
+									 
+									<!-- commandButton: save main discipline-->																												
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveMainContent}"/>					
+								</h:panelGrid>
+
+							</h:panelGrid>
+							
+							<h:outputText value="Content (detail)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.subContentList}" var="subContent" 
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.subContentList}">
+								
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{subContent.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{subContent.value}"/>
+									</p:column>
+									<p:column headerText="Value id">
+										<h:outputText value="#{subContent.valueId}"/>
+									</p:column>
+									<p:column headerText="List name">
+										<h:outputText value="#{subContent.listId}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteSubContent}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								
+								<h:panelGrid columns="5" rendered="#{!sessionBean.guestUser}">
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.subContentListNameId}">
+										<p:ajax event="change" update="dataCollectionForm msgForm:msg" />
+										<f:selectItems value="#{sessionBean.appBean.subContentNameList}" />
+									</p:selectOneMenu>
+									
+									<p:column>
+										<p:panelGrid columns="2">
+											<h:outputText value="Value"/>
+											<h:outputText value="Value id" rendered="#{!sessionBean.dataCollectionPage.subContentListIdEqualsFreeText}"/>
+											<p:inputText value="#{sessionBean.dataCollectionPage.subContentValue}" styleClass="dcTextInput"/>
+											<p:inputText value="#{sessionBean.dataCollectionPage.subContentValueId}" rendered="#{!sessionBean.dataCollectionPage.subContentListIdEqualsFreeText}"/>
+										</p:panelGrid>
+									</p:column>
+									
+									 
+									<!-- commandButton: save main discipline-->																												
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveSubContent}"/>					
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="Method(s) (general)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.mainMethodList}" var="mainMethod" 
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.mainMethodList}">
+								
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{mainMethod.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{mainMethod.htmlValue}" escape="false"/>
+									</p:column>
+									<p:column headerText="Value Id">
+										<h:outputText value="#{mainMethod.valueId}"/>
+									</p:column>
+									<p:column headerText="List name">
+										<h:outputText value="#{mainMethod.listId}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteMainMethod}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+							
+								<h:panelGrid columns="5" rendered="#{!sessionBean.guestUser}">
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.mainMethodId}">
+										<f:selectItems value="#{sessionBean.appBean.mainMethodGerList}" />
+									</p:selectOneMenu>
+									 
+									<!-- commandButton: save main discipline-->																												
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveMainMethod}"/>					
+								</h:panelGrid>
+
+							</h:panelGrid>
+							
+							<h:outputText value="Method(s) (detail)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.subMethodList}" var="subMethod" 
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.subMethodList}">
+								
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{subMethod.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{subMethod.htmlValue}" escape="false"/>
+									</p:column>
+									<p:column headerText="Value Id">
+										<h:outputText value="#{subMethod.valueId}"/>
+									</p:column>
+									<p:column headerText="List name">
+										<h:outputText value="#{subMethod.listId}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteSubMethod}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+
+								<h:panelGrid columns="5" rendered="#{!sessionBean.guestUser}">
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.subMethodListNameId}">
+										<p:ajax event="change" update="dataCollectionForm msgForm:msg" />
+										<f:selectItems value="#{sessionBean.appBean.subMethodNameList}" />
+									</p:selectOneMenu>
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.subMethodId}" rendered="#{sessionBean.dataCollectionPage.subMethodList != null}">
+										<f:selectItems value="#{sessionBean.dataCollectionPage.subMethodList}" />
+									</p:selectOneMenu>
+									<h:panelGrid columns="2" rendered="#{sessionBean.dataCollectionPage.subMethodList == null}">
+										<h:outputText value="Value"/>
+										<h:outputText value="Id"/>
+										<p:inputText value="#{sessionBean.dataCollectionPage.subMethodValue}" styleClass="dcTextInput"/>
+										<p:inputText value="#{sessionBean.dataCollectionPage.subMethodValueId}" />
+									</h:panelGrid>
+									
+									 
+									<!-- commandButton: save main discipline-->																												
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveSubMethod}"/>					
+								</h:panelGrid>
+
+							</h:panelGrid>
+							
+						</h:panelGrid>						
+						
+						<h:outputLabel value="Ausdehnung"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							<h:outputText value="Geographic coverage"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.placeList}" var="place"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.placeList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{place.id}"/>
+									</p:column>
+									<p:column headerText="Label">
+										<h:outputText value="#{place.dynamicLabel}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											action="#{sessionBean.dataCollectionPage.actionDeletePlace}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditPlace}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="1">
+									<p:commandButton value="Add place"
+										action="#{sessionBean.dataCollectionPage.actionAddPlace}"
+										rendered="#{!sessionBean.guestUser}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="Temporal coverage"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.timeList}" var="time"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.timeList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{time.id}"/>
+									</p:column>
+									<p:column headerText="Label">
+										<h:outputText value="#{time.dynamicLabel}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteTime}"
+											update="dataCollectionForm msgForm:msg"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditTime}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								
+								<h:panelGrid columns="1">
+									<p:commandButton value="Add time"
+										action="#{sessionBean.dataCollectionPage.actionAddTime}"
+										rendered="#{!sessionBean.guestUser}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+					
+						
+						<h:outputLabel value="Relevante Ressourcen"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							
+							<h:outputText value="Related publication(s)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable var="reference" value="#{sessionBean.dataCollectionPage.dc.referenceList}"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.referenceList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{reference.id}"/>
+									</p:column>
+									<p:column headerText="Label">
+										<h:outputText value="#{reference.labelWithPublication}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="Delete"
+											action="#{sessionBean.dataCollectionPage.actionDeleteReference}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton
+											value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditReference}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<p:commandButton value="Add"
+									action="#{sessionBean.dataCollectionPage.actionAddReference}"
+									rendered="#{!sessionBean.guestUser}"/>
+							</h:panelGrid>
+							
+							<h:outputText value="Related resource(s)"/>
+							<h:panelGrid columns="1">
+								<p:dataTable var="relatedResource" value="#{sessionBean.dataCollectionPage.dc.relatedResourceList}"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.relatedResourceList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{relatedResource.id}"/>
+									</p:column>
+									<p:column headerText="Label">
+										<h:outputText value="#{relatedResource.htmlLabel}" escape="false"/>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="Delete"
+											action="#{sessionBean.dataCollectionPage.actionDeleteRelatedResource}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton
+											value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditRelatedResource}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<p:commandButton value="Add"
+									action="#{sessionBean.dataCollectionPage.actionAddRelatedResource}"
+									rendered="#{!sessionBean.guestUser}"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Erzeugung der Daten"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							
+							<h:outputText value="Project"/>
+							<h:panelGrid columns="2">
+								
+								<h:outputText value="Project status"/>
+								<h:outputText value="#{sessionBean.dataCollectionPage.dc.projectStatus}" rendered="#{sessionBean.guestUser}"/>
+								<p:selectOneMenu value="#{sessionBean.dataCollectionPage.dc.projectStatus}" rendered="#{!sessionBean.guestUser}">
+									<f:selectItems value="#{sessionBean.appBean.projectStatusGerSuggestion}" />
+								</p:selectOneMenu>
+								
+								<h:outputText value="Project begin"/>
+								<h:inputText value="#{sessionBean.dataCollectionPage.dc.projectStart}" styleClass="dcTextInput" rendered="#{!sessionBean.guestUser}"/>
+								<h:outputText value="#{sessionBean.dataCollectionPage.dc.projectStart}" styleClass="dcTextInput" rendered="#{sessionBean.guestUser}"/>
+								
+								<h:outputText value="Project end"/>
+								<h:inputText value="#{sessionBean.dataCollectionPage.dc.projectEnd}" styleClass="dcTextInput" rendered="#{!sessionBean.guestUser}"/>
+								<h:outputText value="#{sessionBean.dataCollectionPage.dc.projectEnd}" styleClass="dcTextInput" rendered="#{sessionBean.guestUser}"/>
+							</h:panelGrid>
+							
+							<h:outputText value="Data generation"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.dataGenerationList}" var="dataGeneration"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.dataGenerationList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{dataGeneration.id}"/>
+									</p:column>
+									<p:column headerText="Label">
+										<h:outputText value="#{dataGeneration.label}"/>
+									</p:column>
+									<p:column headerText="Description">
+										<h:outputText value="#{dataGeneration.description}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="Delete"
+											action="#{sessionBean.dataCollectionPage.actionDeleteDataGeneration}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								
+								</p:dataTable>
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+									<h:outputText value="Start"/>
+									<h:outputText value="End"/>
+									<h:outputText value="Description"/>
+									<h:outputText/>
+									<h:inputText value="#{sessionBean.dataCollectionPage.dataGeneration.start}" styleClass="dcTextInput"/>
+									<h:inputText value="#{sessionBean.dataCollectionPage.dataGeneration.end}" styleClass="dcTextInput"/>
+									<h:inputTextarea value="#{sessionBean.dataCollectionPage.dataGeneration.description}" styleClass="dcTextArea"/>
+									<p:commandButton value="Add"
+										action="#{sessionBean.dataCollectionPage.actionAddDataGeneration}"/>
+
+								</h:panelGrid>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Datenschutz"/>
+						<h:panelGrid columns="2" rendered="#{sessionBean.dataCollectionPage.dc.persistent}" columnClasses="firstColumn">				
+							
+							<h:outputText value="Data protection"/>
+							<p:selectBooleanCheckbox value="#{sessionBean.dataCollectionPage.dc.dataProtection}"/>
+							
+							<h:outputText value="Reason"/>
+							<p:selectOneMenu value="#{sessionBean.dataCollectionPage.reasonDataProtectionId}">
+								<f:selectItems value="#{sessionBean.appBean.reasonDataProtectionGerList}" />
+							</p:selectOneMenu>
+							
+							<h:outputText value="Legal basis"/>
+							<h:inputTextarea value="#{sessionBean.dataCollectionPage.dc.basisDataProtection}" styleClass="dcTextArea"/>
+							
+							<h:outputText value="Description"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.descriptionDataProtectionList}" var="descriptionDataProtection"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.descriptionDataProtectionList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{descriptionDataProtection.id}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{descriptionDataProtection.language}"/>
+									</p:column>
+									<p:column headerText="Value" >
+										<h:outputText value="#{descriptionDataProtection.value}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.descriptionDataProtection.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton value="Edit"
+											action="#{sessionBean.dataCollectionPage.descriptionDataProtection.actionEdit}"
+											rendered="#{!sessionBean.guestUser}"/>											
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+									
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									<h:outputText value=""/>
+									
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.descriptionDataProtection.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.dataCollectionPage.appBean.searchLanguageInShortListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									<h:inputTextarea value="#{sessionBean.dataCollectionPage.descriptionDataProtection.textAtt.value}" styleClass="dcTextArea"/>
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.descriptionDataProtection.actionAdd}"/>
+									<p:commandButton value="Cancel edition"
+										action="#{sessionBean.dataCollectionPage.descriptionDataProtection.actionCancelEdition}"
+										rendered="#{sessionBean.dataCollectionPage.descriptionDataProtection.textAttPersistent != null}"/>										
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							
+
+							
+							<h:outputText value="License name"/>
+							<h:inputText value="#{sessionBean.dataCollectionPage.dc.licenseName}" styleClass="dcTextInput"/>
+							
+							<h:outputText value="License version"/>
+							<h:inputText value="#{sessionBean.dataCollectionPage.dc.licenseVersion}" styleClass="dcTextInput"/>
+							
+							<h:outputText value="License url"/>
+							<h:inputText value="#{sessionBean.dataCollectionPage.dc.licenseUrl}" styleClass="dcTextInput"/>
+							
+							<h:outputText value="Access Rights"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.accessRightList}" var="accessRight"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.accessRightList}" >
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{accessRight.id}"/>
+									</p:column>
+									<p:column headerText="Group">
+										<h:outputText value="#{accessRight.group}"/>
+									</p:column>
+									<p:column headerText="Right">
+										<h:outputText value="#{accessRight.right}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" 
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteAccessRight}"
+											rendered="#{!sessionBean.guestUser}"
+											update="dataCollectionForm msgForm:msg">
+											<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+										</p:commandButton>
+									</p:column>
+								</p:dataTable>
+								
+								<h:panelGrid columns="4" rendered="#{!sessionBean.guestUser}">
+								
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.accessRight.group}">
+										<f:selectItems value="#{sessionBean.appBean.groupTypeEngList}" />
+									</p:selectOneMenu>
+									
+									<p:selectOneMenu value="#{sessionBean.dataCollectionPage.accessRight.right}">
+										<f:selectItems value="#{sessionBean.appBean.rightTypeEngList}" />
+									</p:selectOneMenu>
+									
+									<p:commandButton value="Save" 
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveAccessRight}"
+										update="dataCollectionForm msgForm:msg"/>
+									<!-- 
+									<p:commandButton value="Add" update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerAddNewAccessRight}"/>
+									 -->	
+								</h:panelGrid>
+								
+								
+							</h:panelGrid>
+							
+							<h:outputText value="Accessability"/>
+							<p:selectOneMenu value="#{sessionBean.dataCollectionPage.dc.accessability}">
+								<f:selectItems value="#{sessionBean.appBean.accessabilityGerList}" />
+							</p:selectOneMenu>
+							
+							<h:outputText value="Available from date"/>
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.dateAvailable}" showOn="button"/>
+							
+						</h:panelGrid>	
+						
+						
+						<h:outputLabel value="Beschreibung Datensammlung" rendered="#{sessionBean.dataCollectionPage.dc.persistent}" />
+						
+						
+						<h:panelGrid columns="2" rendered="#{sessionBean.dataCollectionPage.dc.persistent}" columnClasses="firstColumn">
+								
+							<h:outputText value="Collection languages"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.collectionLanguageList}" var="collectionLanguage"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.collectionLanguageList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{collectionLanguage.id}"/>
+									</p:column>
+									<p:column headerText="code">
+										<h:outputText value="#{collectionLanguage.code}"/>
+									</p:column>
+									<p:column headerText="label">
+										<h:outputText value="#{collectionLanguage.label}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteCollectionLanguage}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="2">
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.collectionLanguageName}" 
+										completeMethod="#{sessionBean.dataCollectionPage.appBean.searchLanguageInListGer}"
+	                       				var="theme" 
+	                       				itemLabel="#{theme}" itemValue="#{theme.nameGer}" 
+	                       				forceSelection="true" />
+									
+									<p:commandButton value="Add" update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.actionListenerAddCollectionLanguage}"
+										rendered="#{!sessionBean.guestUser}"/>
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							<h:outputText value="Resource Type"/>
+							<h:panelGrid columns="1">
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.resourceTypeList}" var="resourceType"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.resourceTypeList}">
+									
+									<p:column headerText="Id">
+										<h:outputText value="#{resourceType.id}"/>
+									</p:column>
+									
+									<p:column headerText="value">
+										<h:outputText value="#{resourceType.htmlValue}" escape="false"/>
+									</p:column>
+									
+									<p:column headerText="value id">
+										<h:outputText value="#{resourceType.valueId}"/>
+									</p:column>
+									
+									<p:column headerText="list Id">
+										<h:outputText value="#{resourceType.listId}"/>
+									</p:column>
+									
+									<p:column>
+									<!-- commandButton: delete resourceType-->																				
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteResourceType}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+									
+								</p:dataTable>
+								
+								<h:panelGrid columns="3">
+									<p:selectOneMenu
+										value="#{sessionBean.dataCollectionPage.resourceTypeId}">
+										<f:selectItems value="#{sessionBean.appBean.resourceTypeGerList}" />
+									</p:selectOneMenu>
+									
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerSaveResourceType}"
+										rendered="#{!sessionBean.guestUser}"/>
+										
+								</h:panelGrid>
+								
+							</h:panelGrid>
+							
+							
+						<!-- section for data categories -->
+						<h:outputText value="Data category"/>
+						<h:panelGrid columns="1">
+							<p:dataTable value="#{sessionBean.dataCollectionPage.dc.dataCategoryList}" var="dataCategory"
+								rendered="#{!empty sessionBean.dataCollectionPage.dc.dataCategoryList}">
+								
+								<p:column headerText="Identifier" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{dataCategory.id}"/>
+								</p:column>
+								
+								<p:column headerText="Value">
+									<h:outputText value="#{dataCategory.htmlValue}" escape="false"/>
+								</p:column>
+								
+								<p:column headerText="Value ID">
+									<h:outputText value="#{dataCategory.valueId}"/>
+								</p:column>
+								
+								<p:column headerText="List name">
+									<h:outputText value="#{dataCategory.listId}"/>
+								</p:column>
+								
+								<p:column>
+								<!-- commandButton: delete dataCategory-->																				
+									<p:commandButton value="Delete"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerDeleteDataCategory}"
+										rendered="#{!sessionBean.guestUser}"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3" rendered="#{!sessionBean.guestUser}">
+								<p:selectOneMenu
+									value="#{sessionBean.dataCollectionPage.dataCategoryId}">
+									<f:selectItems value="#{sessionBean.appBean.dataCategoryGerList}" />
+								</p:selectOneMenu>
+								
+								
+								<p:commandButton value="Add"
+									update="dataCollectionForm msgForm:msg"
+									actionListener="#{sessionBean.dataCollectionPage.listenerSaveDataCategory}"/>
+									
+							</h:panelGrid>
+								
+						</h:panelGrid>
+
+								<h:outputText value="Number of files"/>
+								<h:inputText value="#{sessionBean.dataCollectionPage.dc.fileNumber}" styleClass="dcTextInput"/>
+								
+								<h:outputText value="Data collection size (provide unit [MB,GB,...] as required)"/>
+								<h:inputText value="#{sessionBean.dataCollectionPage.dc.memorySize}" styleClass="dcTextInput"/>
+							
+							<h:outputText value="Custodial history" />
+							<h:inputTextarea value="#{sessionBean.dataCollectionPage.dc.custodialHistory}" styleClass="dcTextArea"/>						
+						</h:panelGrid>						
+						
+						
+						
+						<h:outputLabel value="Akteure"/>						
+						<h:panelGrid>
+							<h:panelGrid columns="1" styleClass="mainControlPanel">
+								<p:dataTable var="actor" value="#{sessionBean.dataCollectionPage.actorList}"
+									rendered="#{!empty sessionBean.dataCollectionPage.actorList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{actor.id}"/>
+									</p:column>
+									<p:column headerText="Label">
+										<h:outputText value="#{actor.htmlLabel}" escape="false"/>
+									</p:column>
+									<p:column headerText="Roles (function start - function end)">
+										<h:outputText value="#{actor.htmlRoleList}" escape="false"/>
+									</p:column>
+									<p:column>
+										<p:commandButton
+											value="Delete"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteActor}"
+											update="dataCollectionForm msgForm:msg"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton
+											value="Edit"
+											action="#{sessionBean.dataCollectionPage.actionEditActor}"
+											rendered="#{!sessionBean.guestUser}"/>
+										<p:commandButton
+											value="Edit Logo"
+											action="#{sessionBean.dataCollectionPage.actionAddLogo}"
+											rendered="#{actor.hasLogo and !sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+							</h:panelGrid>						
+						
+							<h:panelGrid columns="2">
+								<p:commandButton value="Add person"
+									action="#{sessionBean.dataCollectionPage.actionAddPerson}"
+									rendered="#{!sessionBean.guestUser}"/>
+								<p:commandButton value="Add institution"
+									action="#{sessionBean.dataCollectionPage.actionAddInstitution}"
+									rendered="#{!sessionBean.guestUser}"/>
+							</h:panelGrid>							
+						</h:panelGrid>
+						
+						
+						
+						
+						
+						<h:outputLabel value="Signatur Metadaten" />
+						<h:panelGrid columns="2" columnClasses="firstColumn">
+							
+							<h:outputText value="Language (metadata)" />
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.metadataLanguageList}" var="metadataLanguage"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.metadataLanguageList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{metadataLanguage.id}"/>
+									</p:column>
+									<p:column headerText="code">
+										<h:outputText value="#{metadataLanguage.code}"/>
+									</p:column>
+									<p:column headerText="label">
+										<h:outputText value="#{metadataLanguage.label}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.listenerDeleteMetadataLanguage}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="2">
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.metadataLanguageName}" 
+										completeMethod="#{sessionBean.appBean.searchLanguageInListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.nameGer}" 
+	                        			forceSelection="true" />
+									<p:commandButton value="Add" update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.listenerAddMetadataLanguage}"
+										rendered="#{!sessionBean.guestUser}"/>
+										
+								</h:panelGrid>
+							</h:panelGrid>
+							
+							
+							<h:outputText value="Last change (metadata)"/>
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.lastChangeMetadata}"/>
+							
+						</h:panelGrid>			
+						
+						<h:outputLabel value="Kuratierung und Archivierung" rendered="#{sessionBean.appBean.debugMode}"/>
+						<h:panelGrid columns="2" columnClasses="firstColumn" rendered="#{sessionBean.appBean.debugMode}">
+							
+							<h:outputText value="SIP finalization" />
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.sipFinalization}"/>
+							
+							<h:outputText value="Signing contract" />
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.signingContract}"/>
+							
+							<h:outputText value="Curation start" />
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.curationStart}"/>
+							
+							<h:outputText value="Curation end" />
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.curationEnd}"/>
+							
+							<h:outputText value="Presentation date" />
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.presentationDate}"/>
+							
+							<h:outputText value="Last test" />
+							<p:calendar value="#{sessionBean.dataCollectionPage.dc.lastTest}"/>
+
+						</h:panelGrid>	
+						
+							<h:outputLabel value="Motivation"/>
+							<h:panelGrid>
+								<p:dataTable value="#{sessionBean.dataCollectionPage.dc.motivationList}" var="motivation"
+									rendered="#{!empty sessionBean.dataCollectionPage.dc.motivationList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{motivation.id}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{motivation.language}"/>
+									</p:column>
+									<p:column headerText="Value" >
+										<h:outputText value="#{motivation.value}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete" update="dataCollectionForm msgForm:msg"
+											actionListener="#{sessionBean.dataCollectionPage.motivation.actionDelete}"
+											rendered="#{!sessionBean.guestUser}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="3">
+									
+									<h:outputText value="Language"/>
+									<h:outputText value="Value"/>
+									<h:outputText value=""/>
+									
+									<p:autoComplete value="#{sessionBean.dataCollectionPage.motivation.textAtt.languageCode}" 
+										completeMethod="#{sessionBean.dataCollectionPage.appBean.searchLanguageInShortListGer}"
+	                        			var="theme" 
+	                        			itemLabel="#{theme}" itemValue="#{theme.id}" 
+	                        			forceSelection="true" />
+									<h:inputTextarea value="#{sessionBean.dataCollectionPage.motivation.textAtt.value}" styleClass="dcTextArea"/>
+									<p:commandButton value="Add"
+										update="dataCollectionForm msgForm:msg"
+										actionListener="#{sessionBean.dataCollectionPage.motivation.actionAdd}"
+										rendered="#{!sessionBean.guestUser}"/>
+								</h:panelGrid>	
+							</h:panelGrid>
+						
+					</h:panelGrid>
+					
+					<!-- Contro panel -->
+					<h:panelGrid columns="1">
+						<h:panelGrid columns="5">
+							<p:commandButton 
+								value="Save data collection"
+								actionListener="#{sessionBean.dataCollectionPage.listenerSaveDc}" 
+								update="dataCollectionForm msgForm:msg"
+								rendered="#{!sessionBean.guestUser}"/>
+							<p:commandButton value="Show metadata files"
+								action="#{sessionBean.dataCollectionPage.actionShowFilePage}"
+								rendered="#{sessionBean.dataCollectionPage.dc.persistent}"/>
+							<h:outputLink
+								title="data collection to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/dataCollection/?id=#{sessionBean.dataCollectionPage.dc.id}" 
+								styleClass="outputLinkImage"
+								target="_blank"
+								rendered="#{sessionBean.dataCollectionPage.dc.persistent}">
+								<h:graphicImage value="#{sessionBean.appBean.imgCollection}"/>
+							</h:outputLink>
+							<h:outputLink
+								title="files to json" 
+								value="#{sessionBean.appBean.contextRoot}/rest/json/metadata/dataCollection/collectionFiles/?id=#{sessionBean.dataCollectionPage.dc.id}" 
+								styleClass="outputLinkImage"
+								target="_blank"
+								rendered="#{sessionBean.dataCollectionPage.dc.persistent}">
+								<h:graphicImage value="#{sessionBean.appBean.imgFiles}"/>
+							</h:outputLink>
+						</h:panelGrid>
+						<h:panelGrid rendered="#{sessionBean.dataCollectionPage.ip != null}">
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.dataCollectionPage.gotoIPPage}"/>
+						</h:panelGrid>
+					</h:panelGrid>
+					
+				</h:panelGrid>
+	
+			</h:panelGrid>
+			
+			<p:defaultCommand target="saveDatacollectionBtn" />
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

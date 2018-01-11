@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>IANUS.ingest</title>
+	<link rel="stylesheet"
+		href="#{sessionBean.appBean.contextRoot}/resources/css/style.css" />
+	
+	<meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
+	<meta HTTP-EQUIV="EXPIRES" CONTENT="0" />
+	<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE" />
+	<meta NAME="ROBOTS" CONTENT="INDEX,NOFOLLOW" />
+</h:head>
+
+<h:body>
+	<h:form id="msgForm" >
+
+		<p:confirmDialog id="ianusConfirmDialog" global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Yes" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+
+		<h:panelGrid id="msg">
+			<p:dialog widgetVar="msgDialog" header="Messages" modal="true"
+				dynamic="true" visible="#{sessionBean.showMessageDialog}"
+				width="400" height="200"
+				position="top">
+				<p:ajax event="close"
+					listener="#{sessionBean.listenerCloseMessageDialog}" />
+				<h:panelGrid columns="1" styleClass="centeredPanelGrid">
+					<p:dataTable var="msg" value="#{sessionBean.msgList}">
+						<p:column>
+							<h:outputText value="#{msg}" />
+						</p:column>
+					</p:dataTable>
+					<p:commandButton value="OK"
+						actionListener="#{sessionBean.listenerCloseMessageDialog}"
+						update="msgForm"/>
+				</h:panelGrid>
+			</p:dialog>
+		</h:panelGrid>
+
+	</h:form>
+
+	<!-- Wrapper -->
+
+	<!-- Header -->
+	
+	<div id="header" class="skel-panels-fixed">
+		<div id="logo">
+			<h1>
+				<a href="#{sessionBean.appBean.contextRoot}">IANUS.ingest</a>
+			</h1>
+			<span class="tag">by Deutsches Archäologisches Institut</span>
+		</div>
+		
+	
+		<h:panelGroup rendered="#{sessionBean.loggedIn and !sessionBean.guestUser}">
+			<nav id="nav">
+				<ul>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/overviewDC.xhtml">Overview</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/transferList.xhtml">TP</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/submissionList.xhtml">SIP</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/archivalList.xhtml">AIP</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/disseminationList.xhtml">DIP</a></li>
+					<li ><a href="#{sessionBean.appBean.contextRoot}/pages/storage.xhtml">Working Storage</a></li>
+	
+					<li id="te"><a href="#{sessionBean.appBean.contextRoot}/pages/admin.xhtml">Admin</a></li>
+				</ul>
+			</nav>
+		</h:panelGroup>
+		
+		<h:panelGroup rendered="#{sessionBean.guestUser}">
+			<nav id="nav">
+				<ul>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/overviewDC.xhtml">Overview</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/transferList.xhtml">TP</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/submissionList.xhtml">SIP</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/archivalList.xhtml">AIP</a></li>
+					<li><a href="#{sessionBean.appBean.contextRoot}/pages/disseminationList.xhtml">DIP</a></li>
+					<li ><a href="#{sessionBean.appBean.contextRoot}/pages/storage.xhtml">Working Storage</a></li>
+	
+				</ul>
+			</nav>
+		</h:panelGroup>
+		
+		
+		
+		<div id="login">
+			<div id="loginContent">
+				<h:form id="loginForm">
+					
+					<h:panelGrid columns="3" rendered="#{!sessionBean.loggedIn}">
+						<h:inputText value="#{sessionBean.userName}"/>
+						<h:inputSecret value="#{sessionBean.password}"/>
+						<h:commandButton value="login" 
+							actionListener="#{sessionBean.listenerLogin}"
+							update=":#{component.namingContainer.parent.namingContainer.clientId}:page loginForm msgForm:msg"
+							styleClass="logLinks"/>
+					</h:panelGrid>
+					<h:panelGrid columns="2" rendered="#{sessionBean.loggedIn}">
+						<h:outputText value="Logged in as: #{sessionBean.currentUser.userName}"
+							rendered="#{sessionBean.loggedIn}" />
+						
+						<h:commandLink value="logout" 
+							actionListener="#{sessionBean.listenerLogout}"
+							rendered="#{sessionBean.loggedIn}"
+							update=":#{component.namingContainer.parent.namingContainer.clientId}:page loginForm msgForm:msg"
+							styleClass="logLinks"/>	
+					</h:panelGrid>
+					
+				</h:form>
+			</div>
+		</div>
+		
+	</div>
+
+
+	<div id="page">
+		<ui:insert name="content"></ui:insert>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+                                 
+     <!-- de.ianus.metadata.PersistenceManager                            
+    		Normally this PersistenceManager class executes the persistence.xml file which is located at 
+			ianus-ingest-web/src/main/resources/META-INF folder. But when run the DataCollection Clone integration test JUnit with H2 Database 
+			(ianus-ingest-core/src/test/java/de/ianus/dataCollection/clone/test/Testing.java) then it will automatically 
+			execute the local persistence.xml file which is located at ianus-ingest-core/src/test/resources/META-INF folder. 
+			Because both have the same persistence unit name (persistence-unit name="metadataApp"). -->    
+			                         
+    <persistence-unit name="metadataApp" transaction-type="RESOURCE_LOCAL">
+    	
+        <!-- add classes-->
+     
+		<class>de.ianus.metadata.bo.AccessRight</class>
+		<class>de.ianus.metadata.bo.Address</class>
+		<class>de.ianus.metadata.bo.DataCollection</class>
+		<class>de.ianus.metadata.bo.actor.ActorRole</class>
+		<class>de.ianus.metadata.bo.actor.Person</class>
+		<class>de.ianus.metadata.bo.actor.Institution</class>
+		<class>de.ianus.metadata.bo.utils.TextAttribute</class>
+		<class>de.ianus.metadata.bo.utils.Language</class>
+		<class>de.ianus.metadata.bo.utils.ResourceType</class>
+		<class>de.ianus.metadata.bo.utils.FileFormat</class>
+		<class>de.ianus.metadata.bo.utils.Identifier</class>
+		<class>de.ianus.metadata.bo.utils.ElementOfList</class>
+		<class>de.ianus.metadata.bo.utils.Place</class>
+		<class>de.ianus.metadata.bo.utils.TimeSpan</class>
+		<class>de.ianus.metadata.bo.utils.Software</class>
+		<class>de.ianus.metadata.bo.utils.Time</class>
+		<class>de.ianus.metadata.bo.utils.PreservationEvent</class>
+		<class>de.ianus.metadata.bo.CollectionFile</class>
+		<class>de.ianus.metadata.bo.resource.Publication</class>
+		<class>de.ianus.metadata.bo.resource.Reference</class>
+		<class>de.ianus.metadata.bo.resource.RelatedResource</class>
+
+        <properties>
+        
+            <!-- Configuring JDBC properties -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:ianus-test"/>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- Hibernate properties-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/> 
+            
+    	</properties>
+    </persistence-unit>
+    <persistence-unit name="coreApp" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+
+
+		<!-- IANUS.curation.core.bo -->
+		<class>de.ianus.ingest.core.bo.TransferP</class>
+		<class>de.ianus.ingest.core.bo.ArchivalIP</class>
+		<class>de.ianus.ingest.core.bo.DisseminationIP</class>
+		<class>de.ianus.ingest.core.bo.PreArchivalIP</class>
+		<class>de.ianus.ingest.core.bo.SubmissionIP</class>
+		<class>de.ianus.ingest.core.bo.Location</class>
+		<class>de.ianus.ingest.core.bo.ActivityOutput</class>
+		<class>de.ianus.ingest.core.bo.RsyncUpload</class>
+		<class>de.ianus.ingest.core.bo.BagitFile</class>
+		<class>de.ianus.ingest.core.bo.IANUSActivity</class>
+		<class>de.ianus.ingest.core.bo.PreIngestReport</class>
+		<class>de.ianus.ingest.core.bo.ums.User</class>
+		
+		<class>de.ianus.ingest.core.bo.files.FileInstance</class>
+		<class>de.ianus.ingest.core.bo.files.FileInstanceProperty</class>
+		<class>de.ianus.ingest.core.bo.files.FileConcept</class>
+		<class>de.ianus.ingest.core.bo.files.FileGroup</class>
+		<class>de.ianus.ingest.core.bo.files.Agent</class>
+		<class>de.ianus.ingest.core.bo.files.Event</class>
+		<class>de.ianus.ingest.core.bo.files.AgentEventLink</class>
+		<class>de.ianus.ingest.core.bo.files.ObjectEventLink</class>
+		
+		<properties>
+        
+            <!-- Configuring JDBC properties -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:ianus-test"/>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+
+            <!-- Hibernate properties-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/> 
+            
+    	</properties>
+	</persistence-unit>
+</persistence>

@@ -1,0 +1,262 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="actorForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Actor Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="3">
+						<p:commandButton
+							value="Add person"
+							action="#{sessionBean.actorPage.actionAddPerson}"/>
+						<p:commandButton
+							value="Add institution"
+							action="#{sessionBean.actorPage.actionAddInstitution}"/>
+						<p:commandButton
+								value="Show all actors"
+								action="#{sessionBean.actorPage.actionShowAllActors}"/>
+					</h:panelGrid>
+					<p:commandButton
+						value="Back to #{sessionBean.actorPage.sourceLabel}"
+						action="#{sessionBean.actorPage.actionBack2MetadataDcPage}"/>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.actorPage.showTable}">
+					<p:dataTable var="actor" value="#{sessionBean.actorPage.actorList}"
+						rendered="#{sessionBean.actorPage.showTable}">
+						<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{actor.id}"/>
+						</p:column>
+						<p:column headerText="Label">
+							<h:outputText value="#{actor.label}"/>
+						</p:column>
+						<p:column>
+							<p:commandButton
+								value="Delete"
+								action="#{sessionBean.actorPage.actionDeleteActor}"/>
+							<p:commandButton
+								value="Edit"
+								action="#{sessionBean.actorPage.actionEditActor}"/>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.actorPage.actor != null}">
+					<h:outputLabel value="#{sessionBean.actorPage.pageTitle}"/>
+					<h:panelGrid columns="2" columnClasses="firstColumn" >
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.actorPage.actionSave}"/>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Id" rendered="#{sessionBean.appBean.debugMode}"/>
+						<h:outputText value="#{sessionBean.actorPage.actor.id}" rendered="#{sessionBean.appBean.debugMode}"/>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn" rendered="#{sessionBean.actorPage.institution != null}">
+						<h:outputLabel value="Name"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.name}"/>
+						
+						<h:outputLabel value="Department"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.department}"/>
+						
+						<h:outputLabel value="Working unit"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.workingUnit}"/>
+						
+						<h:outputLabel value="Street"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.street}"/>
+						
+						<h:outputLabel value="Postal code"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.postalCode}"/>
+						
+						<h:outputLabel value="City"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.city}"/>
+						
+						<h:outputLabel value="Country"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.country}"/>
+						
+						<h:outputLabel value="Email"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.email}"/>
+						
+						<h:outputLabel value="URL"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.url}"/>
+						
+						<h:outputLabel value="Telephone"/>
+						<h:inputText value="#{sessionBean.actorPage.institution.telephone}"/>
+						
+					</h:panelGrid>
+					<h:panelGrid columns="2" columnClasses="firstColumn" rendered="#{sessionBean.actorPage.person != null}">
+						
+						<h:outputLabel value="Title"/>
+						<p:selectOneMenu value="#{sessionBean.actorPage.person.title}">
+							<f:selectItems value="#{sessionBean.appBean.personTitleSuggestList}" />
+						</p:selectOneMenu>	
+						
+						<h:outputLabel value="First name"/>
+						<h:inputText value="#{sessionBean.actorPage.person.firstName}"/>
+						
+						<h:outputLabel value="Last name"/>
+						<h:inputText value="#{sessionBean.actorPage.person.lastName}"/>
+						
+						<h:outputLabel value="Gender"/>
+						<p:selectOneMenu value="#{sessionBean.actorPage.person.gender}">
+							<f:selectItems value="#{sessionBean.appBean.genderGerList}" />
+						</p:selectOneMenu>	
+						
+						<h:outputLabel value="Institution name"/>
+						<h:inputText value="#{sessionBean.actorPage.person.institutionName}"/>
+						
+						<h:outputLabel value="Department"/>
+						<h:inputText value="#{sessionBean.actorPage.person.department}"/>
+						
+						<h:outputLabel value="Working unit"/>
+						<h:inputText value="#{sessionBean.actorPage.person.workingUnit}"/>
+						
+						<h:outputLabel value="Street"/>
+						<h:inputText value="#{sessionBean.actorPage.person.street}"/>
+						
+						<h:outputLabel value="Postal code"/>
+						<h:inputText value="#{sessionBean.actorPage.person.postalCode}"/>
+						
+						<h:outputLabel value="City"/>
+						<h:inputText value="#{sessionBean.actorPage.person.city}"/>
+						
+						<h:outputLabel value="Country"/>
+						<h:inputText value="#{sessionBean.actorPage.person.country}"/>
+						
+						<h:outputLabel value="Email"/>
+						<h:inputText value="#{sessionBean.actorPage.person.email}"/>
+						
+						<h:outputLabel value="URL"/>
+						<h:inputText value="#{sessionBean.actorPage.person.url}"/>
+						
+						<h:outputLabel value="Telephone"/>
+						<h:inputText value="#{sessionBean.actorPage.person.telephone}"/>
+						
+						<h:outputLabel value="Discipline"/>
+						<p:selectManyCheckbox id="mainDisciplineGrid" value="#{sessionBean.actorPage.mainDisciplineCheckbox.idList}" layout="grid" columns="4">
+								<f:selectItems value="#{sessionBean.appBean.subDisciplineGerList}"/>
+	    				</p:selectManyCheckbox>
+						
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn" rendered="#{sessionBean.actorPage.actor != null}">
+						<h:outputLabel value="External identfier(s)" />
+						<h:panelGrid columns="1">
+							<p:dataTable value="#{sessionBean.actorPage.currentExternalIdList}" var="externalId"
+								rendered="#{!empty sessionBean.actorPage.currentExternalIdList}">
+								
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{externalId.id}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{externalId.value}"/>
+								</p:column>
+								<p:column headerText="Type">
+									<h:outputText value="#{externalId.type}"/>
+								</p:column>
+								<p:column headerText="Institution">
+									<h:outputText value="#{externalId.institution}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										actionListener="#{sessionBean.actorPage.listenerDeleteExternalId}"
+										update="actorForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							<h:panelGrid columns="5">
+								<h:outputText value="Value"/>
+								<h:outputText value="Type"/>
+								<h:outputText value="Institution"/>
+								<h:outputText value=""/>
+								<h:outputText value=""/>
+								
+								<h:inputText value="#{sessionBean.actorPage.externalId.value}"/>
+								
+								<h:panelGrid columns="2">
+									<p:selectOneMenu value="#{sessionBean.actorPage.externalId.type}">
+										<p:ajax event="change" update="actorForm msgForm:msg" />
+										<f:selectItems value="#{sessionBean.appBean.identifierPersonSuggestList}" />
+									</p:selectOneMenu>	
+									<h:inputText value="#{sessionBean.actorPage.externalIdType}" rendered="#{sessionBean.actorPage.showExternalIdentifierFreeText}"/>								
+								</h:panelGrid>
+								
+								<h:inputText value="#{sessionBean.actorPage.externalId.institution}"/>
+								<p:commandButton value="Add"
+									action="#{sessionBean.actorPage.actionAddExternalId}"/>
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Roles"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.actorPage.currentRoleList}" var="role"
+								rendered="#{!empty sessionBean.actorPage.currentRoleList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{role.id}"/>
+								</p:column>
+								<p:column headerText="Source">
+									<h:outputText value="#{role.sourceClass} [ID=#{role.sourceId}]"/>
+								</p:column>
+								<p:column headerText="Role">
+									<h:outputText value="#{role.typeId}"/>
+								</p:column>
+								<p:column headerText="Time span">
+									<h:outputText value="#{role.timeSpanText}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Delete"
+										action="#{sessionBean.actorPage.actionDeleteRole}"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="5">
+								<h:outputText value="Function start"/>
+								<h:outputText value="Function end"/>
+								<h:outputText value="Role"/>
+								<h:outputText/>
+								<h:outputText/>
+								<h:inputText value="#{sessionBean.actorPage.role.functionStartText}"/>
+								<h:inputText value="#{sessionBean.actorPage.role.functionEndText}"/>
+								<p:selectOneMenu value="#{sessionBean.actorPage.role.typeId}">
+									<f:selectItems value="#{sessionBean.actorPage.roleGerList}" />
+								</p:selectOneMenu>
+								<p:commandButton 
+									value="Add role"
+									action="#{sessionBean.actorPage.actionAddRole}"/>
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGrid>
+					
+					<h:panelGrid columns="2" columnClasses="firstColumn" >
+						
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.actorPage.actionSave}"/>
+						</h:panelGrid>
+					</h:panelGrid>
+					
+				</h:panelGrid>
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,482 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="placeForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Place Editor" />
+				</h:panelGrid>
+				
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2">
+						<p:commandButton
+							value="Save" 
+							action="#{sessionBean.placePage.actionSavePlace}"/>
+						<p:commandButton
+							value="Back to #{sessionBean.placePage.sourceLabel}"
+							action="#{sessionBean.placePage.actionBack2MetadataDcPage}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				 
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+								
+						<h:outputLabel value="Id"/>
+						<h:outputText value="#{sessionBean.placePage.place.id}"/>
+						
+						<h:outputLabel value="Geometric type"/>
+						<p:selectOneMenu value="#{sessionBean.placePage.place.geometricType}">
+							<f:selectItems value="#{sessionBean.placePage.geometricTypeList}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel value="Coordinate system"/>
+						<h:inputText value="#{sessionBean.placePage.place.coordinateSystem}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Wkt"/>
+						<h:panelGrid columns="2">
+							<h:inputTextarea value="#{sessionBean.placePage.place.wktText}" styleClass="dcTextArea"/>
+							<p:commandButton value="Validate"
+								update="placeForm msgForm:msg"
+								actionListener="#{sessionBean.placePage.listenerValidateWkt}" />
+						</h:panelGrid>
+						
+						<h:outputLabel value="accuracy"/>
+						<h:inputText value="#{sessionBean.placePage.place.accuracy}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Accuracy description"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.placePage.accuracyDescription.currentList}" var="accuracyDescription"
+								rendered="#{!empty sessionBean.placePage.accuracyDescription.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{accuracyDescription.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{accuracyDescription.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{accuracyDescription.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.accuracyDescription.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+							
+								
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.accuracyDescription.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true" />
+								<h:inputTextarea value="#{sessionBean.placePage.accuracyDescription.textAtt.value}" styleClass="dcTextArea"/>
+								
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.accuracyDescription.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Greater region"/>
+						<h:panelGrid>
+						
+							<p:dataTable id="greatRegionTable" value="#{sessionBean.placePage.greaterRegion.currentList}" var="greaterRegion"
+								rendered="#{!empty sessionBean.placePage.greaterRegion.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{greaterRegion.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{greaterRegion.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{greaterRegion.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.greaterRegion.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+								
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.greaterRegion.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true" >
+		                    		<p:ajax event="itemSelect" update="greatRegionTable greatRegionValuePanel msgForm:msg" listener="#{sessionBean.placePage.onChangeGreaterRegionLanguage}" />
+		                    	</p:autoComplete>
+								
+								<h:panelGrid id="greatRegionValuePanel">
+									
+									<p:selectOneMenu value="#{sessionBean.placePage.greaterRegionSuggestion}"
+										rendered="#{sessionBean.placePage.showGreatRegionEng}">
+										<f:selectItems value="#{sessionBean.placePage.greatRegionEngList}" />
+										<p:ajax event="itemSelect" update="greatRegionTable greatRegionValuePanel msgForm:msg" listener="#{sessionBean.placePage.onChangeGreaterRegionSuggestion}" />
+									</p:selectOneMenu>
+									
+									<p:selectOneMenu value="#{sessionBean.placePage.greaterRegionSuggestion}"
+										rendered="#{sessionBean.placePage.showGreatRegionGer}">
+										<f:selectItems value="#{sessionBean.placePage.greatRegionGerList}" />
+										<p:ajax event="itemSelect" update="greatRegionTable greatRegionValuePanel msgForm:msg" listener="#{sessionBean.placePage.onChangeGreaterRegionSuggestion}" />
+									</p:selectOneMenu>
+									
+									<h:inputText value="#{sessionBean.placePage.greaterRegion.textAtt.value}" styleClass="dcTextInput"/>
+								</h:panelGrid>
+								
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.greaterRegion.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Country"/>
+						<h:panelGrid>
+							<p:dataTable id="countryTable" value="#{sessionBean.placePage.country.currentList}" var="country"
+								rendered="#{!empty sessionBean.placePage.country.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{country.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{country.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{country.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.country.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+							
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.country.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true">
+		                    		<p:ajax event="itemSelect" update="countryTable countryValuePanel msgForm:msg" listener="#{sessionBean.placePage.onChangeCountryLanguage}" />
+		                    	</p:autoComplete>
+		                    	
+								<h:panelGrid id="countryValuePanel">
+									
+									<p:selectOneMenu value="#{sessionBean.placePage.country.textAtt.value}"
+										rendered="#{sessionBean.placePage.showCountryEng}">
+										<f:selectItems value="#{sessionBean.placePage.countryEngList}" />
+									</p:selectOneMenu>
+									
+									<p:selectOneMenu value="#{sessionBean.placePage.country.textAtt.value}"
+										rendered="#{sessionBean.placePage.showCountryGer}">
+										<f:selectItems value="#{sessionBean.placePage.countryGerList}" />
+									</p:selectOneMenu>
+									
+									<h:inputText value="#{sessionBean.placePage.country.textAtt.value}" styleClass="dcTextInput"
+										rendered="#{sessionBean.placePage.showCountryFreeText}"/>
+								</h:panelGrid>
+								
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.country.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Region province"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.placePage.regionProvince.currentList}" var="regionProvince"
+								rendered="#{!empty sessionBean.placePage.regionProvince.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{regionProvince.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{regionProvince.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{regionProvince.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.regionProvince.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+							
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.regionProvince.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true" />
+								<h:inputText value="#{sessionBean.placePage.regionProvince.textAtt.value}" styleClass="dcTextInput"/>
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.regionProvince.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="City"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.placePage.city.currentList}" var="city"
+								rendered="#{!empty sessionBean.placePage.city.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{city.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{city.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{city.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.city.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+								
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.city.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true" />
+								<h:inputText value="#{sessionBean.placePage.city.textAtt.value}" styleClass="dcTextInput"/>
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.city.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<h:outputLabel value="District"/>
+						<h:inputText value="#{sessionBean.placePage.place.district}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Postal code"/>
+						<h:inputText value="#{sessionBean.placePage.place.postalCode}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Urban district"/>
+						<h:inputText value="#{sessionBean.placePage.place.urbanDistrict}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Street"/>
+						<h:inputText value="#{sessionBean.placePage.place.street}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Parish"/>
+						<h:inputText value="#{sessionBean.placePage.place.parish}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Free description"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.placePage.freeDescription.currentList}" var="freeDescription"
+								rendered="#{!empty sessionBean.placePage.freeDescription.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{freeDescription.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{freeDescription.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{freeDescription.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.freeDescription.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+								
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.freeDescription.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true" />
+								<h:inputTextarea value="#{sessionBean.placePage.freeDescription.textAtt.value}" styleClass="dcTextArea"/>
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.freeDescription.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Historical name"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.placePage.historicalName.currentList}" var="historicalName"
+								rendered="#{!empty sessionBean.placePage.historicalName.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{historicalName.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{historicalName.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{historicalName.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.historicalName.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+							
+								<h:outputText value="Language"/>
+								<h:outputText value="Value"/>
+								<h:outputText value=""/>
+								
+								<p:autoComplete value="#{sessionBean.placePage.historicalName.textAtt.languageCode}" 
+									completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+		                    		var="theme" 
+		                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+		                    		forceSelection="true" />
+								<h:inputText value="#{sessionBean.placePage.historicalName.textAtt.value}" styleClass="dcTextInput"/>
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.historicalName.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Gazetteer"/>
+						<h:panelGrid columns="1">
+							<p:dataTable value="#{sessionBean.placePage.currentIdentifierList}" var="identifier" 
+								rendered="#{!empty sessionBean.placePage.currentIdentifierList}">
+							
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{identifier.id}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{identifier.value}"/>
+								</p:column>
+								<p:column headerText="Value Id">
+									<h:outputText value="#{identifier.valueId}"/>
+								</p:column>
+								<p:column headerText="URI">
+									<h:outputText value="#{identifier.uri}"/>
+								</p:column>
+								<p:column headerText="List name">
+									<h:outputText value="#{identifier.listId}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Edit"
+										update="placeForm msgForm:msg"
+										actionListener="#{sessionBean.placePage.listenerEditIdentifier}"/>
+									<p:commandButton value="Delete"
+										update="placeForm msgForm:msg"
+										actionListener="#{sessionBean.placePage.listenerDeleteIdentifier}"/>
+								</p:column>
+							</p:dataTable>
+							<h:panelGrid columns="7">
+								<h:outputText value="Value"/>
+								<h:outputText value="Value id"/>
+								<h:outputText value="URI"/>
+								<h:outputText value="List id"/>
+								<h:outputText/>
+								<h:outputText/>
+								<h:outputText/>
+								
+								<h:inputText value="#{sessionBean.placePage.currentIdentifier.value}" styleClass="dcTextInput"/>
+								<h:inputText value="#{sessionBean.placePage.currentIdentifier.valueId}"/>
+								<h:inputText value="#{sessionBean.placePage.currentIdentifier.uri}" styleClass="dcTextInput"/>
+								<p:selectOneMenu value="#{sessionBean.placePage.currentIdentifier.listId}">
+									<f:selectItems value="#{sessionBean.appBean.placeIdentifierList}"/>
+								</p:selectOneMenu>
+								<p:commandButton value="Add identifier"
+									update="placeForm msgForm:msg"
+									actionListener="#{sessionBean.placePage.listenerAddIdentifier}"/>
+								<p:commandButton value="Cancel"
+									update="placeForm msgForm:msg"
+									actionListener="#{sessionBean.placePage.listenerCancelIdentifierEdition}"/>
+									
+							</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Type of area"/>
+						<h:panelGrid>
+							<p:dataTable value="#{sessionBean.placePage.typeOfArea.currentList}" var="typeOfArea"
+								rendered="#{!empty sessionBean.placePage.typeOfArea.currentList}">
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{typeOfArea.id}"/>
+								</p:column>
+								<p:column headerText="Language">
+									<h:outputText value="#{typeOfArea.language}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{typeOfArea.valueShort}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton value="Delete"
+										actionListener="#{sessionBean.placePage.typeOfArea.listenerDelete}"
+										update="placeForm msgForm:msg"/>
+								</p:column>
+							</p:dataTable>
+							
+							<h:panelGrid columns="3">
+								
+								<p:selectOneMenu value="#{sessionBean.placePage.typeOfArea.textAttId}">
+									<f:selectItems value="#{sessionBean.placePage.typeOfAreaList}" />
+								</p:selectOneMenu>
+									
+								<p:commandButton value="Add"
+									actionListener="#{sessionBean.placePage.typeOfArea.listenerAdd}"
+									update="placeForm msgForm:msg"/>
+							</h:panelGrid>
+						</h:panelGrid>
+					
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2">
+						<p:commandButton
+							value="Save" 
+							action="#{sessionBean.placePage.actionSavePlace}"/>
+						<p:commandButton
+							value="Back to #{sessionBean.placePage.sourceLabel}"
+							action="#{sessionBean.placePage.actionBack2MetadataDcPage}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,89 @@
+/* styles for the collection navigation tab-bar */
+
+
+#pagenavtabs {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	
+	.container {
+		overflow: hidden;
+		padding: 0 0 10px;
+		
+		button.navbar-toggle {
+			margin: 0;
+			background-color: $white;
+			height: 45px;
+			float: left;
+			color: $dark-blue;
+			font-weight: bold;
+			border-radius: 4px 4px 0 0;
+			.icon-bar {
+				background-color: $dark-blue;
+				float: left;
+				clear: both;
+				margin: 1px 8px 3px 5px;
+			}
+		}
+		#pagenav {
+			&.navbar-collapse:not(.collapse) {
+				display: none;	// no-show during transitions
+			}
+			box-shadow: 0px 10px 3px $white;
+			background-color: $white;
+			padding-top: 2em;
+			margin-right: 2px;
+			
+			ul.nav.nav-tabs {
+				height: 40px;
+				padding-top: 3px;
+				padding-left: 0;
+				margin: 0;
+				list-style: none;
+				li {
+					font-weight: bold;
+					a {
+						background-color: $white;
+						padding-bottom: 1px;
+						cursor: pointer;
+						&:focus {
+							border-bottom: none;
+						}
+						&:hover {
+							border-bottom: none;
+						}
+					}
+					&.active {
+						a {
+							padding-bottom: 3px;
+							height: 37px;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// the tabbed pagenvav-bar - stacked
+	// as an alternative dropdown menu-list 
+	&.nav-stacked {
+		.navbar-collapse.collapse.in {	// .in: the visible stack
+			padding: 2px;
+			clear: both;
+			margin: 5px;
+			ul.nav.nav-tabs {
+				width: 180px;
+				margin-left: 28px;
+				a {
+					border-radius: 3px;
+					border: 1px solid $light-gray;
+					opacity: 1;
+					width: 200px;
+					margin: 1px;
+				}
+			}
+		}
+	}
+}

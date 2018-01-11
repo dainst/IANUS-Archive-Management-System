@@ -1,0 +1,39 @@
+<ui:composition 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+    		
+			<p:dialog widgetVar="accessRightDialog" header="Access Right Editor" modal="true" dynamic="true"
+				visible="#{sessionBean.dataCollectionPage.accessRight != null}"
+				width="400" height="200">
+				<p:ajax event="close" listener="#{sessionBean.listenerCloseMessageDialog}" />
+				<h:panelGrid columns="1" styleClass="centeredPanelGrid">
+					<h:panelGrid columns="2" rendered="#{sessionBean.dataCollectionPage.accessRight != null}">
+						
+						<h:outputText value="Id" rendered="#{sessionBean.appBean.debugMode}"/>
+						<h:outputText value="#{sessionBean.dataCollectionPage.accessRight.id}" rendered="#{sessionBean.appBean.debugMode}"/>
+						
+						<h:outputText value="Group"/>
+						<p:selectOneMenu value="#{sessionBean.dataCollectionPage.accessRight.group}">
+							<f:selectItems value="#{sessionBean.appBean.groupTypeEngList}" />
+						</p:selectOneMenu>
+						
+						<h:outputText value="Right"/>
+						<p:selectOneMenu value="#{sessionBean.dataCollectionPage.accessRight.right}">
+							<f:selectItems value="#{sessionBean.appBean.rightTypeEngList}" />
+						</p:selectOneMenu>
+						
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<h:commandButton value="Save" actionListener="#{sessionBean.dataCollectionPage.listenerSaveAccessRight}"
+								update="metadataDcForm msgForm:msg"/>
+							<h:commandButton value="Cancel" actionListener="#{sessionBean.dataCollectionPage.listenerCancelAccessRightEdition}"
+								update="metadataDcForm msgForm:msg"/>
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:panelGrid>
+			</p:dialog>	    
+    
+    
+</ui:composition>

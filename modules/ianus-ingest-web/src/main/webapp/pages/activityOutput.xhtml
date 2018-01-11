@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:panelGrid columns="1" styleClass="pagePanel" rendered="#{sessionBean.activityOutputPage.output != null}">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Activity Output" />
+			</h:panelGrid>
+
+			<p:panelGrid columns="2" style="width:100%;"
+				styleClass="mainControlPanel">
+				<h:outputLabel value="Information package id" />
+				<h:outputText value="#{sessionBean.activityOutputPage.wfip.id}" />
+				
+				<h:outputLabel value="Activity id" />
+				<h:outputText value="#{sessionBean.activityOutputPage.output.activityId}" />
+
+				<h:outputLabel value="Activity name" />
+				<h:outputText value="#{sessionBean.activityOutputPage.output.activityName}" />
+				
+				<h:outputLabel value="Microservice name" />
+				<h:outputText value="#{sessionBean.activityOutputPage.output.msName}" />
+				
+				<h:outputLabel value="Execution time" />
+				<h:outputText value="#{sessionBean.activityOutputPage.executionTime}" />
+			</p:panelGrid>
+
+			<h:outputLabel value="STDOUT" />
+			<h:outputText
+				value="#{sessionBean.activityOutputPage.output.stdOut}"
+				styleClass="stdOut" escape="false"/>
+
+			<h:outputLabel value="Warnings" />
+			<h:outputText
+				value="#{sessionBean.activityOutputPage.output.warning}"
+				styleClass="warning" />
+
+			<h:outputLabel value="STDERR" />
+			<h:outputText
+				value="#{sessionBean.activityOutputPage.output.strErr}"
+				styleClass="stdErr" />
+
+		</h:panelGrid>
+
+	</ui:define>
+</ui:composition>

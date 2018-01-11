@@ -1,0 +1,136 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">	
+		<h:form id="relatedResource">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Related Resource Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2">
+						<!-- 
+						<p:commandButton
+							value="Add related source"
+							action="#{sessionBean.relatedResourcePage.actionAdd}"/>
+							 -->
+						<p:commandButton
+							value="Back to #{sessionBean.relatedResourcePage.sourceLabel}"
+							action="#{sessionBean.relatedResourcePage.actionBack2MetadataDcPage}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.relatedResourcePage.relatedResource != null}">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+					
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.relatedResourcePage.actionSave}"/>
+						</h:panelGrid>
+						
+						
+						<h:outputLabel value="Id" rendered="#{sessionBean.appBean.debugMode}"/>
+						<h:outputText value="#{sessionBean.relatedResourcePage.relatedResource.id}" rendered="#{sessionBean.appBean.debugMode}"/>
+						
+						<h:outputLabel value="Identifier"/>
+						<p:panelGrid columns="3">
+							<h:outputText value="Id" rendered="#{sessionBean.appBean.debugMode}"/>
+							<h:outputText value="Value"/>
+							<h:outputText value="Type"/>
+							<h:outputText value="#{sessionBean.relatedResourcePage.relatedResource.identifier.id}" rendered="#{sessionBean.appBean.debugMode}"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.identifier.value}"/>
+							<p:selectOneMenu value="#{sessionBean.relatedResourcePage.relatedResource.identifier.type}" styleClass="ianusSelectOneMenu">
+								<f:selectItems value="#{sessionBean.relatedResourcePage.identifierList}" />
+							</p:selectOneMenu>
+						</p:panelGrid>
+						
+						<h:outputLabel value="Resource type"/>
+						<p:selectOneMenu value="#{sessionBean.relatedResourcePage.relatedResource.resourceType}" styleClass="ianusSelectOneMenu">
+							<f:selectItems value="#{sessionBean.relatedResourcePage.resourceTypeList}" />
+						</p:selectOneMenu>
+						
+						<h:outputLabel value="Relation type"/>
+						<h:panelGrid>
+							<p:selectOneMenu value="#{sessionBean.relatedResourcePage.selectedRelationType}" styleClass="ianusSelectOneMenu">
+								<p:ajax event="change" update="freeTextRelationType msgForm:msg"/>
+								<f:selectItems value="#{sessionBean.relatedResourcePage.relationTypeGerList}" />
+							</p:selectOneMenu>
+							<h:panelGrid id="freeTextRelationType">
+								<h:inputText value="#{sessionBean.relatedResourcePage.freeTextRelationType}" styleClass="dcTextInput"
+									rendered="#{sessionBean.relatedResourcePage.showRelationTypeFreeText}"/>
+							</h:panelGrid>
+							
+						</h:panelGrid>
+						
+						
+						<h:outputLabel value="Description"/>
+						<h:inputTextarea value="#{sessionBean.relatedResourcePage.relatedResource.description}" styleClass="dcTextArea"/>
+						
+						<h:outputLabel value="Scope"/>
+						<h:inputTextarea value="#{sessionBean.relatedResourcePage.relatedResource.scope}" styleClass="dcTextArea"/>
+						
+						<h:outputLabel value="Location"/>
+						<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.location}" styleClass="dcTextInput"/>		
+						
+						<h:outputLabel value="Date"/>
+						<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.date}" styleClass="dcTextInput"/>
+						
+						<h:outputLabel value="Institution"/>
+						<h:panelGrid columns="2">
+
+							<h:outputLabel value="Name"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.name}"/>
+							
+							<h:outputLabel value="Department"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.department}"/>
+							
+							<h:outputLabel value="Working unit"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.workingUnit}"/>
+							
+							<h:outputLabel value="Street"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.street}"/>
+							
+							<h:outputLabel value="Postal code"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.postalCode}"/>
+							
+							<h:outputLabel value="City"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.city}"/>
+							
+							<h:outputLabel value="Country"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.country}"/>
+							
+							<h:outputLabel value="Email"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.email}"/>
+							
+							<h:outputLabel value="URL"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.url}"/>
+							
+							<h:outputLabel value="Telephone"/>
+							<h:inputText value="#{sessionBean.relatedResourcePage.relatedResource.institution.telephone}"/>				
+						
+						</h:panelGrid>
+						
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.relatedResourcePage.actionSave}"/>
+						</h:panelGrid>				
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

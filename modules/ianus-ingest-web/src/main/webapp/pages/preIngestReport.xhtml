@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="preIngestReportForm">
+			<h:panelGrid id="filesPage" columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Pre-Ingest Report" />
+				</h:panelGrid>
+	
+				<h:panelGrid styleClass="mainControlPanel">
+					
+					<h:panelGrid>
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.preIngestReportPage.gotoIPPage}"/>
+					</h:panelGrid>	
+					
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Submission IP id"/>
+						<h:outputText value="#{sessionBean.preIngestReportPage.sip.id}"/>
+						
+						<h:outputLabel value="Report id"/>
+						<h:outputText value="#{sessionBean.preIngestReportPage.report.id}"/>
+						
+						<h:outputLabel value="Last change"/>
+						<h:outputText value="#{sessionBean.preIngestReportPage.report.formattedLastChange}"/>	
+					</h:panelGrid>
+					
+					<h:panelGrid columns="3">
+						
+						<h:outputLabel value="Data readability"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.dataReadability}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.dataReadabilityText}"/>
+						
+						
+						<h:outputLabel value="Data consistency"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.dataConsistency}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.dataConsistencyText}"/>
+						
+						<h:outputLabel value="Documentation consistency"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.documentationConsistency}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.documentationConsistencyText}"/>
+						
+						<h:outputLabel value="Collection metadata"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.collectionMetadata}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.collectionMetadataText}"/>
+						
+						<h:outputLabel value="File metadata"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.fileMetadata}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.fileMetadataText}"/>
+						
+						<h:outputLabel value="Microservices actions"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.microservicesActions}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.microservicesActionsText}"/>
+						
+						<h:outputLabel value="Legal constraints"/>
+						<p:selectOneMenu 
+							value="#{sessionBean.preIngestReportPage.report.legalConstraints}">
+							<f:selectItems value="#{sessionBean.appBean.reportStateList}" />
+						</p:selectOneMenu>
+						<h:inputTextarea value="#{sessionBean.preIngestReportPage.report.legalConstraintsText}"/>
+						
+						<p:commandButton
+							value="Save Report"
+							action="#{sessionBean.preIngestReportPage.actionSaveReport}"/>
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+				<p:panelGrid>					
+				</p:panelGrid>
+				
+			</h:panelGrid>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,78 @@
+#footer {
+	color: $dark-gray;
+    margin-top: 0.8em;
+    padding: 0 5px;
+    font-size: 0.8em;
+    
+    a {
+        color: $dark-gray;
+        &:hover {
+            text-decoration: underline;
+            color: $dark-gray;
+        }
+    }
+    
+    .left {
+    	width: 33%;
+    	float: left;
+        line-height: 2.5em;
+    }
+   
+	.mid {
+		float: none;
+    	margin: 0 auto;
+    	width: 33%;
+    	text-align: center;
+    	
+    	> div {
+    		text-align: center;
+    		display: inline-block;
+		    margin-right: 25px;
+		    vertical-align: top;
+    	}
+		a img{
+            width: 5.8em;
+            margin-top: -0.5em;
+        }
+	}
+    
+    .right {
+        float: right;
+        line-height: 2.5em;
+        width: 33%;
+        
+        > div {
+        	float: right;
+		    margin-left: 25px;
+		    text-align: left;
+        }
+        
+        #daitext {
+            font-size: 1em;
+            line-height: 1.4em;
+            text-align: left;
+            max-width: 10em;
+            margin: -5px 0 0 0.8em;
+            float: right;
+            a { color: #666666 !important; }
+        }
+        #dailogo {
+        	float: right;
+        	img {
+            	width: 6.5em;
+            	margin-top: -1.5em;
+            }
+        }
+        #dfglogo img {
+            width: 5.0em;
+            margin-top: 0.5em;
+        }
+    }
+    
+    
+    @import '_toplink';
+
+    @import '_piwik';
+}
+
+

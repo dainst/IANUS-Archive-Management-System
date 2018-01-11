@@ -1,0 +1,391 @@
+NUMMER,FUNDORT,DISTRIKT,DATIERUNG,DAT,CHRONOZONE,REGION,N_WERT,E_WERT,FUNDART,BERGUNG,BEMERKUNG,LITERATUR,FAUNA,KRITERIUM,PISCES,AMPH_REPT,AVES,MAMMALIA,NB,MOLLUSCA
+BG0001/1,"Novae, Ot. von Svištov (Grabung 1977, 1979)",,"Römische Kaiserzeit, 3.-6. Jh.",RK,VII,,"43,37","25,20",Stadt,"Ausgrabung 1977, 1979",,W. Chrzanowska & O. Molenda 1983; A. Waluszewska-Bubień & A. Krupska 1983,"Pisces: unbestimmt 225.
+Aves: Huhn 92, W_Hgans 3, W_Hente 2, Columb_oen 2, P_perdix 1, 
+Corv_cor 1, Corv_frugi 1.
+Mammalia: Schwein 985, Rind 253, S_Z 206, Pferd 140, Hund 126,  
+Esel 10, Katze 9, Kamel 6, Cervus_ela 11, V_vulpes 4, Ursus_arct  
+2, Castor_fib 1, Lepus_euro 1.",FZ,225,,102,1754,,
+BG0001/2,"Novae, Ot. von Svištov (Grabung 1974)",,"Römische Kaiserzeit, 3.-6. Jh.",RK,VII,,"43,37","25,20",Stadt,Ausgrabung 1974,,Z. Schramm 1979b,"Pisces: Silur_glan 19, Cyprin_carp 10, Esox_luciu 5, Acipe_stur  
+3, Stizo_luci 1.
+Reptilia: Emys_orbic 9.
+Aves: Huhn, W_Hgans.
+Mammalia: Rind 1337, Schwein 1010, S_Z 988, Pferd 72, Hund 30,  
+Trampelt 26, Esel 23, Katze 11, Cervus_ela 18, Sus_scrofa 17,  
+C_capreol 5, V_vulpes 2, Castor_fib 1, Lepus_euro 1.",FZ,38,9,34,3541,177,
+BG0001/3,"Novae, Ot. von Svištov (Grabung 1992)",,"Römische Kaiserzeit, 3.-6. Jh.",RK,VII,,"43,37","25,20",Stadt,Ausgrabung 1992,,D. Makowiecki & Z. Schramm 1995,"Pisces: unbestimmt 143.
+Aves: unbestimmt 92.
+Mammalia: Schwein 779, Rind 541, S_Z 465, Pferd 43, Hund 21,  
+Katze 1, Cervus_ela 15, Sus_scrofa 6, C_capreol 5, Castor_fib 3,  
+V_vulpes 1, Lepus_euro 1.",FZ,143,,92,1881,454,
+BG0001/4,"Novae, Ot. von Svištov (Grabung 1984)",,"Römische Kaiserzeit, 3.-6. Jh.",RK,VII,,"43,37","25,20",Stadt,Ausgrabung 1984,,Z. Schramm 1987b,"Aves: Huhn 1.
+Mammalia: Rind 89, Schwein 43, S_Z 27, Pferd 24, Hund 4, Kamel 2,  
+Katze 1, Cervus_ela 2.",FZ,,,1,192,,
+BG0001/5,"Novae, Ot. von Svištov (Grabung 1970, 1972)",,"Römische Kaiserzeit, 3.-6. Jh.",RK,VII,,"43,37","25,20",Stadt,"Ausgrabung 1970, 1972",,Z. Schramm 1975b,"Pisces: Silur_glan 13, Esox_luciu 5, Stizo_luci 4, Cypri_carp 4,  
+Perca_fluv 3, Acipe_stur 2.
+Amph./Rept.: Emys_orbic 5, Rana 4.
+Aves: Huhn, Anser, Aythya_fer, Pele_onocr, Cygnus, Accip_gent,  
+Corv_frugi.
+Mammalia: Rind 1060, Schwein 723, S_Z 675, Pferd 191, Hund 60,  
+Kamel 20, Katze 6, Esel 5, Cervus_ela 42, Sus_scrofa 11,  
+Lepus_euro 2, C_capreol 1, V_vulpes 1, Sciur_vulg 1.",FZ,31,9,37,2798,,
+BG0002,Chuma,Bez. Razgrad,"Frühmittelalter, 9.-11. Jh.",FMA,VIII,,"43,28","26,44",Siedlung,Ausgrabung 1981-1984,,L. Ninov 1987,"Mammalia: Rind 2197, Schwein 845, S_Z 451, Pferd 310, Hund 41,  
+Esel 10, Sus_scrofa 51, Lepus_euro 50, Cervus_ela 49, C_capreol  
+10, M_meles 4, Bos_primig 3, V_vulpes 3.",FZ,,,,4024,,
+BG0003,Poljanica,Bez. Tărgovište,"Äneolithikum, Karanovo IV-VI",CH,IV,,"43,12","26,35",Siedlung,Ausgrabung,"Die Bestimmung von Rupicapra rupicapra ist nicht sicher (S.  
+Bökönyi 1978a, Tab. 27).","S. Bökönyi 1978a, 1988a","Aves: unbestimmt 6.
+Mammalia: Rind 13126, Schwein 4285, S_Z 3962,  Hund 161, Pferd  
+17, Cervus_ela 515, Sus_scrofa 455, Bos_primig 344, C_capreol 60,  
+Lepus_euro 37, Ursus_arct 12, Canis_lup 10, M_meles 5, V_vulpes  
+3, Felis_lynx 3, Martes 2, R_rupicap 1, Castor_fib 1.",FZ,,,6,22999,,
+BG0004/1,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Neolithikum, Phase anthropogen",FNE,III,,"42,30","25,56",Siedlung,Ausgrabung,,S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Reptilia: Emys_orbic 7.
+Aves: unbestimmt 1, Otis_tarda 1.
+Mammalia: S_Z 411, Rind 205, Schwein 58, Schaf 57, Ziege 8, Hund  
+4, Cervus_ela 51, Bos_primig 30, Equus_hydr 28, Sus_scrofa 20,  
+Cervus_dama 11, C_capreol 9, Ursus_arct 2, Lepus_euro 2, M_meles  
+1.",FZ,,7,2,897,,
+BG0004/2,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Neolithikum, Karanovo I",FNE,III,,"42,30","25,56",Siedlung,Ausgrabung,,S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Reptilia: Emys_orbic 9.
+Aves: unbestimmt 8, Otis_tarda 5.
+Mammalia: S_Z 2234, Rind 990, Schwein 374, Schaf 265, Ziege 76,  
+Hund 73, Cervus_ela 298, Equus_hydr 111, Bos_primig 97,  
+Sus_scrofa 54, C_capreol 43, Cervus_dama 23, Lepus_euro 14,  
+R_rupicap 4, Carnivora 4, Ursus_arct 3, M_meles 2.",FZ,,9,13,4665,,
+BG0004/3,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Neolithikum, Karanovo II",FNE,III,,"42,30","25,56",Siedlung,Ausgrabung,,S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Reptilia: Emys_orbic 164.
+Aves: unbestimmt 20.
+Mammalia: S_Z 1547, Rind 871, Schwein 465, Schaf 322, Hund 88,  
+Ziege 8, Cervus_ela 237, Sus_scrofa 192, Bos_primig 80, C_capreol  
+55, Cervus_dama 17, Lepus_euro 9, Equus_hydr 5, Canis_lup 5,  
+V_vulpes 2, Castor_fib 1, Felis_silv 1, Panth_leo 1, Martes  
+1.",FZ,,164,20,3907,,
+BG0004/4,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Neolithikum, Karanovo III",MNE,IV,,"42,30","25,56",Siedlung,Ausgrabung,,S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Aves: unbestimmt 1.
+Mammalia: Rind 116, S_Z 78, Schwein 16, Schaf 6, Ziege 3,  
+Cervus_ela 11, Bos_primig 11, Sus_scrofa 7, C_capreol 6,  
+Cervus_dama 2, Lepus_euro 2.",FZ,, ,1,258,,
+BG0004/5,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Neolithikum, Karanovo IV",MNE,IV,,"42,30","25,56",Siedlung,Ausgrabung,,S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Mammalia: Rind 22, S_Z 11, Schwein 8, Cervus_ela 3, Sus_scrofa 3,  
+C_capreol 1.",FZ,, , ,48,,
+BG0004/6,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Neolithikum, Karanovo V/VI",SNE,IV,,"42,30","25,56",Siedlung,Ausgrabung,,S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Mammalia: Rind 152, S_Z 84, Schwein 63, Schaf 13, Hund 4, Ziege  
+3, Cervus_ela 11, Sus_scrofa 11, C_capreol 4, Bos_primig 2,  
+Cervus_dama 1.",FZ,, , ,348,,
+BG0004/7,Karanovo bei Nova Zagora,Bez. Nova Zagora,"Frühbronzezeit, Karanovo VII",FBZ,V,,"42,30","25,56",Siedlung,Ausgrabung,"Es wird die Möglichkeit diskutiert, daß der Knochen von Equus  
+hydruntinus eine Einmischung aus älteren Schichten darstellt (S.  
+Bökönyi & L. Bartosiewicz 1997, 391).",S. Bökönyi 1992b; S. Bökönyi u. L. Bartosiewicz 1997,"Reptilia: Emys_orbic 4.
+Aves: unbestimmt 1.
+Mammalia: Rind 300, S_Z 190, Schwein 185, Hund 31, Schaf 29,  
+Ziege 12, Pferd 1, Cervus_ela 97, Bos_primig 30, Sus_scrofa 29,  
+C_capreol 24, Cervus_dama 4, Equus_hydr 1, Canis_lup 1, M_meles  
+1, Carnivora 1.",FZ,,1,4,936,,
+BG0005/1,Drama,Bez. Burgas,"Chalkolithikum, Karanovo V",CH,IV,,"42,14","26,26",Siedlung,Ausgrabung 1983-1988,,S. Bökönyi 1990,"Amph./Rept.: Testudines 3.
+Aves: unbestimmt 4.
+Mammalia: Rind 520, S_Z 443, Schwein 120, Schaf 50, Ziege 23,  
+Hund 10, C_capreol 30, Cervus_ela 22, Cervus_dama 17, Lepus_euro  
+10, Sus_scrofa 9, Bos_primig 3, Cervus 1, V_vulpes 1.",FZ,,3,4,1259,,
+BG0005/2,Drama,Bez. Burgas,"Chalkolithikum, Karanovo VI",CH,IV,,"42,14","26,26",Siedlung,Ausgrabung 1983-1988,,S. Bökönyi 1990,"Amph./Rept.: Testudines 6.
+Aves: unbestimmt 6.
+Mammalia: Rind 3019, S_Z 2041, Schwein 613, Schaf 374, Hund 120,  
+Ziege 95, Cervus_dama 212, Cervus_ela 101, C_capreol 64,  
+Sus_scrofa 46, Lepus_euro 28, Cervus 15, V_vulpes 9, Bos_primig  
+6, Erina_euro 1, Martes 1.",FZ,,6,6,6745,,
+BG0007,Ovčarovo (Fst. Platoto),Bez. Tărgovište,"Äneolithikum, Karanovo IV-VI",CH,IV,,"43,10","26,40",Siedlung,Ausgrabung 1971-1973,,"V. Vasilev 1981a, 1981b, 1983, 1985","Aves: Cygnus 2, Anas_platy 2, A_anser 2, Tetrao_uro 2.
+Mammalia: Rind 9922, Schwein 4250, S_Z 2904, Hund 737, Cervus_ela  
+7214, Sus_scrofa 2022, C_capreol 1253, Bos_primig 236, Lepus_euro  
+117, V_vulpes 30, Canis_lup 26, Felis_silv 17, Ursus_arct 10,  
+M_meles 10, Felis_lynx 4, Bison_bona 3, Castor_fib 2, Cervus_dama  
+1, Equus_hydr 1.
+Moll.: Unio crassus 206, Mytilus edulis 1.",FZ,,,8,28759,,207
+BG0008/1,Goljamo Delčevo,Bez. Varna,"Frühes Äneolithikum, Karanovo IV-V",MNE,IV,,"43,00","27,25",Tellsiedlung,Ausgrabung 1968-1971,,St. Ivanov & V. Vasilev 1975,"Pisces: Silur_glan 1.
+Aves: A_anser 1.
+Mammalia: Rind 415, Schwein 253, S_Z 106, Hund 38, Cervus_ela  
+270, Sus_scrofa 192, C_capreol 78, Bos_primig 12, Castor_fib 11,  
+Lepus_euro 5, Ursus_arct 4, V_vulpes 2, M_meles 2, Canis_lup 1,  
+Felis_silv 1, Panth_leo 1.
+Moll.: Unio pictorum.",FZ,1,,1,1391,,
+BG0008/2,Goljamo Delčevo,Bez. Varna,"Mitteleres Äneolithikum, Karanovo V",MNE,IV,,"43,00","27,25",Tellsiedlung,Ausgrabung 1968-1971,,St. Ivanov & V.Vasilev 1975,"Aves: Anas_platy 1.
+Mammalia: Rind 622, Schwein 247, S_Z 119, Hund 28, Cervus_ela  
+485, Sus_scrofa 219, Bos_primig 76, C_capreol 66, Castor_fib 14,  
+Lepus_euro 6, V_vulpes 4, Canis_lup 3, M_meles 3.
+Moll.: Unio pictorum.",FZ,,,1,1892,,
+BG0008/3,Goljamo Delčevo,Bez. Varna,"Spätes Äneolithikum, Karanovo VI",MNE,IV,,"43,00","27,25",Tellsiedlung,Ausgrabung 1968-1971,,St. Ivanov & V. Vasilev 1975; V. Vasilev 1981b,"Pisces: Silur_glan 1.
+Aves: Cygnus 1, Tetrao_uro 1.
+Mammalia: Rind 4727, Schwein 1882, S_Z 688, Hund 235, Cervus_ela  
+3369, Sus_scrofa 1438, Bos_primig 558, C_capreol 394, Castor_fib  
+22, Lepus_euro 13, Canis_lup 13, Bison_bona 11, Ursus_arct 9,  
+M_meles 9, V_vulpes 8, Felis_lynx 2.
+Moll.: Unio pictorum.",FZ,1,,2,13378,,
+BG0009/1,Durankulak,Bez. Tolbuchin,"Frühmittelalter, 9.-10. Jh.",FMA,VIII,,"43,40","28,23",Siedlung,Ausgrabung 1976-1980,,V. Vasilev 1989,"Pisces: unbestimmt 33.
+Aves: Ente 165, Huhn 91, Gans 82, Cygnus 10.
+Mammalia: Rind 9388, S_Z 6733, Schwein 2776, Pferd 1610, Hund  
+663, Esel 87, Katze 33, Cervus_ela 3071, C_capreol 459,  
+Sus_scrofa 324, Lepus_euro 92, V_vulpes 74, Bos_primig 61,  
+Canis_lup 36, M_meles 26, Delphinid 14, Sciur_vulg 1.",FZ,33,,348,25448,,
+BG0009/2,"Durankulak (Horizont V, ""Palast"")",Bez. Tolbuchin,"Chalkolithikum, Varna II",CH,IV,,"43,40","28,23","Gebäude (""Palast"")",Ausgrabung,,H. Manhart 1998c,"Pisces: Rutilus 1.
+Amph./Rept.: Bufo 2.
+Aves: Circus 1.
+Mammalia: Rind 38, S_Z 6, Schwein 4, Hund 2, Cervus_ela 14.",FZ,1,2,1,64,25,
+BG0009/3,Durankulak (Horizont VI),Bez. Tolbuchin,"Chalkolithikum, Hamangia-Kultur",CH,IV,,"43,40","28,23",Siedlung (Haus),Ausgrabung,"Ein einzelner Fund von Equus hydruntinus stellt eine Einmischung  
+aus den neolithischen Schichten dar (H. Manhart 1998, Tab. 6). Er  
+wurde hier nicht berücksichtigt.",H. Manhart 1998c,"Pisces: Esox_luciu 4, Sparu_aura 4, Silur_glan 2, Rutil_fris 1.
+Amph./Rept.: Testudo 43, Testud_gra 23, Emys_orbic 3.
+Aves: Anser_albi 1.
+Mammalia: S_Z 280, Rind 275, Schaf 18, Schwein 11, Ziege 7, Hund  
+2, Cervus_ela 45, Bos_primig 8, Lepus_euro 2, Delphi_del 2,  
+Sus_scrofa 1, C_capreol 1.
+Moll.: Mytilus galloprovincialis 4, Cerastoderma glaucum 1.",FZ,11,69,1,653,418,5
+BG0009/4,Durankulak (Horizont V),Bez. Tolbuchin,"Chalkolithikum, Varna II",CH,IV,,"43,40","28,23",Siedlung,Ausgrabung,"Zwei Funde von Equus hydruntinus stellen Einmischungen aus den  
+neolithischen Schichten dar (H. Manhart 1998, Tab. 6). Sie wurden  
+hier nicht berücksichtigt.",H. Manhart 1998c,"Pisces: Silur_glan 21, Sparu_aura 11, Rutil_fris 2, Acipe_stur 1.
+Amph./Rept.: Testudo 52, Testud_gra 27, Emys_orbic 5, Bufo 2,  
+Ophis_apod 1.
+Aves: Phal_carbo 8, Otis_tarda 8, G_grus 5, Anser_albi 5,  
+Cygnus_olo 3, Cygnus 2, Haliae_alb 2, Anser 1, Anas 1,  
+Anas_st_pe 1, Anas_clype 1, Aquila_chr 1, Circus 1, Falco_subb 1.
+Mammalia: Rind 3120, S_Z 948, Schaf 468, Schwein 192, Hund 125,  
+Ziege 79, W_Hrind 15, W_Hschwein 1, Cervus_ela 1208, Bos_primig  
+142, V_vulpes 41, C_capreol 36, Sus_scrofa 24, Lepus_euro 14,  
+Felis_silv 7, L_lutra 5, Delphi_del 5, M_meles 4, Ph_phocoen 2,  
+Panth_leo 2, Ursus_arct 1, Canis_lup 1, Rattus_nor 1.
+Moll.: Helix 8, Mytilus galloprovinicialis 6, Ostrea edulis      
+2, Unio pictorum 1, Serrulina serrulata 1, Helix figulina 1.",FZ,35,87,40,6426,955,19
+BG0009/5,Durankulak (Spätbronzezeit),Bez. Tolbuchin,"Spätbronzezeit, Coslogeni-Kultur",SBZ,V,,"43,40","28,23",Siedlung,Ausgrabung,"Ein einzelner Fund von Equus hydruntinus stellt eine Einmischung  
+aus den neolithischen Schichten dar (H. Manhart 1998, Tab. 6). Er  
+wurde hier nicht berücksichtigt. Die Bestimmungen Maultier und  
+Wanderratte sind mit einem Fragezeichen versehen.",H. Manhart 1998c,"Pisces: Silur_glan 5, Cypri_carp 2, Esox_luciu 1, Stizo_luci 1.
+Amph./Rept.: Testudo 28, Testudo_gra 17, Emys_orbic 1, B_bufo 1.
+Aves: Anas_platy 9, Phal_carbo 9, Haliae_alb 6, C_ciconia 6,  
+Cygnus 6, Cygnus_olo 4, G_grus 4, A_anser 3, Podic_cris 2,  
+Pele_crisp 2, C_cygnus 2, Buceph_cla 2, Pelecanus 1, Phal_arist  
+1, Ciconia 1, Anser_albi 1, Branta_ruf 1, Mergus_mer 1, Milvus 1,  
+Anas_acuta 1, Aythya_ful 1, Anas 1, Circae_gal 1, Aquila_hel 1,  
+P_perdix 1, Larus_arge 1, Columb_l_o 1, Athene_noc 1, Corvus 1.
+Mammalia: Rind 4470, Schwein 2291, S_Z 2244, Pferd 650, Schaf  
+545, Ziege 133, Hund 70, Esel 13, Maultier 2, W_Hrind 4,  
+W_Hschwein 4, Cervus_ela 607, Sus_scrofa 89, Bos_primig 50,  
+V_vulpes 39, Lepus_euro 25, Ursus_arct 12, C_capreol 12, M_meles  
+10, Delphi_del 2, L_lutra 2, Felis_silv 2, Cetacea 1, Martes 1,  
+Mustela_pu 1, Canis_lup 1, Panth_leo 1, C_cricetus 1, Rattus_nor  
+1, R_rattus 1.
+Moll.: Mytilus galloprovincialis 80, Ostrea edulis 15, Helix 5,  
+Cepaea nomoralis 1.",FZ,9,47,72,11285,2201,101
+BG0009/6,Durankulak (neolithischer Horizont),Bez. Tolbuchin,Neolithikum,NE,IV,,"43,40","28,23",Siedlung,Ausgrabung,"Aus dieser Schicht sind bislang nur die Vogelknochenfunde  
+publiziert worden.",H. Manhart 1998c,"Aves: W_Hgans 1, Fulica_atr 7, Phal_carbo 5, Cygnus_olo 3,  
+Haliae_alb  3, Podic_cris 1, Anas 1, Anas_clype 1, Aythya_ful 1,  
+Buceph_cla 1, Accip_gent 1, P_perdix 1.",FZ,,,26,,,
+BG0009/7,Durankulak (Horizont IV),Bez. Tolbuchin,"Chalkolithikum, Varna IIIa",CH,IV,,"43,40","28,23",Siedlung,Ausgrabung,"Bislang sind nur die Vogel- und Fischknochen dieser Fundschicht  
+publiziert worden.",H. Manhart 1998c; D. Heinrich 1998b,"Pisces: Silur_glan 44, Sparu_aura 33, Cypri_carp 6, Cyprinidae 4,  
+Psetta_max 1, Dicen_labr 1, Sparidae 1
+Amph./Rept.: B_bufo 2, Bufo_virid 1.
+Aves: W_Hgans 1, W_Hente 1, Cygnus_olo 30, Phal_carbo 22,  
+Otis_tarda 13, Haliae_alb 9, Mergus_alb 3, Pele_onocr 2,  
+Aquila_hel 2, Gavia_arct 1, Podic_cris 1, Podic_gris 1, C_cygnus  
+1, Anas 1, B_buteo 1, Aquila_chr 1, Aquila_pom 1, Fulica_atr 1,  
+Corv_cor 1.",FZ,90,3,93,,,
+BG0009/8,Durankulak,Bez. Tolbuchin,"Römische Kaiserzeit, 1.-4. Jh.",RK,VII,,"43,40","28,23",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993a,"Aves: P_perdix 4, Cygnus_olo 3, Phas_colch 1, Aquila_hel 1,  
+Fulica_atr 1, G_grus 1.",FZ,,,11,,,
+BG0010/1,Ezero,Bez. Nova Zagora,"Spätes Chalkolithikum, Stufe Karanovo VI",CH,IV,,"42,28","26,02",Siedlung,Ausgrabung 1961-1971,,St. Ivanov & V. Vasilev 1979,"Mammalia: Rind 466, Schwein 188, S_Z 181, Hund 31, Cervus_ela 53,  
+Bos_primig 44, C_capreol 36, Sus_scrofa 8, Lepus_euro 6,  
+Cervus_dama 2, Canis_lup 1.",FZ,,,,1016,,
+BG0010/2,Ezero,Bez. Nova Zagora,Frühbronzezeit,FBZ,V,,"42,28","26,02",Siedlung,Ausgrabung 1961-1971,,St. Ivanov & V. Vasilev 1979,"Mammalia: Rind 2678, S_Z 1375, Schwein 1211, Hund 289, Bos_primig  
+259, Cervus_ela 242, C_capreol 127, Sus_scrofa 70, Cervus_dama  
+14, Lepus_euro 8, Canis_lup 6, Castor_fib 3, V_vulpes 2,  
+Ursus_arct 1.",FZ,,,,6285,,
+BG0011/1,Kremenik bei Sapareva Banja,,Frühneolithikum,FNE,IV,,"42,18","23,16",Siedlung,Ausgrabung,,L. Ninov 1986,"Mammalia: Rind 12, S_Z 7, Schwein 6, Hund 3, Cervus_ela 4,  
+Bos_primig 2, Sus_scrofa 2, C_capreol 1, Ursus_arct 1.",MIZ,,,,38,,
+BG0011/2,Kremenik bei Sapareva Banja,,Mittelneolithikum,MNE,IV,,"42,18","23,16",Siedlung,Ausgrabung,,L. Ninov 1986,"Mammalia: Rind 15, S_Z 8, Schwein 7, Hund 2, Cervus_ela 5,  
+Bos_primig 2, Sus_scrofa 2, C_capreol 1, Ursus_arct 1.",MIZ,,,,43,,
+BG0012,Kovačevo,Bez. Blagoevgrad,"Neolithikum, Phase Karanovo I",FNE,III,,"41,30","23,29",Siedlung,Ausgrabung,,L. Ninov 1990a,"Mammalia: Rind, S_Z, Schwein, Hund, Sus_scrofa, Cervus_ela,  
+C_capreol, Ursus_arct, Castor_fib.",BE,,,,1,,
+BG0013,Sveščari,Bez. Razgrad,"Eisenzeit, 3. Jh. v. Chr.",SEZ,VI,,"43,45","26,47",Thrakische Hügelnekropole,Ausgrabung,,G. Nobis & L. Ninov 1986; L. Ninov 1988,"Mammalia: Pferd 5 I., Hund 1 I., Schwein 1 I.",MIZ,,,,7,,
+BG0014,"Sofia (Fst. Slatina, Bauhorizont I)",Bez. Sofia,Frühneolithikum,FNE,III,,"42,42","23,22",Siedlung,Ausgrabung,"Die Bestimmung des Damhirsches ist mit einem Fragezeichen  
+versehen (S. Bökönyi 1992, Tab. 1).",S. Bökönyi 1992c,"Pisces: unbestimmt 1.
+Amph./Rept.: Testudines  1.
+Aves: unbestimmt 5, Otis_tarda 1.
+Mammalia: Rind 1637, S_Z 1268, Schwein 350, Schaf 202, Ziege 33,  
+Hund 17, Cervus_ela 147, Bos_primig 113, Sus_scrofa 48, C_capreol  
+33, M_meles 3, V_vulpes 3, Castor_fib 3, Cervus_dam 1, Martes 1,  
+Ursus_arct 1, Canis_lup 1.",FZ,1,1,6,3861,,
+BG0015,Samovodene,,Früh- und Mittelneolithikum,NE,IV,,"43,08","25,36",Siedlung,Ausgrabung,,L. Ninov 1993,"Amph./Rept.: Testudo.
+Mammalia: Rind, Schaf, Ziege, Schwein, Hund, Bos_primig,  
+Cervus_ela, C_capreol, Sus_scrofa, Equus_hydr, Ursus_arct,  
+Canis_lup, V_vulpes, M_meles, Martes, Felis_lynx, Castor_fib",BE,,1,,1,,
+BG0016,Kamen Rid bei Malik Porovec,Bez.,Früheisenzeit,FEZ,VI,,"0,00","0,00",Siedlung,Ausgrabung 1988,,L. Ninov 1990b,"Aves: unbestimmt 1.
+Mammalia: S_Z 587, Rind 435, Schwein 265, Pferd 15, Hund 9,  
+Cervus_ela 19, Sus_scrofa 14, C_capreol 3, Lepus_euro 2,  
+Bos_primig 2.",FZ,,,1,1351,,
+BG0018/1,Koprivec,Bez. Bjala,"Neolithikum, Phase A monochrom, ca. 6400-6300 BC",FNE,III,,"43,24","25,53",Siedlung,Ausgrabung 1990-1993,,H. Manhart 1998,"Amph./Rept.: Testud_gra 2.
+Aves: Otis_tarda 3, Corv_cor 1.
+Mammalia: Rind 556, S_Z 406, Schaf 74, Ziege 9, Schwein 3, Hund  
+1, W_Hrind 7, Cervus_ela 128, C_capreol 12, Lepus_euro 10,  
+Bos_primig 6, Sus_scrofa 3, Erina_euro 2.
+Moll.: Unio crassus 3.",FZ,,2,4,1217,429,3
+BG0018/2,Koprivec,Bez. Bjala,"Neolithikum, Phase A bichrom, ca. 6300-5800 BC",FNE,III,,"43,24","25,53",Siedlung,Ausgrabung 1990-1993,,H. Manhart 1998c,"Mammalia: Rind 420, S_Z 239, Schaf 53, Ziege 9, Schwein 2,  
+W_Hrind 7, Cervus_ela 53, C_capreol 7, Sus_scrofa 4, Lepus_euro  
+4, Bos_primig 2, V_vulpes 1.",FZ,,,,801,40,
+BG0018/3,Koprivec,Bez. Bjala,"Neolithikum, Phase B, ca. 5800-4800 BC",MNE,IV,,"43,24","25,53",Siedlung,Ausgrabung 1990-1993,,H. Manhart 1998c,"Aves: Corv_cor 1.
+Mammalia: Rind 347, S_Z 125, Schwein 84, Schaf 26, Ziege 15, Hund  
+11, W_Hrind 2, Lepus_euro 15, Cervus_ela 13, Felis_silv 8,  
+C_capreol 4, Bos_primig 2.",FZ,,,1,652,56,
+BG0019,Ovčarovo (Fst. Gorata),Bez. Tărgovište,"Neolithikum, Phase Karanovo II",FNE,IV,,"43,11","26,39",Siedlung,Ausgrabung 1971-74,"Zu den Angaben in Tabelle 2 wurden noch drei in Anmerkung 2  
+erwähnte Funde von Equus ferus bzw. Equus hydruntinus  
+hinzugezählt (G. Nobis 1986, 7).",G. Nobis 1986b,"Mammalia: Rind 803, S_Z 227, Schwein 101, Hund 6, Cervus_ela 66,  
+Bos_primig 19, Lepus_euro 9, C_capreol 8, Sus_scrofa 5, Canis_lup  
+2, Ursus_arct 2, Equus_hydr 2, M_martes 1, M_meles 1, Equus_fer  
+2.",FZ,,,,1254,,
+BG0020/1,Preslav (Fst. Südtor),Bez.,"Frühmittelalter, 9.-10. Jh.",FMA,VIII,,"43,10","26,49",Siedlung,Ausgrabung 1948-1953,,St. Ivanov 1959,"Pisces: Acipenseri 98, Silur_glan 28, Cypri_carp 22.
+Aves: Huhn 377, Ente 294, Gans 118.
+Mammalia: S_Z 1229, Rind 1171, Schwein 1040, Sus_scrofa 525,  
+Lepus_euro 393, C_capreol 380, Cervus_ela 309, Bos_primig 14.",FZ,148,,789,5061,,
+BG0020/2,Preslav (Fst. Südtor),Bez.,Spätmittelalter/Frühneuzeit,SMA/FNZ,VIII,,"43,10","26,49",Siedlung,Ausgrabung 1948-1953,,St. Ivanov 1959,"Aves: Huhn 38, Truthuhn 32, Gans 25, Ente 11.
+Mammalia: S_Z 337, Rind 97, Lepus_euro 18, Cervus_ela 13,  
+Bos_primig 12, C_capreol 6.",FZ, ,,106,483,,
+BG0021,Karnobat,Bez.,"Frühmittelalter, 6.-11. Jh.",FMA,VIII,,"42,39","26,59",Siedlung,Ausgrabung 1984,,Z. Boev 1995b,"Aves: Huhn 3, Phas_colch 1, Otis_tarda 1.",FZ,,,5,,,
+BG0022,Krivnja,Bez. Rusensko,"Frühmittelalter, 9.-10. Jh.",FMA,VIII,,"43,39","26,20",Siedlung,Ausgrabung 1985,,Z. Boev 1995b,"Aves: Huhn 16, W_Hgans 4, W_Hente 1, Phas_colch 5, Anser_albi 1,  
+Pele_onocr 1, Cygnus_olo 1.",FZ,,,29,,,
+BG0023,Preslav (mehrere Fst.),,"Frühmittellalter, 9.-10. Jh.",FMA,VIII,,"43,10","26,49",Siedlung,Ausgrabung 70er-80er Jahre,"Von den Fundstellen sind nur Angaben zu den Vogelknochen  
+publiziert.","Z. Boev & N. Iliev 1989, 1991; N. Iliev & Z. Boev 1990","Aves: Huhn 259, W_Hgans 56, W_Hente 4, W_Htaube 4, Phas_colch 10,  
+Anser 4, Anser_faba 3, Corvus_cor 3, Hiera_fasc 2, Circae_gal 2,  
+T_tadorna 2, Anas_penel 1, Anser_ery 1, Strix_aluc 1, Gyps_fulv  
+1.",FZ,,,353,,,
+BG0024,Karanovo,Bez. Nova Zagora,"Hochmittelalter, 10.-12. Jh.",HMA,VIII,,"42,30","25,56",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert. Die Bestimmung Aquila pomarina ist nicht ganz sicher  
+(Z. Boev 1995b, Tab. 2).",Z. Boev 1995b,"Aves: Huhn 124, W_Hgans 2, Corv_corax 3, Aquila_pom 1.",FZ,,,130,,1,
+BG0025,Pliska,Bez.,"Frühmittelalter, 10. Jh.",FMA,VIII,,"43,22","27,07",Siedlung,Ausgrabung 1984-1987,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.","Z. Boev 1993a, 1995b","Aves: Huhn 11, W_Hgans 10, W_Hente 1, Gypae_barb 3, Anser_albi 2,  
+Corv_corax 1, Phas_colch 1.",FZ,,,29,,,
+BG0026,Jambol,Bez. Jambol,"Hochmittelalter, 11.-12. Jh.",HMA,VIII,,"42,29","26,30",Nekropole,Ausgrabung 1985,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1995b,Aves: Huhn 10.,FZ,,,10,,,
+BG0027,Djadovo,Bez. Nova Zagora,"Hochmittelalter, 11.-12. Jh.",HMA,VIII,,"42,26","26,01",Siedlung,Ausgrabung 1984,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1995b,"Aves: Huhn 6, Phas_colch 2, Strept_tur 1.",FZ,,,9,,,
+BG0028,Voden (Boljarovo),Bez. Burgas,"Hoch- und Spätmittelalter, 10.-14. Jh.",HMA/SMA,VIII,,"42,04","26,54",Siedlung (Höhle),Ausgrabung 1983,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1995b,"Aves: Phas_colch 2, P_pica 1.",FZ,,,3,,,
+BG0029,Vidin (Fst. Baba Vida),Bez.,"Mittelalter - Frühneuzeit, 8.-17. Jh.",MA/FNZ,VIII-IX,,"43,59","22,52",Burg,Ausgrabung 1980-1987,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1995b,"Aves: Huhn 4, W_Hente 3, Truthuhn 1, Tetrao_uro 2, Anas 1,  
+Ardea_cine 1, G_grus 1.",FZ,,,13,,1,
+BG0030,Sozopol (Fst. Bucht),,Chalkolithikum/Frühbronzezeit,FBZ,IV-V,,"42,25","27,42",Siedlung (submarin),Ausgrabung 1987-1990,"Von den 1437 Knochen werden 381 dem Äneolithikum und 1056 der  
+Frühbronzezeit zugeordnet. In den Faunenlisten wird zwischen  
+beiden Komplexen nicht unterschieden.",G. Ribarov 1994a; Z. Boev 1995a,"Reptilia: Emys_orbic, Maurem_casp.
+Aves: Fulica_atr 119, Anatidae 58, Podic_cris 2, Phal_carbo 2,  
+Anas_quer 2, Aythya_nyr 2, Gavia_arct 1, Ardea_cine 1, Anas_platy  
+1, Accipitrid 1.
+Mammalia: Rind, Schwein, S_Z, Pferd, Hund, Cervus_ela, C_capreol,  
+Cervus_dam, Sus_scrofa, Bos_primig, V_vulpes, M_meles, Panth_leo,  
+Turs_trunc, Delphi_del.",FZ,,1,189,1,13,
+BG0031,Kazanlăk,Bez.,Frühneolithikum,FNE,III,,"42,37","25,24",Siedlung,Ausgrabung 1987,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993b,"Aves: Lyrur_tetr, Otis_tarda, G_grus, Corv_cor, Cygnus_olo,  
+Aquila_chr, Tetrao_uro, Bubo_bubo, P_perdix, Anas_platy,  
+Pelecanus, Phas_colch, Gypae_barb, Cygnus, Anser.",BE,,,1,,,
+BG0032,Kabile (Alte Stadt),Bez. Burgas,Mitte 1. Jt. v. Chr. - 6. Jh. n. Chr.,EZ,VI,,"42,32","26,29",Stadt,Ausgrabung 1972-1990,,"Z. Boev & G. Ribarov 1993; G. Ribarov 1991b, 1994b","Pisces: Cypri_carp, C_carassiu, Scard_eryt, Silur_glan,  
+Perca_fluv, Stizo_luci.
+Aves: Huhn 110, Gans 13,  Accipitrid 10, Phas_colch 6, Strept_tur  
+3, Anas_platy 3, C_crex 3, Otis_tarda 2, G_grus 1, Anas_strep 1,  
+Falco_cher 1, Anas_quer 1, B_buteo 1, Gyps_fulv 1, Ciconia 1,  
+Anser 1.
+Mammalia: Rind, Schwein, Schaf, Ziege, Pferd, Hund, Katze,  
+Sus_scrofa, Cervus_ela, Cervus_dam, C_capreol, Bos_primig,  
+Canis_lup, V_vulpes, Mustela_pu, Mustela_ni, Lepus_euro.",FZ,1,,167,1,1,
+BG0033,Nicopolis ad Istrum bei Nikjup,Bez. Loveš,"Römische Kaiserzeit, 2.-6. Jh.",RK,VII,,"43,15","25,35",Zivilsiedlung (Stadt),Ausgrabung 1985-1988,"Es sind bislang nur Angaben zu den Vogelknochen publiziert  
+worden.",Z. Boev 1991a; Z. Boev 1993a,"Aves: Huhn 493, W_Htaube 1, P_perdix 81, C_coturnix 20,  
+Phas_colch 16, Strep_tur 7, Colv_moned 7, Columb_pal 4,  
+Corv_frugi 4, Anas_crecc 4, Columb_oen 3, Alect_grae 3,  
+Pyrhho_gra 2, P_pica 2, Passer_dom 2, Fring_coel 2, Anser_faba 2,  
+Anser_albi 2, Otis_tarda 2, Accip_gent 2, Corv_cor 1, Sturn_vulg  
+1, Cardu_cann 1, B_buteo 1, Accip_nis 1, Garru_glan 1, Gypae_barb  
+1, Cygnus_olo 1, Anas_quer 1, T_tadorna 1, Aythya_fer 1,  
+Caprim_eur 1, Phal_carbo 1, Podic_cris 1, Athene_noc 1,  
+Strix_aluc 1, T_tetrax 1, Nucifr_car 1.",FZ,,,677,,88,
+BG0034,Garvan,Bez. Silistra,"Mittelalter, 6.-11. Jh.",FMA,VIII,,"44,05","26,54",Siedlung,Ausgrabung 1964-1980,,N. Spasov 1986; Z. Boev 1986,"Pisces: Silur_glan.
+Aves: Aquila, Phas_colch.
+Mammalia: Rind, S_Z, Schwein, Pferd, Hund, Sus_scrofa,  
+Cervus_ela, Lepus_euro, Bison_bona.",BE,1,,1,1,,
+BG0035,Kiten (Fst. Ourdoviza),Bez.,"Frühbronzezeit, 3000-2000 v. Chr.",FBZ,IV,,"42,15","27,46",Siedlung,"Ausgrabung 1984-85, 1987-88","Die Bestimmung von Phalacrocorax aristotelis ist nicht sicher (Z.  
+Boev & G. Ribarov 1990, Tab. 2). Für die Säugetiere liegen nur  
+Beleg-Angaben über die bislang nachgewiesenen Arten vor. Als  
+Gesamtzahl werden 15 Wildsäugetierarten genannt In der  
+Publikation werden aber nur 14 tatsächlich erwähnt!",Z. Boev & G. Ribarov 1990; G. Ribarov 1991a,"Aves: Cygnus_olo 15, Phal_carbo 7, Anatidae 7, Podic_cris 5,  
+Aythya_fer 3, Pele_onocr 3, Aythya 3, Aythya_nyr 2, Podic_nigr 2,  
+C_cygnus 1, A_anser 1, Anser_albi 1, C_cygnus 1, Phalacroco 1,  
+Phal_arist 1, Podic_gris 1, Fulica_atr 1, Anser_ery 1, Gavia_stel  
+1, Gavia 1, Anas_platy 1, Larus 1.
+Mamalia: Rind, Schwein, Schaf, Ziege, Pferd, Hund, Cervus_ela,  
+Cervus_dam, C_capreol, Sus_scrofa, Bos_primig, Ursus_arct,  
+Canis_lup, V_vulpes, M_meles, Felis_silv, L_lutra, Martes_foi,  
+Castor_fib, Delphi_del.",FZ,,,60,1,,
+BG0036,Sozopol,Bez.,"Frühe Bronzezeit, 3000 - 1000 v. Chr.",FBZ,V,,"42,25","27,42",Siedlung,Ausgrabung,,Z. Boev 1993,"Aves: Fulica_atr 119, Anas_quer 2, Aythya_nyr 2, Phal_carbo 2,   
+Podic_cris 2, Gavia_arct 1, Ardea_cine 1.",FZ,,,129,,,
+BG0037,Malăk Preslavec,Bez.,"Eisenzeit, 5.-1. Jh. v. Chr.",FEZ,VI,,"44,04","26,50",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993a,"Aves: Corv_frugi 2, Accip_gent 1, T_tetrax 1, Aquila_chr. 1,  
+Tringa_neb 1.",FZ,,,6,,,
+BG0038,Jas'tepe,Bez. Jambol,Späteisenzeit,SEZ,VI,,"42,29","26,31",Siedlung,Ausgrabung 1987-1989,,G. Ribarov & Z. Boev 1990; G. Ribarov 1994b,"Pisces: Cypri_carp 4, Esox_luciu 1.
+Aves: Huhn 5, Otis_tarda 7, G_ grus 2, A_anser 2, Corv_cor 1.
+Mmmalia: Rind 333, Schwein 305, Schaf 288, Ziege 85, Hund 63,  
+Pferd 7, Bos_primig 154, Cervus_ela 37, Sus_scrofa 30, Cervus_dam  
+16, Castor_fib 10, Equus_fer 7, V_vulpes 4, Lepus_euro 4,  
+C_capreol 3, Felis_silv 2, M_meles 1, Microsp_leu 1.
+Moll.: Unio pictorum 8.",FZ,5,,17,1350,,8
+BG0039,Arbanas,Bez.,"Römische Kaiserzeit, 1.-3. Jh.",RK,VII,,"0,00","0,00",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993a,"Aves: P_perdix 4, B_buteo 1.",FZ,,,5,,,
+BG0040,Raciaria bei Arčar,Bez. Michajlovgrad,"Römische Kaiserzeit, 2.-4. Jh.",RK,VII,,"43,49","22,55",Siedlung,Ausgrabung 1989,,N. Iliev u. a. 1993; Z. Boev 1993,"Pisces: Cypri_carp 3, Silur_glan 1.
+Amph./Rept.: Testudo 1.
+Aves: Huhn 35, Huhn/Fasan 8, Phas_colch 3, Anas_platy 2,  
+Gyps_fulv 1.
+Mammalia: Rind 47, S_Z 36, Schwein 14, Hund 8, Pferd 7, Esel 1,  
+Katze 1, Cervus_ela 5, Sus_scrofa 4, C_capreol 3.",FZ,4,1,49,126,,
+BG0041,Armira,Bez.,"Römische Kaiserzeit, 3. Jh.",RK,VII,,,,Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993,"Aves: P_perdix 1, C_ciconia 1.",FZ,,,2,,,
+BG0042,Abritus,Bez.,"Römische Kaiserzeit, 3.-4. Jh.",RK,VII,,"43,31","26,31",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993a,Aves: Circae_gal 1.,FZ,,,1,,,
+BG0043,Kostinbrod,Bez.,"Römische Kaiserzeit, 4. Jh.",RK,VII,,"42,49","23,13",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993a,Aves: Pele_onocr 1.,FZ,,,1,,,
+BG0046,Hissarluka,Bez.,"Hochmittelalter, 9.-12. Jh.",HMA,VIII,,"0,00","0,00",Siedlung,Ausgrabung,"Von der Fundstelle sind nur Angaben zu den Vogelknochen  
+publiziert.",Z. Boev 1993a,"Aves: Phas_colch 17, Accip_gent 4, Otis_tarda 4, B_buteo 2,  
+Strep_tur 1, Alect_grae 1, Hiera_fasc 1, Tetrao_uro 1.",FZ,,,31,,,
+BG0047,Ravnišče,Bez. Botevgrad,"Römische Kaiserzeit, 2.-3. Jh.",RK,VII,,"43,00","24,04",Grabhügel,Ausgrabung,,L. Ninov 1996a,"Mammalia: Hund 4 I., Pferd 2 I., Schwein 2 I.",MIZ,,,,8,,
+BG0048,Bela Voda,Bez. Pernik,"Römische Kaiserzeit, 3.-4. Jh.",RK,VII,,"42,35","22,59",Villa,Ausgrabung 1977,,N. Iliev u. a. 1992,"Pisces: Silur_glan 2, Cypri_carp 1.
+Aves: Huhn 42, Anas_platy 2, P_perdix 1, Charadriid 1.
+Mammalia: Rind 138, Schwein 126, S_Z 66, Pferd 18, Hund 7, Katze  
+3, Esel 2, Sus_scrofa 16, Lepus_euro 7, Cervus_ela 6, V_vulpes 1,  
+Martes_foi 1, Rattus 1.",FZ,3,,46,392,,
+BG0049,Kralevo,Bez. Tărgovište,"Früheisenzeit, 4.-3. Jh. v. Chr.",FEZ,VI,,"43,11","26,42",Grabhügel III,Ausgrabung 1978-1980,,V. Vasilev & G. D. Georgiev 1985,"Mammalia: Rind 676, S_Z 485, Pferd 469, Schwein 367, Hund 290,  
+Cervus_ela 21, Lepus_euro 18, C_capreol 6, Sus_scrofa 3,  
+Sciur_vulg 2, V_vulpes 1, M_meles 1.",FZ,,,,328,,
+BG0050/1,Odercy bei Varna,,"Hallstattzeit, Stufe C",SHA,VI,,"43,13","27,55",Burg,Ausgrabung 1971-1974,,M. Sobociński & M. Gajowy 1991,"Aves: unbestimmt 3.
+Mammalia: S_Z 77, Rind 73, Schwein 59, Pferd 2, Hund 1,  
+Cervus_ela 8.",FZ,,,3,220,,
+BG0050/2,Odercy bei Varna,,"Byzantinische Zeit, 4.-6. Jh.",SRK,VII,,"43,13","27,55",Burg,Ausgrabung 1971-1974,,M. Sobociński & M. Gajowy 1991,"Aves: unbestimmt 15.
+Mammalia: Rind 532, Schwein 234, S_Z 189, Pferd 107, Hund 12,  
+Esel 10, Cervus_ela 20, Sus_scrofa 2, Ursus_arct 1, Castor_fib 1,  
+Lepus_euro 1.",FZ,,,15,1109,,
+BG0050/3,Odercy bei Varna,,"Frühmittelalter, 6.-7. Jh.",FMA,VIII,,"43,13","27,55",Burg,Ausgrabung 1971-1974,,M. Sobociński & M. Gajowy 1991,"Aves: unbestimmt 1.
+Mammalia: Rind 92, Schwein 60, S_Z 40, Pferd 4, Hund 4, Esel 2.",FZ,,,1,202,,
+BG0050/4,Odercy bei Varna,,"Hochmittelalter, 9.-11. Jh.",HMA,VIII,,"43,13","27,55",Burg,Ausgrabung 1971-1974,,M. Sobociński & M. Gajowy 1991,"Aves: unbestimmt 21.
+Mammalia: Rind 957, Schwein 429, S_Z 295, Hund 135, Pferd 72,  
+Esel 46, Cervus_ela 4, Lepus_euro 4.",FZ,,,21,1942,,
+BG0051,Sofia (Fst. Slatina),,"Neolithikum, Phase Karanovo I",FNE,III,,"42,42","23,22",Siedlung (Haus),Ausgrabung 1985,,L. Ninov 1992,"Pisces: unbestimmt 1.
+Aves: unbestimmt 1.
+Mammalia: Rind 99, S_Z 38, Schwein 9, Cervus_ela 1, Sus_scrofa 1,  
+Bos_primig 1, Castor_fib 1.",FZ,1,,1,150,,
+BG0052,Sborjanovo bei Isperich,,"Eisenzeit, 4.-3. Jh. v. Chr.",EZ,VI,,"43,44","26,45","Nekropole (Gräber 12, 13)",Ausgrabung 1983-1989,,L. Ninov 1996c,"Aves: Huhn.
+Mammalia: Rind, Schaf, Schwein, Hund.",BE,,,1,1,,
+BG0053,Krivina,Bez.,"Römische Kaiserzeit, 4.-6. Jh.",SRK,VII,,"43,41","25,37",Kastell,Ausgrabungen 1970-1972,,L. Bartosiewicz & A. M. Choyke 1991,"Pisces: Silur_glan 11, Cypri_carp 6.
+Aves: Huhn 5, Pele_onocr 3, G_grus 3, Haliae_alb 2, Phal_carbo 1,  
+Cygnus_olo 1, C_ciconia 1.
+Mammalia: Rind 1322, Schwein 364, S_Z 195, Schaf 61, Pferd 52,  
+Hund 26, Ziege 22, Katze 14, Esel 5, Cervus_ela 70, Sus_scrofa  
+15, C_capreol 2, Lepus_euro 2, Castor_fib 1.",FZ,17,,16,2151,,
+BG0054,Čavdar bei Čelopeč,Bez.,"Frühneolithikum, Phase Karanovo I",FNE,III,,"42,38","24,05",Siedlung,Ausgrabung 1970-1972,,R. Dennell 1978,"Mammalia: Rind, Schwein, S_Z, Cervus_ela, C_capreol, Lepus_euro.",BE,,,,1,,
+BG0055/1,Kazanlăk,Bez.,Frühneolithikum,FNE,III,,"42,37","25,24",Siedlung,Ausgrabung 1970-1972,,R. Dennell 1978,"Mammalia: S_Z 133, Schwein 74, Rind 10, Hund 9, C_capreol 40,  
+Cervus_ela 26, Lepus_euro 17, V_vulpes 11, Felis_silv 3, Martes  
+3, Erina_euro 2.",FZ,,,,328,,
+BG0055/2,Kazanlăk,Bez.,Mittelneolithikum,MNE,IV,,"42,37","25,24",Siedlung,Ausgrabung 1970-1972,,R. Dennell 1978,"Mammalia: S_Z 91, Schwein 35, Rind 17, Hund 5, C_capreol 27,  
+Cervus_ela 17, V_vulpes 6, Lepus_euro 5, Erina_euro 3, Felis_euro  
+1, M_meles 1, Mustela 1.",FZ,,,,209,,
+BG0055/3,Kazanlăk,Bez.,Spätneolithikum,SNE,IV,,"42,37","25,24",Siedlung,Ausgrabung 1970-1972,,R. Dennell 1978,"Mammalia: S_Z 63, Schwein 23, Rind 15, C_capreol 34, Cervus_ela  
+11, Ursus_arct 3, V_vulpes 2, Lepus_euro 2, Martes 2, Erina_euro  
+1.",FZ,,,,156,,
+BG0056,Sašova bei Jasenovo,Bez. Kazanlăk,"Eisenzeit, 2. Jh. v. Chr.",EZ,VI,,"42,54","27,13",thrakischer Grabhügel,Ausgrabung,,L. Ninov 1996b,Mammalia: Pferd 1 I.,MIZ,,,,1,,
+BG0057,Slavčova bei Rizovo,Bez. Kazanlăk,"Eisenzeit, 4.-3. Jh. v. Chr.",EZ,VI,,"42,35","25,24",thrakischer Grabhügel,Ausgrabung,,L. Ninov 1996b,"Mammalia: Pferd 1 I. (Skelett), Ziege 1 Kn., Rind 1 Kn.,  
+Cervus_ela 1 Kn.",BE,,,,1,,
+BG0058/1,Goljamata Peščera bei Ilija,Bez. Kjustendil,Äneolithikum,CH,IV,,"42,05","22,48",Höhlensiedlung,Ausgrabung 1978,,V. Vasilev u. V. Nikolov 1980,"Aves: Tetrao_uro 1.
+Mammalia: Schwein 39, S_Z 13, Hund 10, Rind 4, Ziege 3,  
+Lepus_euro 21, Cervus_ela 6, C_capreol 1.",FZ,,,1,97,,
+BG0058/2,Goljamata Peščera bei Ilija,Bez. Kjustendil,"Früheisenzeit, 8.-7. Jh. v. Chr.",FEZ,VI,,"42,05","22,48",Höhlensiedlung,Ausgrabung 1978,,V. Vasilev u. V. Nikolov 1980,"Aves: Tetrao_uro 1.
+Mammalia: Schwein 29, S_Z 15, Ziege 5, Schaf 3, Lepus_euro 11,  
+Cervus_ela 3, Felis_silv 2, Sus_scrofa 1.",FZ,,,1,69,,

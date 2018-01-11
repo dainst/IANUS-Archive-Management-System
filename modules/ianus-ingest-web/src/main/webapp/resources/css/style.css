@@ -1,0 +1,502 @@
+
+.someCssClassName {
+    background-image: url(resources/images/upload_16X16.png) !important;
+}
+
+.ui-state-hover{
+	color: red;
+}
+
+.ui-confirm-dialog{
+	top: 5px !important;
+	background-color: red;
+}
+
+body {
+	font-family: verdana, arial, helvetica, sans-serif;
+	background-color: #C8CDD0;
+	color: #2E2E2E;
+	overflow-x: hidden;
+}
+
+/* Wrapper */
+.wrapper.style1 {
+	/*
+	padding-top: 10em;
+	padding-bottom: 2em;
+	background-size: cover;
+	background-attachment: fixed;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: translateZ(0);
+	height: 60px;*/
+}
+
+/* Header */
+#header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background: #164194 none repeat scroll 0% 0%;
+	color: #FFF;
+	padding: 1.25em;
+	z-index: 100;
+	
+}
+
+.filesPanel td tr{
+	vertical-align: top;
+}
+
+.treeFileNode{
+	font-size: 0.7em;
+}
+
+.filePagePanel{
+	background-color: red;
+}
+
+body, input, select, textarea {
+	font-size: 9pt;
+	/*line-height: 1.5em;*/
+}
+
+.commandButtonImage {
+	color: transparent !important;
+	width: 21px !important;
+	height: 21px !important;
+	vertical-align: middle !important;
+	
+}
+
+.ianusSelectOneMenu{
+	width: 300px;
+}
+
+.initialMDTextInput{
+	width: 400px;
+}
+
+.dcTextInput{
+	width: 300px;
+}
+
+
+.pubTextInput{
+	width: 500px;
+}
+
+.dcTextArea {
+	width: 400px;
+	height: 80px;
+}
+
+.outputLinkImage{
+	border: 1px solid #aed0ea;
+	width: 19.3px;  
+	height: 19.3px;
+	display: inline-block;
+	position: relative;
+	padding: 0;
+	margin-right: .1em;
+	text-decoration: none !important;
+	cursor: pointer;
+	text-align: center;
+	overflow: visible;
+	border-radius: 6px;
+	vertical-align: middle;
+}
+
+*/
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+
+#logo {
+	width: 50%;
+	font-size: 1.2em;
+	cursor: default;
+	margin: 0px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+	box-sizing: border-box;
+}
+
+#logo h1 {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	color: white;
+	font-family: "Raleway", sans-serif;
+	font-weight: 700;
+	vertical-align: baseline;
+	font: inherit;
+	cursor: default;
+}
+
+#logo a {
+	color: inherit;
+	text-decoration: none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+}
+
+#logo span {
+	color: #555;
+	font-family: "Raleway", sans-serif;
+	font-size: 12pt;
+	font-weight: 300;
+	line-height: 1.65em;
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+}
+
+#nav {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: default;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+	padding-right: 100px;
+}
+
+#login {
+	position: absolute;
+	right: 0px;
+	top: 50px;
+	cursor: default;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+	padding-right: 100px;
+}
+
+.logLinks{
+	color: black;
+}
+
+ul {
+	list-style: outside none none;
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+	box-sizing: border-box;
+}
+
+#nav ul li {
+	display: inline-block;
+	padding: 1.25em;
+}
+
+li {
+	margin: 0px;
+	padding: 0px;
+	border: 0px none;
+	vertical-align: baseline;
+	font: inherit;
+	box-sizing: border-box;
+}
+
+#nav ul li a {
+	transition: color 0.35s ease-in-out 0s;
+	display: inline-block;
+	color: rgba(255, 255, 255, 0.75);
+	text-decoration: none;
+}
+
+#nav ul li a {
+    transition: color 0.35s ease-in-out 0s;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 10px;
+}
+
+
+/*********************************************************************************/
+/* Page                                                                          */
+/*********************************************************************************/
+#page {
+	width: 90%;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 5px 3px #D0D0D0;
+	padding-bottom: 50px;
+	margin-top: 70px;
+}
+
+.pagePanel{
+	width: 100%;
+	text-align: center;
+}
+
+.pagePanelTitle{
+	width: 100%;
+	text-align: center;
+}
+
+.filesPanelTitle{
+	width: 500px;
+	text-align: center;
+	font-size: 30px;
+}
+
+.mainControlPanel{
+	text-align: left;
+	background-color: #B9C6DE;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	font-size: 11px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	width: 100%;
+	color: #362B36;
+}
+
+.mainControlPanelSIP{
+	text-align: left;
+	background-color: #e78888;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	font-size: 11px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	width: 100%;
+	color: #362B36;
+}
+
+.mainControlPanelAIP{
+	text-align: left;
+	background-color: #f8eb78;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	font-size: 11px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	width: 100%;
+	color: #362B36;
+}
+
+.mainControlPanelDIP{
+	text-align: left;
+	background-color: #d7f3a9;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	font-size: 11px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	width: 100%;
+	color: #362B36;
+}
+
+.initialMDFirstColumn{
+	background-color: silver;
+	width: 100px;
+	vertical-align: text-top;
+}
+
+.initialMDSecondColumn{
+	background-color: white;
+	width: 100px;
+}
+
+.firstColumn{
+	background-color: silver;
+	width: 100px;
+}
+
+.secondColumn{
+	background-color: red;
+}
+
+.mainControlPanel label	{
+	font-size: 13px;
+	font-weight: bold;
+	color: black;
+}
+
+.pageForm{
+	
+	background-color: #F5F5F5;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	line-height: 18px;
+	font-size: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	white-space: pre-wrap;
+	word-wrap: break-word;	
+	
+	width: 100%;
+	text-align: left;
+}
+
+.filesTreePanel{
+	text-align: left;
+	font-size: 0.7em;
+	width: 100%;
+	
+}
+
+.displayFilePanel{
+	
+}
+
+.stdOut{
+	text-align: left;
+	background-color: #F5F5F5;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	line-height: 18px;
+	font-size: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.stdErr{
+	text-align: left;
+	background-color: #F2D8D8;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	line-height: 18px;
+	font-size: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.warning{
+	text-align: left;
+	background-color: #f7e0b3;	
+	display: block;
+	padding: 8.5px;
+	margin: 0px 0px 18px;
+	line-height: 18px;
+	font-size: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.dataTable{
+	font-size: 0.9em;
+}
+
+.dataTable th{
+	background: #B9C6DE;	
+}
+
+.dataTable span{
+	color: black;	
+}
+
+.dataTableSIP{
+	font-size: 0.9em;
+}
+
+.dataTableSIP th{
+	background: #e78888;	
+}
+
+.dataTableSIP span{
+	color: black;	
+}
+
+.dataTableAIP{
+	font-size: 0.9em;
+}
+
+.dataTableAIP th{
+	background: #f8eb78;	
+}
+
+.dataTableAIP span{
+	color: black;	
+}
+
+.dataTableDIP{
+	font-size: 0.9em;
+}
+
+.dataTableDIP th{
+	background: #d7f3a9;	
+}
+
+.dataTableDIP span{
+	color: black;	
+}
+
+/*******************/
+/*   DC Overview   */
+/*******************/
+td.subTable tbody, td.subTable tr, td.subTable td {
+	border: none;
+}
+
+.subTable.overView tbody {
+	border-left: 1px solid black;
+}
+
+td.subTable {
+	padding: 0 !important;
+}
+
+td.subTable td {
+	border-right: solid 1px #ddd; 
+  	border-left: solid 1px #ddd;
+}
+
+td.subTable td:first-child {
+	border-left: none;
+}
+td.subTable td:last-child {
+	border-right: none;
+}
+
+td.subTable thead {
+	display: none;
+}
+
+#overviewForm\:overviewDCPage .dataTable td {
+	font-size: 10px;
+}
+
+/*******************/
+/* RsyncUploadPage */
+/*******************/
+td.long-string {
+	font-size: 10px;
+	word-wrap: break-word;
+}
+

@@ -1,0 +1,246 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		
+		<h:form id="archivalForm">
+		
+		<p:poll 
+			interval="3" update="archivalForm" listener="#{sessionBean.archivalPage.reload}"
+			stop="#{sessionBean.archivalPage.pollingStop}" 
+			widgetVar="archivalPolling"
+			autoStart="true"/>		
+		
+		<h:panelGrid id="archivalPage" columns="1" styleClass="pagePanel" rendered="#{sessionBean.archivalPage.aip != null}">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Archival Information Package" />
+				<h:outputText value="#{sessionBean.archivalPage.aip.collectionLabel} [#{sessionBean.archivalPage.aip.collectionIdentifier}]" />
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanelAIP" columns="10">
+				<p:commandButton value="Go to submission package" action="#{sessionBean.archivalPage.gotoSipPage}"/>
+				<p:commandButton value="Files" action="#{sessionBean.archivalPage.gotoFilesPage}"/>
+				<p:commandButton value="Main MD" action="#{sessionBean.archivalPage.gotoDataCollectionPage}"/>
+				
+				
+				<p:commandButton value="Create file instances for archive folder" 
+					action="#{sessionBean.archivalPage.actionCreateFileInstances4ArchiveFolder}">
+					<p:confirm header="Confirmation" message="Are you sure they do not already exist?" icon="ui-icon-alert"/>
+				</p:commandButton>
+				
+				<p:commandButton value="Create XML Files" title="mets.xml &amp; ianus.xml" action="#{sessionBean.archivalPage.actionCreateMets}"/>
+				
+				<p:commandButton value="Create Bagit"
+					action="#{sessionBean.archivalPage.actionCreateBagit}"
+					rendered="#{sessionBean.archivalPage.aip.finishedOk}"/>
+				
+				<p:commandButton value="Start dissemination (creates DIP)" 
+					action="#{sessionBean.archivalPage.actionStartDisseminationWF}"
+					rendered="#{sessionBean.archivalPage.aip.finishedOk and !sessionBean.guestUser}"/>
+				
+				<h:outputLink value="#{sessionBean.appBean.dataPortalUrl}/pages/collectionView.jsp?aipId=#{sessionBean.archivalPage.aip.id}">
+					<h:outputText value="Preview in Data Portal"/>
+				</h:outputLink>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid id="aipDataPanel" styleClass="mainControlPanelAIP" columns="2">
+			
+				<h:outputLabel value="Id"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.id}"/>
+				
+				<h:outputLabel value="State"/>
+				<h:panelGrid columns="2">
+					<h:graphicImage value="#{sessionBean.archivalPage.stateIcon}"/>
+					<h:outputText value="#{sessionBean.archivalPage.aip.state}"/>
+				</h:panelGrid>
+				
+				<h:outputLabel value="Process instance id"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.processInstanceId}"/>
+				
+				<h:outputLabel value="Package folder name"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.packageFolderName}"/>
+				
+				<h:outputLabel value="Collection identifier"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.collectionIdentifier}"/>
+				
+				<h:outputLabel value="Collection label"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.collectionLabel}"/>
+				
+				<h:outputLabel value="Size"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.sizeFormatted}"/>
+				
+				<h:outputLabel value="Size (data)"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.dataSizeFormatted}"/>
+				
+				<h:outputLabel value="Files amount (data)"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.dataFilesAmount}"/>
+				
+				<h:outputLabel value="Creation time"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.formattedCreationTime}"/>
+					
+				<h:outputLabel value="Last change"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.formattedLastChange}"/>
+				
+				<h:outputLabel value="Absolute path"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.absolutePath}"/>
+				
+				<h:outputLabel value="Location purpose"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.location.purpose}"/>
+				
+				<h:outputLabel value="Location free space"/>
+				<h:outputText value="#{sessionBean.archivalPage.aip.location.freeSpaceInBytes}"/>
+				
+			</h:panelGrid>		
+			
+			<h:panelGrid>
+				<h:outputText value="Workflow Tasks"/>
+				
+				<h:panelGrid columns="1">
+					
+					<h:panelGrid columns="3" rendered="#{sessionBean.archivalPage.wfInProgressState}">
+						<h:outputLabel value="Polling"/>
+						<p:commandButton
+							value="#{sessionBean.archivalPage.pollingButtonLabel}"
+							update="archivalForm:archivalPage msgForm:msg"
+							action="#{sessionBean.archivalPage.actionChangePollingState}"
+							oncomplete="changePollingState('#{sessionBean.archivalPage.pollingState}', '#{sessionBean.archivalPage.wfInProgressState}');"/>
+						<h:outputText value="Last update: #{sessionBean.archivalPage.lastWFUpdate}"/>
+					</h:panelGrid>
+					<h:panelGrid columns="3"  rendered="#{sessionBean.archivalPage.wfInProgressState}">
+						<h:outputText value="Task Id"/>
+						<h:inputText value="#{sessionBean.archivalPage.taskId}"/>
+						<p:commandButton
+							value="Complete"
+							action="#{sessionBean.archivalPage.actionCompleteTask}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid id="dipTaskPanel">
+					<p:dataTable id="tasksTable" value="#{sessionBean.archivalPage.activities}" var="wrapper" styleClass="dataTableDIP">
+						<f:facet name="header">
+        					Workflow Tasks
+	        				<p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+	        				<p:columnToggler datasource="tasksTable" trigger="toggler" />
+    					</f:facet>					
+						<p:column headerText="Id" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.activity.id}"/>
+						</p:column>
+						<p:column headerText="Task id" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{wrapper.activity.taskId}"/>
+						</p:column>
+						
+						<p:column headerText="Type" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.activity.activityType}"/>
+						</p:column>
+						<p:column headerText="executionId" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};" rendered="false">
+							<h:outputText value="#{wrapper.activity.executionId}"/>
+						</p:column>
+						
+						<p:column headerText="processInstanceId" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};" rendered="false">
+							<h:outputText value="#{wrapper.activity.processInstanceId}"/>
+						</p:column>
+						<p:column headerText="Task" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputLabel value="#{wrapper.activity.name}"/>
+						</p:column>
+						<p:column headerText="Start Time" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.startTime}"/>
+						</p:column>
+						<p:column headerText="End Time" style="text-align: left;padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.endTime}"/>
+						</p:column>
+						<p:column headerText="Options" style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputText value="#{wrapper.optionLabel}"/>
+							<p:selectOneMenu 
+								value="#{sessionBean.archivalPage.userDecision}" 
+								required="#{wrapper.userTask}" 
+								rendered="#{wrapper.hasFormField}"
+								valueChangeListener="#{sessionBean.archivalPage.changeUserDecision}">
+								<f:selectItems value="#{wrapper.userSuggestList}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column headerText="User support" style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<p:commandButton
+								value="user support"
+								action="#{sessionBean.archivalPage.actionToUserSupportPage}"
+								rendered="#{wrapper.hasUserSupport}"/>
+							<h:outputText rendered="#{!wrapper.hasUserSupport and wrapper.userTask and !wrapper.completed and !wrapper.hasFormField}"
+								value="Task not supported"/>
+						</p:column>
+						<p:column headerText="Process Output" style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<h:outputLink
+				            	value="#{sessionBean.appBean.contextRoot}/pages/activityOutput.xhtml?ianusActivityId=#{wrapper.output.ianusActivityId}&amp;wfipId=#{sessionBean.archivalPage.aip.id}" target="_blank"
+				                rendered="#{wrapper.output != null}">
+				                <h:graphicImage value="#{sessionBean.appBean.imgInformation}"/>
+							</h:outputLink>
+						</p:column>
+						<p:column style="padding-top: 1px;padding-bottom: 1px;#{wrapper.backgroundColor};">
+							<!-- update="@([id$=dipTaskPanel]) @([id$=aipDataPanel]) @([id$=msg])" -->
+							<p:commandButton value="Complete" 
+								actionListener="#{sessionBean.archivalPage.listenerCompleteTask}"
+								update="archivalForm msgForm:msg"
+								rendered="#{wrapper.showCompleteButton}"/>
+							<h:graphicImage value="#{sessionBean.appBean.imgWorking}"
+								rendered="#{wrapper.showWorkingIcon}"/>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>			
+			</h:panelGrid>	
+			
+			<!-- DIP List -->
+			<h:panelGrid styleClass="mainControlPanelDIP">
+				<h:panelGrid>
+					<h:outputLabel value="DIP List is empty"
+						rendered="#{!sessionBean.archivalPage.showDipTable}"/>
+					<h:outputLabel value="DIP List"
+						rendered="#{sessionBean.archivalPage.showDipTable}"/>
+					<p:dataTable value="#{sessionBean.archivalPage.dipList}"
+						var="dip"
+						styleClass="dataTable"
+						rendered="#{sessionBean.archivalPage.showDipTable}">
+						<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{dip.id}" />
+						</p:column>
+						<p:column headerText="MD Id" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{dip.metadataId}" />
+						</p:column>
+						<p:column headerText="IANUS Id">
+							<h:outputText value="#{dip.collectionIdentifier}" />
+						</p:column>
+						<p:column headerText="Label">
+							<h:outputText value="#{dip.collectionLabel}" />
+						</p:column>
+						<p:column headerText="Process Instance">
+							<h:outputText value="#{dip.processInstanceId}" />
+						</p:column>
+						<p:column headerText="State">
+							<h:outputText value="#{dip.state}" />
+						</p:column>
+						<p:column headerText="Last change">
+							<h:outputText value="#{dip.formattedLastChange}" />
+						</p:column>
+						<p:column>
+							<p:commandButton 
+								value="Delete" 
+								actionListener="#{sessionBean.archivalPage.listenerDeleteDip}"
+								update="archivalForm:archivalPage"
+								rendered="#{!sessionBean.guestUser}">
+								<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert"/>
+							</p:commandButton>					
+							<p:commandButton 
+								value="View"
+								action="#{sessionBean.archivalPage.actionViewDip}"/>
+						</p:column>
+					</p:dataTable>			
+				</h:panelGrid>				
+			</h:panelGrid>							
+			
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

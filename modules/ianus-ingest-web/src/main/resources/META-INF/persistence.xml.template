@@ -1,0 +1,122 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+        version="2.0">
+	
+	<persistence-unit name="metadataApp" transaction-type="RESOURCE_LOCAL">
+		
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<!-- IANUS.curation.core.bo -->
+		<class>de.ianus.metadata.bo.AccessRight</class>
+		<class>de.ianus.metadata.bo.Address</class>
+		<class>de.ianus.metadata.bo.DataCollection</class>
+		<class>de.ianus.metadata.bo.actor.ActorRole</class>
+		<class>de.ianus.metadata.bo.actor.Person</class>
+		<class>de.ianus.metadata.bo.actor.Institution</class>
+		<class>de.ianus.metadata.bo.utils.TextAttribute</class>
+		<class>de.ianus.metadata.bo.utils.Language</class>
+		<class>de.ianus.metadata.bo.utils.ResourceType</class>
+		<class>de.ianus.metadata.bo.utils.FileFormat</class>
+		<class>de.ianus.metadata.bo.utils.Identifier</class>
+		<class>de.ianus.metadata.bo.utils.ElementOfList</class>
+		<class>de.ianus.metadata.bo.utils.Place</class>
+		<class>de.ianus.metadata.bo.utils.TimeSpan</class>
+		<class>de.ianus.metadata.bo.utils.Software</class>
+		<class>de.ianus.metadata.bo.utils.Time</class>
+		<class>de.ianus.metadata.bo.utils.PreservationEvent</class>
+		<class>de.ianus.metadata.bo.CollectionFile</class>
+		<class>de.ianus.metadata.bo.resource.Publication</class>
+		<class>de.ianus.metadata.bo.resource.Reference</class>
+		<class>de.ianus.metadata.bo.resource.RelatedResource</class>
+		
+		<properties>
+			<!-- C3p0 -->
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_statement" value="100" />
+			<property name="hibernate.c3p0.preferredTestQuery" value="select 1;" />
+			<property name="hibernate.c3p0.testConnectionOnCheckout" value="true" />
+			<property name="connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+         	<property name="javax.persistence.jdbc.user" value="DB_USER_NAME"/>
+         	<property name="javax.persistence.jdbc.password" value="DB_PASSWORD"/>
+         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ianus_metadata?tinyInt1isBit=false"/>
+			
+			<!-- <property name="show_sql">true</property> -->
+			<property name="current_session_context_class" value="thread" />
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.connection.CharSet" value="utf8"/>
+        	<property name="hibernate.connection.characterEncoding" value="utf8"/>
+        	<property name="hibernate.connection.useUnicode" value="true"/>
+			<property name="hibernate.search.default.indexBase" value="/data/ianus-test/indexes"/>
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="coreApp" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+
+
+		<!-- IANUS.curation.core.bo -->
+		<class>de.ianus.ingest.core.bo.TransferP</class>
+		<class>de.ianus.ingest.core.bo.ArchivalIP</class>
+		<class>de.ianus.ingest.core.bo.DisseminationIP</class>
+		<class>de.ianus.ingest.core.bo.PreArchivalIP</class>
+		<class>de.ianus.ingest.core.bo.SubmissionIP</class>
+		<class>de.ianus.ingest.core.bo.Location</class>
+		<class>de.ianus.ingest.core.bo.ActivityOutput</class>
+		<class>de.ianus.ingest.core.bo.RsyncUpload</class>
+		<class>de.ianus.ingest.core.bo.BagitFile</class>
+		<class>de.ianus.ingest.core.bo.IANUSActivity</class>
+		<class>de.ianus.ingest.core.bo.PreIngestReport</class>
+		<class>de.ianus.ingest.core.bo.ums.User</class>
+		
+		<class>de.ianus.ingest.core.bo.files.FileInstance</class>
+		<class>de.ianus.ingest.core.bo.files.FileInstanceProperty</class>
+		<class>de.ianus.ingest.core.bo.files.FileConcept</class>
+		<class>de.ianus.ingest.core.bo.files.FileGroup</class>
+		<class>de.ianus.ingest.core.bo.files.Agent</class>
+		<class>de.ianus.ingest.core.bo.files.Event</class>
+		<class>de.ianus.ingest.core.bo.files.AgentEventLink</class>
+		<class>de.ianus.ingest.core.bo.files.ObjectEventLink</class>
+		
+		<class>de.ianus.ingest.core.conversionRoutine.bo.ConversionRoutine</class>
+		<class>de.ianus.ingest.core.conversionRoutine.bo.ConversionAction</class>
+		<class>de.ianus.ingest.core.conversionRoutine.bo.ActionTool</class>
+		
+		<properties>
+			<!-- C3p0 -->
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_size" value="200" />
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_statement" value="100" />
+			<property name="hibernate.c3p0.preferredTestQuery" value="select 1;" />
+			<property name="hibernate.c3p0.testConnectionOnCheckout" value="true" />
+			<property name="connection.provider_class"
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
+			
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+         	<property name="javax.persistence.jdbc.user" value="DB_USER_NAME"/>
+         	<property name="javax.persistence.jdbc.password" value="DB_PASSWORD"/>
+         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ianus?tinyInt1isBit=false"/>
+			
+			<!-- <property name="show_sql">true</property> -->
+			<property name="current_session_context_class" value="thread" />
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.connection.CharSet" value="utf8"/>
+        	<property name="hibernate.connection.characterEncoding" value="utf8"/>
+        	<property name="hibernate.connection.useUnicode" value="true"/>
+			<property name="hibernate.search.default.indexBase" value="/data/ianus-storage/indexes"/>
+
+		</properties>
+	</persistence-unit>
+</persistence>    

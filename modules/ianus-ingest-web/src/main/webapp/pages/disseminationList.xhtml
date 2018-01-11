@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="dipListForm">
+		<h:panelGrid id="dipListPage" columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputLabel value="List of all"/>
+				<h:outputLabel value="Dissemination Information Packages (DIP List)" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanelDIP">
+				
+			</h:panelGrid>
+				
+			<p:dataTable value="#{sessionBean.disseminationListPage.dipList}"
+				var="dip"
+				styleClass="dataTableDIP">
+				<p:column headerText="Id">
+					<h:outputText value="#{dip.id}" />
+				</p:column>
+				<p:column headerText="Metadata id">
+					<h:outputText value="#{dip.metadataId}" />
+				</p:column>
+				<p:column headerText="IANUS Id">
+					<h:outputText value="#{dip.collectionIdentifier}" />
+				</p:column>
+				<p:column headerText="Label">
+					<h:outputText value="#{dip.collectionLabel}" />
+				</p:column>
+				<p:column headerText="State">
+					<h:graphicImage value="#{sessionBean.getStatusIcon(dip)}"/>
+				</p:column>
+				<p:column>
+					<p:commandButton value="View" action="#{sessionBean.disseminationListPage.actionGotoDIPPage}"/>
+					
+					<p:commandButton 
+						value="Delete" 
+						title="Delete"
+						action="#{sessionBean.disseminationListPage.actionDeleteDIP}"
+						update="dipListForm:dipListPage msgForm:msg"
+						rendered="#{!sessionBean.guestUser}">
+						<p:confirm header="Confirmation" message="Are you sure, you want to delete this SIP. The SIP will be deleted recursively?" icon="ui-icon-alert"/>
+					</p:commandButton>
+						
+				</p:column>
+			</p:dataTable>
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

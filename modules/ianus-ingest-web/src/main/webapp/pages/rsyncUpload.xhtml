@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:outputScript target="body">
+			function expandTree(widgetVar){}
+			function collapseTree(widgetVar){}
+		</h:outputScript>
+		
+		<c:set var="isWaiting" value="#{true}" />
+	
+	
+		<h:form id="filesForm">
+			<h:panelGrid id="rsyncUploadPage" columns="1" styleClass="pagePanel filesPanel">
+				
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Rsync Upload" />
+				</h:panelGrid>
+	
+				<h:panelGrid styleClass="mainControlPanel">
+					<h:panelGrid>
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.rsyncUploadPage.gotoIPPage}"/>
+					</h:panelGrid>	
+					<h:panelGrid columns="2">
+						<h:outputText value="IP id"/>
+						<h:outputText value="#{sessionBean.rsyncUploadPage.ip.id}"/>
+						
+						<h:outputText value="IP prefix"/>
+						<h:outputText value="#{sessionBean.rsyncUploadPage.ip.prefix}"/>
+						
+						<h:outputText value="Location absolute path"/>
+						<h:outputText value="#{sessionBean.rsyncUploadPage.ip.location.absolutePath}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				
+				<p:panelGrid id="filesContent" columns="2" styleClass="filesPanel">
+					
+					<p:scrollPanel style="width:400px;height:400px">
+						<p:tree  id="tree"
+							widgetVar="fileTree"
+							value="#{sessionBean.rsyncUploadPage.root}" var="fileNode"
+							selectionMode="single"
+			                dynamic="true"
+			                styleClass="filesTreePanel"
+			                draggable="false" droppable="false">
+			                
+			                <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+			        			<p:commandLink actionListener="#{sessionBean.rsyncUploadPage.listenerSelectFile}" 
+			        				update="filesForm:metadataPanel msgForm:msg">
+									<h:outputText value="#{fileNode.label}" styleClass="treeFileNode"/>
+								</p:commandLink>
+			        		</p:treeNode>
+			        		
+			        		<p:treeNode type="document" icon="ui-icon-document">
+								<h:outputText value="#{fileNode.label}" styleClass="treeFileNode"/>
+							</p:treeNode>
+							
+						</p:tree>
+					</p:scrollPanel>
+					
+					
+					<p:panelGrid columns="1">
+						
+						<p:panelGrid columns="3" id="metadataPanel">
+							<f:facet name="header">
+								<p:row>
+									<p:column colspan="2">Open Rsync Uploads</p:column>
+								</p:row>
+							</f:facet>
+							
+							<h:outputLabel value="Target Path"/>
+							<h:outputLabel value="#{sessionBean.rsyncUploadPage.path}"/>
+							
+							<h:commandButton value="Start new Rsync Upload" 
+								actionListener="#{sessionBean.rsyncUploadPage.listenerStartRsyncUpload}"
+								update="filesForm:metadataPanel msgForm:msg"
+								rendered="#{sessionBean.rsyncUploadPage.notEmptyPath}"/>
+						</p:panelGrid>
+						
+						<p:dataTable  id="uploadList"
+								var="upload"
+								value="#{sessionBean.rsyncUploadPage.uploadList}"
+								sortBy="#{upload.id}">
+							
+							<p:column headerText="Created / Modified" class="long-string">
+						        <h:outputText value="#{upload.creationTime}" /><br/><br/>
+						        <h:outputText value="#{upload.lastChange}" />
+						    </p:column>
+						    <p:column headerText="Target" class="long-string">
+						        <h:outputText value="#{upload.target}" />
+						    </p:column>
+						    <p:column headerText="User" class="long-string">
+						        <h:outputText value="#{upload.userName}" />
+						    </p:column>
+						    
+						    <p:column headerText="Status" class="long-string" >
+						    	<h:outputText value="#{upload.statusInfo}" escape="false" />
+						    	<p:poll interval="2" 
+						    		listener="#{upload.getStatusInfo}"
+						    		update="uploadList"
+						    		rendered="#{upload.status == 'virus_scan'}"
+						    		stop="#{upload.status != 'virus_scan'}" />
+						    </p:column>
+						    
+						    <p:column headerText="Log" style="width:30px;">
+						    	<h:outputLink target="_blank"
+						    		value="#{sessionBean.appBean.contextRoot}/rest/retrieve/tp/#{sessionBean.rsyncUploadPage.ip.id}/logs/#{upload.virusLogFileName}">
+									<h:graphicImage value="#{sessionBean.appBean.imgDisplay}"/>
+								</h:outputLink>  
+						    </p:column>
+						    
+						    <p:column headerText="Actions">
+						    	<p:commandButton value="scan" 
+					    			update="uploadList" 
+					    			actionListener="#{sessionBean.rsyncUploadPage.listenerStartVirusScan}" 
+					    			styleClass="ui-priority-primary" 
+					    			title="Click here after your rsync upload has finished."
+					    			rendered="#{upload.status == 'waiting'}"/>
+					    		<p:commandButton value="reset"
+					    			update="uploadList" 
+					    			actionListener="#{sessionBean.rsyncUploadPage.listenerReopen}" 
+					    			styleClass="ui-priority-primary" 
+					    			title="Click here if the virus scan crashed."
+					    			rendered="#{upload.status == 'virus_scan'}"/>
+						    	<p:commandButton value="reopen"
+					    			update="uploadList" 
+					    			actionListener="#{sessionBean.rsyncUploadPage.listenerReopen}" 
+					    			styleClass="ui-priority-primary" 
+					    			title="Click here after your rsync upload has finished."
+					    			rendered="#{upload.status == 'scan_ok' || upload_status == 'scan_errors'}"/>
+						    	<p:commandButton value="close" 
+					    			update="uploadList" 
+					    			actionListener="#{sessionBean.rsyncUploadPage.listenerCloseRsyncUpload}" 
+					    			styleClass="ui-priority-primary" 
+					    			rendered="#{upload.status == 'scan_ok' || upload_status == 'scan_errors'}"/>
+						    </p:column>
+						    <p:summaryRow>
+					            <p:column colspan="6" class="long-string">
+				                	<h:outputText value="rsync -rct --progress  /src/path #{sessionBean.rsyncUploadPage.remotePath}"/>
+				                </p:column>
+					        </p:summaryRow>
+					        
+						</p:dataTable>
+						<h:panelGrid columns="1" styleClass="mainControlPanel">
+							<h:outputText value="Virus Scan limitations: ClamAV has problems scanning archives (.zip/rar/tar/gz/...) in the uploaded data. Make sure you manually checked existing archive files locally, using a tool other than ClamAV!" />
+						</h:panelGrid>
+					</p:panelGrid>
+					
+				</p:panelGrid>
+				
+				
+				
+			</h:panelGrid>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

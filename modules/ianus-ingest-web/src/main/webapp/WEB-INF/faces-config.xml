@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+	<lifecycle>
+		<phase-listener>de.ianus.ingest.web.jsf.PhaseTracker</phase-listener>
+	</lifecycle>
+	
+	<navigation-rule>
+    	<display-name>*</display-name>
+    	<from-view-id>*</from-view-id>
+    	<navigation-case>
+    		<from-outcome>action</from-outcome>
+    		<to-view-id>/pages/action.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>conversionPlan</from-outcome>
+    		<to-view-id>/pages/conversionPlan.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>archival</from-outcome>
+    		<to-view-id>/pages/archival.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>dissemination</from-outcome>
+    		<to-view-id>/pages/dissemination.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>archivalList</from-outcome>
+    		<to-view-id>/pages/archivalList.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>memoryUsage</from-outcome>
+    		<to-view-id>/pages/memoryUsage.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>collectionId</from-outcome>
+    		<to-view-id>/pages/collectionId.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>actorLogo</from-outcome>
+    		<to-view-id>/pages/actorLogo.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>assetUpload</from-outcome>
+    		<to-view-id>/pages/assetUpload.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>overviewDC</from-outcome>
+    		<to-view-id>/pages/overviewDC.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>preIngestReport</from-outcome>
+    		<to-view-id>/pages/preIngestReport.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>time</from-outcome>
+    		<to-view-id>/pages/metadata/time.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>relatedResource</from-outcome>
+    		<to-view-id>/pages/metadata/relatedResource.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>initialMD</from-outcome>
+    		<to-view-id>/pages/metadata/initialMD.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>storage</from-outcome>
+    		<to-view-id>/pages/storage.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>reference</from-outcome>
+    		<to-view-id>/pages/metadata/reference.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>publication</from-outcome>
+    		<to-view-id>/pages/metadata/publication.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>collectionFile</from-outcome>
+    		<to-view-id>/pages/metadata/collectionFile.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>place</from-outcome>
+    		<to-view-id>/pages/metadata/place.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>dataCollection</from-outcome>
+    		<to-view-id>/pages/metadata/dataCollection.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>metadataEditor</from-outcome>
+    		<to-view-id>/pages/metadataEditor.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+        <navigation-case>
+            <from-outcome>transfer</from-outcome>
+            <to-view-id>/pages/transfer.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>userManager</from-outcome>
+            <to-view-id>/pages/userManager.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/pages/admin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>submission</from-outcome>
+            <to-view-id>/pages/submission.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    	<navigation-case>
+    		<from-outcome>files</from-outcome>
+    		<to-view-id>/pages/files.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>simpleUpload</from-outcome>
+    		<to-view-id>/pages/simpleUpload.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>rsyncUpload</from-outcome>
+    		<to-view-id>/pages/rsyncUpload.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>transferList</from-outcome>
+    		<to-view-id>/pages/transferList.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>upload</from-outcome>
+    		<to-view-id>/pages/upload.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>submissionList</from-outcome>
+    		<to-view-id>/pages/submissionList.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>disseminationList</from-outcome>
+    		<to-view-id>/pages/disseminationList.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>activityOutput</from-outcome>
+    		<to-view-id>/pages/activityOutput.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    	<navigation-case>
+    		<from-outcome>actor</from-outcome>
+    		<to-view-id>/pages/metadata/actor.xhtml</to-view-id>
+    		<redirect />
+    	</navigation-case>
+    </navigation-rule>    
+    
+	<managed-bean>
+    	<managed-bean-name>sessionBean</managed-bean-name>
+        <managed-bean-class>de.ianus.ingest.web.SessionBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+     
+
+</faces-config>

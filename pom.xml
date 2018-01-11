@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.ianus</groupId>
+  <artifactId>ianus.core</artifactId>
+  <packaging>pom</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>ianus</name>
+  
+  <properties>
+	<maven.compiler.source>1.8</maven.compiler.source>
+   	<maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <modules>
+    <module>modules/ianus-ingest-core</module>
+    <module>modules/ianus-ingest-web</module>
+    <module>modules/ianus-metadata</module>
+    <module>modules/ianus-access</module>
+  </modules>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Various information, not used by the build -->
+  <url>http://www.ianus-fdz.de/</url>
+  <organization>
+    <name>http://www.dainst.org</name>
+    <url>http://www.ianus-fdz.de/</url>
+  </organization>
+  <developers>
+    <developer>
+      <name>Jorge Urzua</name>
+      <organization>http://www.dainst.org</organization>
+    <url>http://www.ianus-fdz.de/</url>
+    </developer>
+    <developer>
+      <name>Karel Macha</name>
+      <organization>http://www.dainst.org</organization>
+    <url>http://www.ianus-fdz.de/</url>
+    </developer>
+    <developer>
+      <name>Zoe Schubert</name>
+      <organization>http://www.dainst.org</organization>
+      <url>http://www.ianus-fdz.de/</url>
+    </developer>
+    <developer>
+      <name>Hendrik Schmeer</name>
+      <organization>http://www.dainst.org</organization>
+      <url>http://www.ianus-fdz.de/</url>
+    </developer>
+  </developers>
+</project>

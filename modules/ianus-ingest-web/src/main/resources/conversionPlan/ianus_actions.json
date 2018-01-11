@@ -1,0 +1,369 @@
+[
+	
+	{name="pdf_TO_pdf/A-2a", actor="system", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="ghostscript (S)", url="https://www.ghostscript.com/", params=""},
+				{name="Apache PDFbox (S)", url=" https://pdfbox.apache.org/", params=""}	
+			]
+		]
+	},
+	{name="pdf/A-3_TO_pdf/A-2a", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="callas (K)", url="https://www.callassoftware.com/en", params=""},
+				{name="Adobe Acrobat Pro (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="odt_TO_pdf/A-2a", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Writer (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="docx_TO_pdf/A-2a", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="Adobe Acrobat Pro (K)", url="", params=""},
+				{name="Microsoft Word (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="doc_TO_docx", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="Microsoft Word (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="doc_TO_pdf/A-2a", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="Adobe Acrobat Pro (K)", url="", params=""},
+				{name="Microsoft Word (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="rtf_TO_docx	", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Writer (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="rtf_TO_pdf/A-2a", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Writer (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="sxw_TO_odt", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Writer (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="sxw_TO_pdf/A-2a", actor="curator", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Writer (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="txt_encoding", actor="system", scope="SIP-AIP", description="Encoding von TXT-Dateien wird zu UTF-8 geändert", 
+		software=[
+			[
+				{name="iconv command (S)", url="", params=""}
+			]	
+		]
+	},
+	{name="tif_uncompress", actor="system", scope="SIP-AIP", description="Komprimierte TIF-Dateien werden als unkomprimierte TIF-Dateien gespeichert", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params=""}
+			]	
+		]
+	},
+	{name="tif_TO_jpg", actor="system", scope="SIP-DIP", description="Erzeugt mehrere JPG-Dateien aus TIF-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params="festgelegte Zielgrößen der JPG-Dateien"}
+			]	
+		]
+	},
+	{name="tif_TO_png", actor="system", scope="SIP-DIP", description="Erzeugt mehrere PNG-Dateien aus TIF-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params="festgelegte Zielgrößen der JPG-Dateien"}
+			]	
+		]
+	},
+	{name="tif_TO_zip", actor="system", scope="SIP-DIP", description="Komprimiert TIF-Dateien in ZIP-Dateien, insbesondere für die Bereitstellung von GeoTiff-Dateien notwendig", 
+		software=[
+			[
+				{name="7zip (S)", url="", params=""}
+			]	
+		]
+	},
+	{name="dng_TO_jpg", actor="system", scope="SIP-DIP", description="Erzeugt mehrere JPG-Dateien aus DNG-Dateien", 
+		software=[
+			[
+				{name="Adobe DNG Converter (S)", url="http://supportdownloads.adobe.com/product.jsp", params="festgelegte Zielgrößen der JPG-Dateien"}
+			]	
+		]
+	},
+	{name="png_TO_tif", actor="system", scope="SIP-AIP", description="Erzeugt unkomprimierte TIF-Dateien aus PNG-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params=""}
+			]	
+		]
+	},
+	{name="jpg_TO_tif", actor="system", scope="SIP-AIP", description="Erzeugt unkomprimierte TIF-Dateien aus JPG-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params=""}
+			]	
+		]
+	},
+	{name="gif_TO_tif", actor="system", scope="SIP-AIP", description="Erzeugt unkomprimierte TIF-Dateien aus GIF-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params=""}
+			]	
+		]
+	},
+	{name="bmp_TO_tif", actor="system", scope="SIP-AIP", description="Erzeugt unkomprimierte TIF-Dateien aus BMP-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params=""}
+			]	
+		]
+	},
+	{name="psd_TO_tif", actor="system", scope="SIP-AIP", description="Erzeugt unkomprimierte TIF-Dateien aus PSD-Dateien", 
+		software=[
+			[
+				{name="ImageMagick (S)", url="http://www.imagemagick.org/script/index.php", params=""}
+			]	
+		]
+	},
+	{name="raw_TO_dng", actor="system", scope="SIP-AIP", description="Erzeugt eine DNG-Datei aus verschiedenen Image-Raw-Dateien", 
+		software=[
+			[
+				{name="Adobe DNG Converter (S)", url="http://supportdownloads.adobe.com/product.jsp", params=""}
+			]	
+		]
+	},
+	{name="svg_uncompress", actor="curator", scope="SIP-AIP", description="Komprimierte SVG-Dateien werden als unkomprimierte SVG-Dateien gespeichert", 
+		software=[
+			[
+				{name="svg optimizer (K)", url="https://github.com/svg/svgo", params=""},
+				{name="inkscape (K)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="svg1.0_TO_svg1.1", actor="curator", scope="SIP-AIP", description="Erzeugt unkomprimierte SVG-Dateien (Version 1.1) aus SVG-Dateien (ältere Versionen)", 
+		software=[
+			[
+				{name="svg optimizer (K)", url="https://github.com/svg/svgo", params=""},
+				{name="inkscape (K)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="svg_TO_pdf/A2-a", actor="system", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus SVG-Dateien", 
+		software=[
+			[
+				{name="inkscape (S)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="cgm_TO_svg1.1", actor="curator", scope="SIP-AIP", description="Erzeugt unkomprimierte SVG-Dateien (Verion 1.1) aus CGM-Dateien", 
+		software=[
+			[
+				{name="svg optimizer (K)", url="https://github.com/svg/svgo", params=""},
+				{name="inkscape (K)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="cgm_TO_pdf/A2-a", actor="system", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus CGM-Dateien", 
+		software=[
+			[
+				{name="inkscape (S)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="dxf_TO_dxf2010", actor="curator", scope="SIP-AIP", description="Erzeugt eine DXF-Datei (Version 2010-2012) aus DXF-Dateien (in anderen Versionen)", 
+		software=[
+			[
+				{name="AutoCAD (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="dwg_TO_dwg2010", actor="curator", scope="SIP-AIP", description="Erzeugt eine DWG-Datei (Version 2010-2012) aus DWG-Dateien (in anderen Versionen)", 
+		software=[
+			[
+				{name="AutoCAD (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="dxf_TO_dwg2010", actor="curator", scope="SIP-AIP", description="Erzeugt eine DXF-Datei (Version 2010-2012) aus einer DWG", 
+		software=[
+			[
+				{name="AutoCAD (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="dwg_TO_dxf2010", actor="curator", scope="SIP-AIP", description="Erzeugt eine DWG-Datei (Version 2010-2012) aus einer DXF", 
+		software=[
+			[
+				{name="AutoCAD (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="dxf_TO_PDF/A2-a", actor="curator", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus DXF-Dateien", 
+		software=[
+			[
+				{name="AutoCAD (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="dwg_TO_PDF/A2-a", actor="curator", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus DWG-Dateien", 
+		software=[
+			[
+				{name="AutoCAD (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="ps_TO_svg1.1", actor="curator", scope="SIP-AIP", description="Erzeugt unkomprimierte SVG-Dateien (Version 1.1) aus PS- und EPS-Dateien", 
+		software=[
+			[
+				{name="inkscape (S)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="ps_TO_pdf/A2-a", actor="curator", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus PS- und EPS-Dateien", 
+		software=[
+			[
+				{name="inkscape (S)", url="https://inkscape.org/de/", params=""}
+			]	
+		]
+	},
+	{name="ai_TO_svg1.1", actor="curator", scope="SIP-AIP", description="Erzeugt unkomprimierte SVG-Dateien (Version 1.1) aus AI-Dateien", 
+		software=[
+			[
+				{name="Adobe Illustrator (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="ai_TO_pdf/A2-a", actor="curator", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus AI-Dateien", 
+		software=[
+			[
+				{name="Adobe Illustrator (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="indd_TO_svg1.1", actor="curator", scope="SIP-AIP", description="Erzeugt unkomprimierte SVG-Dateien (Version 1.1) aus INDD-Dateien", 
+		software=[
+			[
+				{name="Adobe InDesign (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="indd_TO_pdf/A2-a", actor="curator", scope="SIP-AIP", description="Erzeugt eine PDF/A-2-Datei aus INDD-Dateien", 
+		software=[
+			[
+				{name="Adobe InDesign (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="csv_TO_xlsx", actor="system", scope="SIP-DIP", description="Tranformiert CSV-Dateien in XLSX-Dateien", 
+		software=[
+			[
+				{name="csvkit 1.0.3 (S)", url="http://csvkit.readthedocs.io/en/latest/index.html", params=""}
+			]	
+		]
+	},
+	{name="tsc_TO_csv", actor="curator", scope="SIP-AIP", description="Tranformiert TSV-Dateien in CSV-Dateien", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Calculator (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="sxc_TO_ods", actor="curator", scope="SIP-AIP", description="Erzeugt eine ODS-Datei aus SXC-Dateien", 
+		software=[
+			[
+				{name="OpenOffice / LibreOffice Calculator (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="xls_TO_xlsx", actor="curator", scope="SIP-AIP", description="Erzeugt eine XLSX-Datei aus XLS-Dateien", 
+		software=[
+			[
+				{name="Microsoft Office Excel (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="mdb_TO_siard", actor="curator", scope="SIP-AIP", description="Erzeugt eine SIARD-Datei aus MDB und ACCDB-Dateien", 
+		software=[
+			[
+				{name="Siard Suite (K)", url="https://www.bar.admin.ch/bar/de/home/archivierung/tools---hilfsmittel/siard-suite.html", params=""}
+			]	
+		]
+	},
+	{name="fmp_TO_sql", actor="curator", scope="SIP-AIP", description="Export von FMP-Inhalten nach SQL", 
+		software=[
+			[
+				{name="FileMaker Pro Advanced (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="fmp_TO_xml", actor="curator", scope="SIP-AIP", description="Export von FMP-Inhalten nach XML", 
+		software=[
+			[
+				{name="FileMaker Pro Advanced (K)", url="", params=""}
+			]	
+		]
+	},
+	{name="dbf_TO_siard", actor="curator", scope="SIP-AIP", description="Import von DXF-Dateien in Access zur Erstellung von MDB-Dateien, die dann zu SIARD-Dateien weiterverarbeitet werden.", 
+		software=[
+			[
+				{name="Microsoft Office Access (K) --> Siard Suite (K)", url="https://www.bar.admin.ch/bar/de/home/archivierung/tools---hilfsmittel/siard-suite.html", params=""}
+			]	
+		]
+	},
+	{name="odb_TO_siard", actor="curator", scope="SIP-AIP", description="Import von ODB-Dateien in Access zur Erstellung von MDB-Dateien, die dann zu SIARD-Dateien weiterverarbeitet werden.", 
+		software=[
+			[
+				{name="OpenOffice Base (K) --> Siard Suite (K)", url="https://www.bar.admin.ch/bar/de/home/archivierung/tools---hilfsmittel/siard-suite.html", params=""}
+			]	
+		]
+	},
+	{name="generate_DB-report", actor="curator", scope="SIP-AIP", description="mit MS Acces und FileMakerPro Advanced können automatisch Dokumentationen zur Struktur von Datenbanken erzeugt werden und diese als PDF-Dateien und/oder XML-Dateien gespeichert werden", 
+		software=[
+			[
+				{name="Microsoft Office Access (K): Database Documentation feature", url="", params=""},
+				{name="FileMaker Pro Advanced (K): Datenbank Bericht", url="", params=""}
+			]	
+		]
+	},
+	{name="change_codec", actor="system", scope="SIP-AIP", description="Ändert den Codec einer MKV-Datei zu Codec FFV1", 
+		software=[
+			[
+				{name="FFmpeg (S)", url="https://ffmpeg.org/, https://avpres.net/FFmpeg/im_MKV.html", params=""}
+			]	
+		]
+	},
+	{name="compress_mkv", actor="system", scope="SIP-AIP", description="", 
+		software=[
+			[
+				{name="FFmpeg (S)", url="https://ffmpeg.org/, https://avpres.net/FFmpeg/im_MKV.html", params=""}
+			]	
+		]
+	}
+
+]

@@ -1,0 +1,25 @@
+/*Back to top Link*/
+#top-link a{
+    cursor: pointer;
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}
+
+#top-link {
+    z-index: 10;
+    display: block;
+    color: $dark-blue;
+    font-weight: bold;
+    font-size: 2.0em;
+    background-color: $white;
+    border-radius: 3px;
+    bottom: 8%;
+    right: 0.5%;
+    -moz-box-shadow: 3px 1px 5px $shadow-gray;
+    -webkit-box-shadow: 3px 2px 5px $shadow-gray;
+    box-shadow: 3px 1px 5px $shadow-gray;
+    padding: 3px 10px 10px;
+    position: fixed;
+    text-align: center;
+}

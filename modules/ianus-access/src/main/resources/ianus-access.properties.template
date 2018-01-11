@@ -1,0 +1,20 @@
+## Test & Development ##
+
+home.url=http://localhost:8080/ianus-access
+#home.url=http://ianus-testing.dainst.de:8080/ianus-access
+debug.mode=true
+document.root=/home/hendrik/IANUSworkspace/ianus.core/modules/ianus-access/target/ianus-access
+
+
+
+## Production Configuration ##
+
+#home.url=http://195.37.32.7
+#debug.mode=false
+#document.root=/var/lib/tomcat8/webapps/ROOT
+
+
+
+
+
+content.path=/data/ianus-storage

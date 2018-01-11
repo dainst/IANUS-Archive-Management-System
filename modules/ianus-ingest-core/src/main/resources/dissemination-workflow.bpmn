@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="Definitions_1" exporter="camunda modeler" exporterVersion="2.7.1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="dissemination-workflow" name="dissemination-workflow" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1" name="" sourceRef="StartEvent_1" targetRef="MS_create_DIP"/>
+    <bpmn:serviceTask id="MS_create_DIP" camunda:class="de.ianus.ingest.core.processEngine.ms.MSCreateInitialDIP" name="Create initial DIP">
+      <bpmn:incoming>SequenceFlow_1</bpmn:incoming>
+      <bpmn:outgoing>sf_create_dip_ok</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="sf_create_dip_ok" name="createDIP_AIP_ok" sourceRef="MS_create_DIP" targetRef="ServiceTask_1"/>
+    <bpmn:endEvent id="EndEvent_1">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="de.ianus.ingest.core.processEngine.execution.IngestEndEvent" event="end"/>
+      </bpmn:extensionElements>
+      <bpmn:incoming>createThumbs_ok</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="ServiceTask_1" camunda:class="de.ianus.ingest.core.processEngine.ms.MSCreateWebDerivatives" name="Create web derivates">
+      <bpmn:incoming>sf_create_dip_ok</bpmn:incoming>
+      <bpmn:outgoing>createThumbs_ok</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="createThumbs_ok" name="createThumbs_ok" sourceRef="ServiceTask_1" targetRef="EndEvent_1"/>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="dissemination-workflow">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_4" bpmnElement="StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="120.0" y="235.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="138.0" y="276.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_EndEvent_3" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="732.0" y="235.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="0.0" width="0.0" x="750.0" y="276.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_ServiceTask_42" bpmnElement="ServiceTask_1">
+        <dc:Bounds height="80.0" width="100.0" x="480.0" y="213.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_StartEvent_4" targetElement="_BPMNShape_ServiceTask_43">
+        <di:waypoint xsi:type="dc:Point" x="156.0" y="253.0"/>
+        <di:waypoint xsi:type="dc:Point" x="216.0" y="253.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="6.0" width="6.0" x="211.0" y="253.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="createThumbs_ok" sourceElement="_BPMNShape_ServiceTask_42" targetElement="_BPMNShape_EndEvent_3">
+        <di:waypoint xsi:type="dc:Point" x="580.0" y="253.0"/>
+        <di:waypoint xsi:type="dc:Point" x="732.0" y="253.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="21.0" width="110.0" x="600.0" y="253.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_ServiceTask_43" bpmnElement="MS_create_DIP">
+        <dc:Bounds height="80.0" width="100.0" x="216.0" y="213.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="sf_create_dip_ok" sourceElement="_BPMNShape_ServiceTask_43" targetElement="_BPMNShape_ServiceTask_42">
+        <di:waypoint xsi:type="dc:Point" x="316.0" y="253.0"/>
+        <di:waypoint xsi:type="dc:Point" x="480.0" y="253.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="21.0" width="114.0" x="336.0" y="253.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

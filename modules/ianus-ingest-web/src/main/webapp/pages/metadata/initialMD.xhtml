@@ -1,0 +1,628 @@
+<!-- 
+ ##Initial Metadata form in transfer-workflow
+
+
+	### Summary
+	This page gives the user the opportunity to add or edit initial metadata for an existing datacollection. 
+	The user needs to fill out all fields (mandatory) to submit the form to a curator. 
+	The form is available in english or german. Therefore the labels can change their values (values in InitialMDLabels.properties).
+	The functionality is implemented in "InitialMDPage.java".	 
+
+   ### Elements
+	Metadata form:	Primefaces selectOneButton - select language, 
+				 	inputLabel - title, 
+				 	Primefaces dataTable - show references,
+				 	Primefaces fieldset - add references,
+				 	inputTextarea - summary,
+				 	Primefaces dataTable - show disciplines,
+				 	Primefaces selectOneMenu - add disciplines,
+				 	Primefaces dataTable - show fileformats,
+				 	Primefaces selectOneMenu - add fielformats,
+				 	Primefaces dataTable - show contact person,
+				 	Primefaces commandButton - add contact person	
+				 	 
+   ### JS
+	JS used for toggle functionality at multiple adding of elements
+
+   ### Links
+	Camunda: transfer-workflow.bpmn
+	Confluence: http://confluence:8090/display/IAN/Transfer+Process+Definition 
+	Mockup: https://ianus.mybalsamiq.com/projects/objectview/1_Dateneingabeformular_Startseite
+
+ 	@author jurzua
+	@author zoes
+    @see    InitialMDPage.java
+    @see    InitialMDLabels.properties
+
+-->
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	<f:loadBundle basename="initialMDLabels" var="bundle" />
+	
+
+
+<!-- getting the JavaScripts for toggle functionality -->
+		<h:outputScript target="body" name="js/initialMD.js" />
+
+
+		
+<!-- the frame or page panel of the initial MD form -->
+		<h:form id="initialMDForm">
+			<h:panelGrid columns="1" styleClass="pagePanel">
+	
+	
+	<!-- The headline -->		
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="#{sessionBean.initialMDPage.getText('headline')}" />
+				</h:panelGrid>
+				
+				
+	<!-- The main control panel -->							
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					
+				
+					<!-- The button to go back to the DC -->											
+					<h:panelGrid>
+						<p:commandButton value="#{sessionBean.initialMDPage.getText('backButton')}"
+							action="#{sessionBean.initialMDPage.gotoIPPage}" 
+							rendered="#{!sessionBean.guestUser}"/>
+					</h:panelGrid>	
+					<h:panelGrid columns="2">
+						<!-- commandButton for saving the whole form -->					
+						<p:commandButton
+							id="saveDatacollectionBtn" 
+							value="#{sessionBean.initialMDPage.getText('save')}"
+							action="#{sessionBean.initialMDPage.actionSave}" 
+							rendered="#{!sessionBean.guestUser}"/>
+						<p:commandButton value="#{sessionBean.initialMDPage.getText('cancel')}"
+							action="#{sessionBean.initialMDPage.actionCancel}" 
+							rendered="#{!sessionBean.guestUser}"/>
+					</h:panelGrid>
+					
+					
+
+	<!-- The introduction and explanation -->
+					<h:panelGrid columns="1">
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('introductionHeadline')}" />
+						<h:outputText value="#{sessionBean.initialMDPage.getText('introductionText')}" />
+					</h:panelGrid>
+					
+					
+					
+	<!-- Here starts the section for user input -->
+					<h:panelGrid columns="2" columnClasses="initialMDFirstColumn,initialMDSecondColumn">
+					
+					
+					
+		<!-- selectOneButton for choosing the language -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('language')}" />
+						<!-- 
+						<p:selectOneButton required="true"
+							value="#{sessionBean.initialMDPage.currentLanguage}"
+							onchange="submit()"
+							valueChangeListener="#{sessionBean.initialMDPage.listenerSetLanguage}">
+							<f:selectItem itemLabel="Deutsch" itemValue="deu" />
+							<f:selectItem itemLabel="English" itemValue="eng" />
+						</p:selectOneButton>
+						 -->
+						 <!--  -->
+						<p:selectOneButton required="true"
+							value="#{sessionBean.initialMDPage.currentLanguage}" onchange="$( '#initialMDForm' ).submit();"
+								valueChangeListener="#{sessionBean.initialMDPage.listenerSetLanguage}">
+							<f:selectItem itemLabel="Deutsch" itemValue="deu" />
+							<f:selectItem itemLabel="English" itemValue="eng" />
+						</p:selectOneButton>
+						
+									
+		<!-- inputText field for title -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('title')}" style="color:#{sessionBean.initialMDPage.getValidationColor('title')};"/>
+						<h:panelGrid columns="1" id="title">
+							<h:inputText
+								value="#{sessionBean.initialMDPage.titleEng.value}" rendered="#{sessionBean.initialMDPage.currentLanguageEnglish}" size="150"/>
+							<h:inputText
+								value="#{sessionBean.initialMDPage.titleGer.value}" rendered="#{sessionBean.initialMDPage.currentLanguageGerman}" size="150"/>
+						</h:panelGrid>
+
+
+
+		<!-- inputTextarea for adding and editing the summary -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('summary')}" style="color:#{sessionBean.initialMDPage.getValidationColor('summary')};"/>
+						<h:panelGrid columns="1">
+							<h:inputTextarea
+								value="#{sessionBean.initialMDPage.summaryEng.value}" rendered="#{sessionBean.initialMDPage.currentLanguageEnglish}" cols="150" rows="10"/>
+							<h:inputTextarea
+								value="#{sessionBean.initialMDPage.summaryGer.value}" rendered="#{sessionBean.initialMDPage.currentLanguageGerman}" cols="150" rows="10"/>
+						</h:panelGrid>
+						
+
+
+			<!-- section for main disciplines -->	
+							<h:outputLabel value="#{sessionBean.initialMDPage.getText('discipline')}" style="color:#{sessionBean.initialMDPage.getValidationColor('mainDiscipline')};"/>
+							<p:selectManyCheckbox id="mainDisciplineGrid" value="#{sessionBean.initialMDPage.mainDisciplineCheckbox.idList}" layout="grid" columns="2">
+								<f:selectItems value="#{sessionBean.initialMDPage.mainDisciplineSuggestionList}"/>
+	    					</p:selectManyCheckbox>
+						
+							
+							
+							
+							
+			<!-- section for sub  disciplines -->	
+							<h:outputLabel value="#{sessionBean.initialMDPage.getText('disciplineDetail')}" style="color:#{sessionBean.initialMDPage.getValidationColor('subDiscipline')};"/>
+							<p:selectManyCheckbox id="subDisciplineGrid" value="#{sessionBean.initialMDPage.subDisciplineCheckbox.idList}" layout="grid" columns="4">
+								<f:selectItems value="#{sessionBean.initialMDPage.subDisciplineSuggestionList}"/>
+	    					</p:selectManyCheckbox>		
+
+
+
+			<!-- section for classification -->
+							<h:outputLabel value="#{sessionBean.initialMDPage.getText('classification')}" style="color:#{sessionBean.initialMDPage.getValidationColor('classification')};"/>
+							<p:selectManyCheckbox id="classificationGrid" value="#{sessionBean.initialMDPage.classificationCheckbox.idList}" layout="grid" columns="4">
+								<f:selectItems value="#{sessionBean.initialMDPage.classificationSuggestionList}"/>
+	    					</p:selectManyCheckbox>	
+
+
+
+			<!-- section for data categories -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('dataCategory')}" style="color:#{sessionBean.initialMDPage.getValidationColor('dataCategory')};"/>
+						<h:panelGrid columns="1">
+						   	<p:selectManyCheckbox id="grid" value="#{sessionBean.initialMDPage.dataCategoryCheckbox.idList}" layout="grid" columns="4">
+								<f:selectItems value="#{sessionBean.initialMDPage.dataCategorySuggestionList}"/>
+	    					</p:selectManyCheckbox>
+						</h:panelGrid>
+
+
+
+			<!-- section for references -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('reference')}" style="color:#{sessionBean.initialMDPage.getValidationColor('externalId')};" />
+						<h:panelGrid columns="1" id="reference">
+						
+						
+				<!-- dataTable showing the references (only rendered, if references exist) -->
+							<p:dataTable
+								value="#{sessionBean.initialMDPage.dc.externalIdList}"
+								var="externalId"
+								rendered="#{!empty sessionBean.initialMDPage.dc.externalIdList}">
+								
+								<p:column headerText="#{sessionBean.initialMDPage.getText('type')}">
+									<h:outputText value="#{externalId.type}" />
+								</p:column>
+								
+								<p:column headerText="#{sessionBean.initialMDPage.getText('institution')}">
+									<h:outputText value="#{externalId.institution}" />
+								</p:column>
+								
+								<p:column headerText="#{sessionBean.initialMDPage.getText('value')}">
+									<h:outputText value="#{externalId.value}" />
+								</p:column>
+								
+								<p:column headerText="#{sessionBean.initialMDPage.getText('uri')}">
+									<h:outputText value="#{externalId.uri}" />
+								</p:column>
+								
+					<!-- commandButton: delete references-->
+								<p:column>
+									<p:commandButton value="#{sessionBean.initialMDPage.getText('delete')}"
+										actionListener="#{sessionBean.initialMDPage.actionDeleteExternalId}"
+										update="initialMDForm msgForm:msg" />
+								</p:column>
+								
+							</p:dataTable>
+							
+							
+				<!-- fieldset  for adding new references, toggleable-->
+							<p:fieldset legend="#{sessionBean.initialMDPage.getText('addReference')}" toggleable="true"
+								toggleSpeed="500"
+								collapsed="#{!empty sessionBean.initialMDPage.dc.externalIdList and empty sessionBean.initialMDPage.externalId.value}"
+								widgetVar="addExternalId">
+					
+					<!-- toggled section -->
+								<h:panelGrid columns="5">
+								
+									
+									
+									<h:outputText value="#{sessionBean.initialMDPage.getText('type')}" />
+									
+									<h:outputText value="#{sessionBean.initialMDPage.getText('institution')}" />
+									
+									<h:outputText value="#{sessionBean.initialMDPage.getText('value')}" />
+									
+									<h:outputText value="#{sessionBean.initialMDPage.getText('uri')}" />
+									
+									<h:outputText value="" />
+									
+									<p:selectOneMenu
+										value="#{sessionBean.initialMDPage.externalId.type}">
+										<f:selectItems
+											value="#{sessionBean.appBean.externalIdGerList}" />
+									</p:selectOneMenu>
+									
+									<h:inputText
+										value="#{sessionBean.initialMDPage.externalId.institution}" styleClass="initialMDTextInput"/>
+									
+									<h:inputText
+										value="#{sessionBean.initialMDPage.externalId.value}" />
+										
+									<h:inputText
+										value="#{sessionBean.initialMDPage.externalId.uri}" />
+										
+						<!-- commandButton: save references-->										
+									<p:commandButton value="#{sessionBean.initialMDPage.getText('saveReference')}"
+										action="#{sessionBean.initialMDPage.actionAddExternalId}" />
+										
+						<!-- commandButton: reset references-->						
+									<!-- 														
+									<p:commandButton value="#{sessionBean.initialMDPage.getText('reset')}"
+										actionListener="#{sessionBean.initialMDPage.actionResetExternalId}"
+										update="initialMDForm msgForm:msg"
+										oncomplete="fieldsetCollapse(PF('addExternalId'))" />
+										 -->
+										
+								</h:panelGrid>
+								
+							</p:fieldset>
+							
+						</h:panelGrid>
+
+
+
+						<!-- section for contact person -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('contact')}"  style="color:#{sessionBean.initialMDPage.getValidationColor('contactPerson')};"/>
+						<h:panelGrid columns="1" id="contactPersonTable">
+						
+						
+							<!-- dataTable showing the contact persons (only rendered, if contact persons exist) -->
+							<p:dataTable
+								value="#{sessionBean.initialMDPage.dc.contactPersonList}"
+								var="contactPerson"
+								rendered="#{!empty sessionBean.initialMDPage.dc.contactPersonList}">
+								
+								<p:column headerText="#{sessionBean.initialMDPage.getText('id')}">
+									<h:outputText value="#{contactPerson.id}" />
+								</p:column>
+								
+								<p:column headerText="#{sessionBean.initialMDPage.getText('label')}">
+									<h:outputText value="#{contactPerson.htmlLabel}" escape="false"/>
+								</p:column>
+								
+								<p:column>
+									<!-- commandButton: edit contact person-->																									
+									<p:commandButton 
+										value="#{sessionBean.initialMDPage.getText('edit')}" 
+										actionListener="#{sessionBean.initialMDPage.listenerEditContactPerson}"
+										update="initialMDForm:contactPersonTable initialMDForm:contactPersonEditor msgForm:msg"/>
+										
+									<!-- commandButton: delete contact person-->																
+									<p:commandButton 
+										value="#{sessionBean.initialMDPage.getText('delete')}" 
+										actionListener="#{sessionBean.initialMDPage.listenerDeleteContactPerson}"
+										update="initialMDForm:contactPersonTable initialMDForm:contactPersonEditor msgForm:msg"
+										/>
+								</p:column>
+								
+							</p:dataTable>
+							
+							
+							<!-- fieldset  for adding new contact persons, toggleable-->
+							<p:fieldset id="contactPersonEditor"
+										legend="#{sessionBean.initialMDPage.getText('addPerson')}"
+										toggleable="true" 
+										toggleSpeed="500" 
+										collapsed="#{!empty sessionBean.initialMDPage.dc.contactPersonList}"
+										widgetVar="addContactPerson">
+									<!-- 
+									<p:ajax event="toggle" 
+										listener="#{sessionBean.initialMDPage.toggleResetContactPerson}" 
+										update="initialMDForm:contactPersonEditor msgForm:msg" />
+									 -->
+									<!-- toggled section -->
+									<h:panelGrid columns="2">
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personTitle')}" />
+										<p:selectOneMenu  styleClass="initialMDTextInput"
+											value="#{sessionBean.initialMDPage.contactPerson.title}">
+											<f:selectItems value="#{sessionBean.appBean.personTitleSuggestList}" />
+										</p:selectOneMenu>
+										<h:outputLabel value="#{sessionBean.initialMDPage.getText('personGender')}"/>
+										<p:selectOneMenu value="#{sessionBean.initialMDPage.contactPerson.gender}"  styleClass="initialMDTextInput">
+											<f:selectItems value="#{sessionBean.appBean.genderGerList}" />
+										</p:selectOneMenu>	
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personFirstname')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.firstName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personLastname')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.lastName}"  styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personInstitution')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.institutionName}"  styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personDepartment')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.department}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personUnit')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.workingUnit}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personStreet')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.street}"  styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personPostalCode')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.postalCode}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personCity')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.city}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personCountry')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.country}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personEmail')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.email}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personURL')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.url}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personTelephone')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.contactPerson.telephone}" styleClass="initialMDTextInput"/>
+										<!-- commandButton: save contact person-->																												
+										<p:commandButton value="#{sessionBean.initialMDPage.getText('saveContact')}"
+											update="initialMDForm:contactPersonTable initialMDForm:contactPersonEditor msgForm:msg"
+											actionListener="#{sessionBean.initialMDPage.listenerAddContactPerson}" />
+									</h:panelGrid>
+							</p:fieldset>
+						</h:panelGrid>
+	
+
+
+						<!-- section for principal investigator -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('personInvestigator')}" style="color:#{sessionBean.initialMDPage.getValidationColor('principalInvestigatorPerson')};"/>
+						<h:panelGrid columns="1" id="principalInvestigatorPersonTable">
+						<!-- dataTable showing the principal investigator (only rendered, if principal investigator exist) -->
+							<p:dataTable
+								value="#{sessionBean.initialMDPage.dc.principalInvestigatorList}"
+								var="principalInvestigatorPerson"
+								rendered="#{!empty sessionBean.initialMDPage.dc.principalInvestigatorList}">
+								<p:column headerText="#{sessionBean.initialMDPage.getText('id')}">
+									<h:outputText value="#{principalInvestigatorPerson.id}" />
+								</p:column>
+								<p:column headerText="#{sessionBean.initialMDPage.getText('label')}">
+									<h:outputText value="#{principalInvestigatorPerson.htmlLabel}" escape="false"/>
+								</p:column>
+								<p:column>
+					<!-- commandButton: edit principal investigator -->																									
+									<p:commandButton 
+										value="#{sessionBean.initialMDPage.getText('edit')}" 
+										actionListener="#{sessionBean.initialMDPage.listenerEditPrincipalInvestigatorPerson}"
+										update="initialMDForm:principalInvestigatorPersonTable msgForm:msg"/>
+					<!-- commandButton: delete principal investigator -->																
+									<p:commandButton 
+										value="#{sessionBean.initialMDPage.getText('delete')}" 
+										actionListener="#{sessionBean.initialMDPage.listenerDeletePrincipalInvestigatorPerson}"
+										update="initialMDForm:principalInvestigatorPersonTable msgForm:msg"
+										/>
+								</p:column>
+							</p:dataTable>
+							
+							<!-- fieldset  for adding new principal investigator , toggleable-->
+							<p:fieldset id="principalInvestigatorPersonEditor"
+										legend="#{sessionBean.initialMDPage.getText('addPerson')}"
+										toggleable="true" 
+										toggleSpeed="500" 
+										collapsed="#{!empty sessionBean.initialMDPage.dc.principalInvestigatorList}"
+										widgetVar="addprincipalInvestigatorPerson">
+									<p:ajax event="toggle" 
+										listener="#{sessionBean.initialMDPage.toggleResetprincipalInvestigatorPerson}" 
+										update="initialMDForm:principalInvestigatorPersonTable msgForm:msg" />
+									<!-- toggled section -->
+									<h:panelGrid columns="2">
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personTitle')}" />
+										<p:selectOneMenu  styleClass="initialMDTextInput"
+											value="#{sessionBean.initialMDPage.principalInvestigatorPerson.title}">
+											<f:selectItems value="#{sessionBean.appBean.personTitleSuggestList}" />
+										</p:selectOneMenu>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personGender')}"/>
+										<p:selectOneMenu value="#{sessionBean.initialMDPage.principalInvestigatorPerson.gender}"  styleClass="initialMDTextInput">
+											<f:selectItems value="#{sessionBean.appBean.genderGerList}" />
+										</p:selectOneMenu>	
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personFirstname')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.firstName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personLastname')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.lastName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personInstitution')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.institutionName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personDepartment')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.department}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personUnit')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.workingUnit}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personStreet')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.street}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personPostalCode')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.postalCode}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personCity')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.city}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personCountry')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.country}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personEmail')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.email}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personURL')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.url}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personTelephone')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.principalInvestigatorPerson.telephone}" styleClass="initialMDTextInput"/>
+									<!-- commandButton: save principal investigator -->																												
+										<p:commandButton value="#{sessionBean.initialMDPage.getText('savePrincipalInvestigator')}"
+											update="initialMDForm:principalInvestigatorPersonTable msgForm:msg"
+											actionListener="#{sessionBean.initialMDPage.listenerAddPrincipalInvestigatorPerson}" />
+									</h:panelGrid>
+							</p:fieldset>
+						</h:panelGrid>
+
+						<!-- section for Rights Holder person or/and institution -->
+						<h:outputLabel value="#{sessionBean.initialMDPage.getText('rightsHolder')}" style="color:#{sessionBean.initialMDPage.getValidationColor('rightsHolder')};"/>
+						<h:panelGrid columns="1">
+						
+							<h:panelGrid columns="1" id="rightsHolderDataTable">
+								<p:dataTable
+									value="#{sessionBean.initialMDPage.dc.licenseHolderList}"
+									var="rightsHolder"
+									rendered="#{!empty sessionBean.initialMDPage.dc.licenseHolderList}">
+									<p:column headerText="#{sessionBean.initialMDPage.getText('id')}">
+										<h:outputText value="#{rightsHolder.id}" />
+									</p:column>
+									<p:column headerText="#{sessionBean.initialMDPage.getText('label')}">
+										<h:outputText value="#{rightsHolder.htmlLabel}" escape="false"/>
+									</p:column>
+									<p:column>
+										<!-- commandButton: edit principal investigator -->																									
+										<p:commandButton 
+											value="#{sessionBean.initialMDPage.getText('edit')}" 
+											actionListener="#{sessionBean.initialMDPage.listenerEditRightsHolderPerson}"
+											update="initialMDForm:rightsHolderDataTable initialMDForm:rightsHolderEditor msgForm:msg"/>
+										<!-- commandButton: delete principal investigator -->																
+										<p:commandButton 
+											value="#{sessionBean.initialMDPage.getText('delete')}" 
+											actionListener="#{sessionBean.initialMDPage.listenerDeleteRightsHolderPerson}"
+											update="initialMDForm:rightsHolderDataTable initialMDForm:rightsHolderEditor msgForm:msg"
+											/>
+									</p:column>
+								</p:dataTable>						
+							</h:panelGrid>
+						
+							<h:panelGrid columns="2" id="rightsHolderEditor">
+
+							<!-- fieldset  for adding new principal investigator , toggleable-->
+							<p:fieldset id="rightsHolderPersonEditor"
+										legend="#{sessionBean.initialMDPage.getText('addPerson')}"
+										toggleable="true" 
+										toggleSpeed="500" 
+										collapsed="#{!empty sessionBean.initialMDPage.dc.licenseHolderList}"
+										widgetVar="addrightsholderPerson">
+									<p:ajax event="toggle" 
+										listener="#{sessionBean.initialMDPage.toggleResetRightsHolderPerson}" 
+										update="initialMDForm:rightsHolderPersonEditor msgForm:msg" />
+									<!-- toggled section -->
+									<h:panelGrid columns="2">
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personTitle')}" />
+										<p:selectOneMenu  styleClass="initialMDTextInput"
+											value="#{sessionBean.initialMDPage.rightsHolderPerson.title}">
+											<f:selectItems value="#{sessionBean.appBean.personTitleSuggestList}" />
+										</p:selectOneMenu>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personGender')}"/>
+										<p:selectOneMenu value="#{sessionBean.initialMDPage.rightsHolderPerson.gender}"  styleClass="initialMDTextInput">
+											<f:selectItems value="#{sessionBean.appBean.genderGerList}" />
+										</p:selectOneMenu>	
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personFirstname')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.firstName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personLastname')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.lastName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personInstitution')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.institutionName}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personDepartment')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.department}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personUnit')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.workingUnit}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personStreet')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.street}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personPostalCode')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.postalCode}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personCity')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.city}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personCountry')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.country}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personEmail')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.email}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personURL')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.url}" styleClass="initialMDTextInput"/>
+										<h:outputText value="#{sessionBean.initialMDPage.getText('personTelephone')}" />
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderPerson.telephone}" styleClass="initialMDTextInput"/>
+									<!-- commandButton: save principal investigator -->																												
+										<p:commandButton value="#{sessionBean.initialMDPage.getText('saveContact')}"
+											update="initialMDForm:rightsHolderDataTable initialMDForm:rightsHolderEditor msgForm:msg"
+											actionListener="#{sessionBean.initialMDPage.listenerAddRightsHolderPerson}" />
+									</h:panelGrid>
+							</p:fieldset>
+						
+
+
+
+
+							<!-- fieldset  for adding new principal investigator , toggleable-->
+							<p:fieldset id="rightsHolderInstitutionEditor"
+										legend="#{sessionBean.initialMDPage.getText('addInstitution')}"
+										toggleable="true" 
+										toggleSpeed="500" 
+										collapsed="#{!empty sessionBean.initialMDPage.dc.licenseHolderList}"
+										widgetVar="addRightsHolderInstitution">
+									<p:ajax event="toggle" 
+										listener="#{sessionBean.initialMDPage.toggleResetRightsHolderInstitution}" 
+										update="initialMDForm:rightsHolderInstitutionEditor msgForm:msg" />
+									<!-- toggled section -->
+									
+										<h:panelGrid columns="2">
+										<h:outputText value="#{sessionBean.initialMDPage.getText('institution.name')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.name}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('institution.department')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.department}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('institution.workingUnit')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.workingUnit}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.street')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.street}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.postalCode')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.postalCode}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.city')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.city}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.country')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.country}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.email')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.email}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.url')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.url}" styleClass="initialMDTextInput"/>
+										
+										<h:outputText value="#{sessionBean.initialMDPage.getText('actor.telephone')}"/>
+										<h:inputText value="#{sessionBean.initialMDPage.rightsHolderInstitution.telephone}" styleClass="initialMDTextInput"/>
+						
+											<!-- commandButton: save principal investigator -->																												
+										<p:commandButton value="#{sessionBean.initialMDPage.getText('saveContact')}"
+											update="initialMDForm:rightsHolderDataTable initialMDForm:rightsHolderEditor msgForm:msg"
+											actionListener="#{sessionBean.initialMDPage.listenerAddRightsHolderInstitution}" />
+									</h:panelGrid>
+							</p:fieldset>
+										
+					
+						</h:panelGrid>
+
+					</h:panelGrid>
+					
+						
+					</h:panelGrid>	
+					
+					
+					<h:panelGrid columns="2">
+						<!-- commandButton for saving the whole form -->					
+						<p:commandButton
+							value="#{sessionBean.initialMDPage.getText('save')}"
+							action="#{sessionBean.initialMDPage.actionSave}" 
+							rendered="#{!sessionBean.guestUser}"/>
+						<p:commandButton value="#{sessionBean.initialMDPage.getText('cancel')}"
+							action="#{sessionBean.initialMDPage.actionCancel}"
+							rendered="#{!sessionBean.guestUser}" />
+					</h:panelGrid>
+					
+					<!-- The button to go back to the DC -->											
+					<h:panelGrid>
+						<p:commandButton value="#{sessionBean.initialMDPage.getText('backButton')}"
+							action="#{sessionBean.initialMDPage.gotoIPPage}" 
+							rendered="#{!sessionBean.guestUser}"/>
+					</h:panelGrid>						
+							
+				</h:panelGrid>
+				
+			</h:panelGrid>
+			
+			<p:defaultCommand target="saveDatacollectionBtn" />
+		</h:form>
+		
+	</ui:define>
+	
+</ui:composition>

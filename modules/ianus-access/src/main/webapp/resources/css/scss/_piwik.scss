@@ -1,0 +1,30 @@
+/* Button for piwik opt out */
+#piwik-optout{
+    z-index: 10;
+    cursor: pointer;
+    color: #164194;
+    background-color: #fff;
+    border-radius: 3px;
+    bottom: 4%;
+    right: 0.5%;
+    -moz-box-shadow: 3px 1px 5px #888;
+    -webkit-box-shadow: 3px 2px 5px #888;
+    box-shadow: 3px 1px 5px #888;
+    padding: 7px 10px;
+    position: fixed;
+    text-align: center;
+}
+
+#piwik-frame{
+    border: none;
+}
+
+#piwik-frame.hidden, #piwik-optout span.hidden{
+    display: none;
+}
+
+#piwik-frame-impressum{
+    border: solid 1px #516894;
+    width: 100%;
+    height: 200px;
+}

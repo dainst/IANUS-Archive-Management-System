@@ -1,0 +1,247 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="publicationForm">
+		
+			<h:panelGrid id="msg">
+				<p:dialog widgetVar="deletePublicationDialog" header="Delete Publications" modal="true"
+					dynamic="true" visible="#{sessionBean.publicationPage.deletePublication != null}"
+					width="700"
+					position="top">
+					<!-- <p:ajax event="close"
+						listener="#{sessionBean.listenerCloseMessageDialog}" />
+						 -->
+					<h:panelGrid columns="1" styleClass="centeredPanelGrid">
+						
+						<h:outputText value="Selected publication: #{sessionBean.publicationPage.deletePublication.label}"/>
+						<h:outputText value="[#{sessionBean.publicationPage.deletePublication}]" rendered="#{sessionBean.appBean.debugMode}"/>
+						<h:outputText value="------------------------------------------------------------------"
+							rendered="#{!empty sessionBean.publicationPage.relatedReferenceList}"/>
+						<h:outputText value="Following references would be deleted, if you delete this publication:"
+							rendered="#{!empty sessionBean.publicationPage.relatedReferenceList}"/>
+							
+						<p:dataTable var="reference" value="#{sessionBean.publicationPage.relatedReferenceList}"
+							rendered="#{!empty sessionBean.publicationPage.relatedReferenceList}">
+							<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+								<h:outputText value="#{reference.id}" />
+							</p:column>
+							<p:column headerText="Source Id" rendered="#{sessionBean.appBean.debugMode}">
+								<h:outputText value="#{reference.sourceId}" />
+							</p:column>
+							<p:column headerText="Source class" rendered="#{sessionBean.appBean.debugMode}">
+								<h:outputText value="#{reference.sourceClass}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{reference.sourceLabel}" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{reference.label}" />
+							</p:column>
+						</p:dataTable>
+						
+						<h:panelGrid columns="2">
+							<p:commandButton value="Delete entries" action="#{sessionBean.publicationPage.actionDeletePublication}"/>
+							<p:commandButton value="Cancel" action="#{sessionBean.publicationPage.actionCancelDeletePublication}"/>
+						</h:panelGrid>
+					</h:panelGrid>
+				</p:dialog>
+			</h:panelGrid>
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Publication Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="3">
+						<p:commandButton
+							value="Add publication"
+							action="#{sessionBean.publicationPage.actionAddPublication}"/>
+						<p:commandButton
+							value="Back to reference"
+							action="#{sessionBean.publicationPage.actionBack2ReferencePage}"/>
+					</h:panelGrid>
+					<h:panelGrid>
+						<p:commandButton
+							value="Back to data collection"
+							action="#{sessionBean.publicationPage.actionBack2MetadataDcPage}"/>
+						<p:commandButton
+							value="Update indices"
+							action="#{sessionBean.publicationPage.actionUpdateIndices}"/>
+					</h:panelGrid>
+					<h:panelGrid>
+						<h:outputLabel value="Selected reference"/>
+						<h:outputText value="#{sessionBean.publicationPage.reference.label}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					
+					<h:panelGrid columns="4">
+						<h:inputText value="#{sessionBean.publicationPage.searchTerm}" styleClass="pubTextInput"/>
+						<p:commandButton value="Search"
+							action="#{sessionBean.publicationPage.actionSearch}"/>
+						<p:commandButton value="Show all"
+							action="#{sessionBean.publicationPage.actionGetAllPublications}"/>
+					</h:panelGrid>
+					
+					<p:dataTable var="publication" value="#{sessionBean.publicationPage.publicationList}"
+						rendered="#{!empty sessionBean.publicationPage.publicationList}">
+						<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+							<h:outputText value="#{publication.id}"/>
+						</p:column>
+						<p:column headerText="Label">
+							<h:outputText value="#{publication.label}"/>
+						</p:column>
+						<p:column>
+							<p:commandButton
+								value="Edit"
+								action="#{sessionBean.publicationPage.actionEditPublication}"/>
+							<p:commandButton
+								value="Load into reference"
+								action="#{sessionBean.publicationPage.actionLoadIntoReferenceFromList}"/>
+							<p:commandButton
+								value="Delete"
+								action="#{sessionBean.publicationPage.actionWantToDeletePublication}"/>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.publicationPage.publication != null}">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+					
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.publicationPage.actionSavePublication}"/>
+							<p:commandButton
+								value="Load into reference"
+								action="#{sessionBean.publicationPage.actionLoadIntoReference}"
+								rendered="#{sessionBean.publicationPage.publication.persistent}"/>
+						</h:panelGrid>
+						
+						<h:outputLabel value="Id"/>
+						<h:outputText value="#{sessionBean.publicationPage.publication.id}"/>
+						
+						<h:outputLabel value="Type"/>
+						<p:selectOneMenu value="#{sessionBean.publicationPage.publication.type}"  styleClass="pubTextInput">
+							<f:selectItems value="#{sessionBean.appBean.publicationTypeGerList}" />
+						</p:selectOneMenu>
+												
+						<h:outputLabel value="Author"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.author}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Title"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.title}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Series"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.series}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Collection title"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.collectionTitle}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Collection editor"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.collectionEditor}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Publisher"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.publisher}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="City"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.city}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Year"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.year}" styleClass="pubTextInput"/>
+
+						<h:outputLabel value="Volume"/>
+						<h:inputText value="#{sessionBean.publicationPage.publication.volume}" styleClass="pubTextInput"/>
+						
+						<h:outputLabel value="Analog"/>
+						<h:selectBooleanCheckbox value="#{sessionBean.publicationPage.publication.analog}"/>
+						
+						<h:outputLabel value="Persistent identifier"/>
+						<h:panelGrid columns="1" id="pidPanel">
+							<p:dataTable value="#{sessionBean.publicationPage.currentPidList}" var="pid" 
+								rendered="#{!empty sessionBean.publicationPage.currentPidList}">
+								
+								<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+									<h:outputText value="#{pid.id}"/>
+								</p:column>
+								<p:column headerText="Type">
+									<h:outputText value="#{pid.type}"/>
+								</p:column>
+								<p:column headerText="Value">
+									<h:outputText value="#{pid.value}"/>
+								</p:column>
+								<p:column headerText="Institution">
+									<h:outputText value="#{pid.institution}"/>
+								</p:column>
+								<p:column headerText="URI">
+									<h:outputText value="#{pid.uri}"/>
+								</p:column>
+								<p:column>
+									<p:commandButton
+										value="Edit"
+										actionListener="#{sessionBean.publicationPage.listenerEditPid}"
+										update="publicationForm msgForm:msg"/>
+									<p:commandButton
+										value="Delete"
+										actionListener="#{sessionBean.publicationPage.listenerDeletePid}"
+										update="publicationForm msgForm:msg"/>
+								</p:column>								
+							</p:dataTable>
+							
+							<h:panelGrid columns="6">
+								<h:outputText value="Type"/>
+								<h:outputText value="Value"/>
+								<h:outputText value="Institution"/>
+								<h:outputText value="URI"/>
+								<h:outputText value=""/>
+								<h:outputText value=""/>
+								
+								<h:panelGrid columns="2">
+									<p:selectOneMenu value="#{sessionBean.publicationPage.pid.type}">
+										<!-- <p:ajax event="change" update="pidPanel msgForm:msg" />  -->
+										<f:selectItems value="#{sessionBean.appBean.externalIdGerList}" />
+									</p:selectOneMenu>									
+								</h:panelGrid>
+								
+								<h:inputText value="#{sessionBean.publicationPage.pid.value}"/>
+								<h:inputText value="#{sessionBean.publicationPage.pid.institution}"/>
+								<h:inputText value="#{sessionBean.publicationPage.pid.uri}"/>
+								
+								<p:commandButton value="Add"
+									action="#{sessionBean.publicationPage.actionAddPid}"/>
+								<p:commandButton value="Cancel"
+									actionListener="#{sessionBean.publicationPage.listenerCancelPidEdition}"/>	
+							</h:panelGrid>
+							
+						</h:panelGrid>
+						
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.publicationPage.actionSavePublication}"/>
+							<p:commandButton
+								value="Load into reference"
+								action="#{sessionBean.publicationPage.actionLoadIntoReference}"
+								rendered="#{sessionBean.publicationPage.publication.persistent}"/>
+						</h:panelGrid>
+						
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

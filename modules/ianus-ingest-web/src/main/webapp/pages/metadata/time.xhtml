@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">	
+		<h:form id="timeForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Time Editor" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel">
+					<h:panelGrid columns="2">
+						
+						<p:commandButton
+							value="Back to #{sessionBean.timePage.sourceLabel}"
+							action="#{sessionBean.timePage.actionBack2MetadataDcPage}"/>
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="1" styleClass="mainControlPanel" rendered="#{sessionBean.timePage.time != null}">
+					<h:panelGrid columns="2" columnClasses="firstColumn">
+						
+						<h:outputLabel value="Id" rendered="#{sessionBean.appBean.debugMode}"/>
+						<h:outputText value="#{sessionBean.timePage.time.id}" rendered="#{sessionBean.appBean.debugMode}"/>
+						
+						<h:outputLabel value="Begin"/>
+						<h:inputText value="#{sessionBean.timePage.time.start}"/>
+						
+						<h:outputLabel value="End"/>
+						<h:inputText value="#{sessionBean.timePage.time.end}"/>
+						
+						<h:outputLabel value="Period (general)" />
+						<h:panelGrid columns="3" id="mainPeriodForm">
+						
+							<p:selectOneMenu value="#{sessionBean.timePage.time.mainPeriod.listId}">
+								<p:ajax event="change" update="mainPeriodForm msgForm:msg"/>
+								<f:selectItems value="#{sessionBean.timePage.mainPeriodNameList}"/>
+							</p:selectOneMenu>	
+							
+							<h:panelGrid columns="3" rendered="#{sessionBean.timePage.selectedMainPeriodIdaiChronontology}">
+								<h:outputText value="Value"/>
+								<h:outputText value="Id"/>
+								<h:outputText value="URI"/>
+								<h:inputText value="#{sessionBean.timePage.mainPeriodIdaiChronontologyValue}"/>
+								<h:inputText value="#{sessionBean.timePage.mainPeriodIdaiChronontologyValueId}"/>
+								<h:inputText value="#{sessionBean.timePage.mainPeriodIdaiChronontologyValueUri}"/>
+							</h:panelGrid>
+							
+							<p:selectOneMenu value="#{sessionBean.timePage.mainPeriodVlaTimeline2ValueId}" rendered="#{sessionBean.timePage.selectedMainPeriodVlaTimeline2}">
+								<f:selectItems value="#{sessionBean.timePage.mainPeriodVlaTimeline2List}"/>
+							</p:selectOneMenu>
+							<!-- 
+							<h:panelGrid columns="4" rendered="#{sessionBean.appBean.debugMode}">
+								
+								<h:outputText value="id"/>
+								<h:outputText value="listId"/>
+								<h:outputText value="value"/>
+								<h:outputText value="valueId"/>
+								
+								<h:outputText value="#{sessionBean.timePage.time.mainPeriod.id}"/>
+								<h:outputText value="#{sessionBean.timePage.time.mainPeriod.listId}"/>
+								<h:outputText value="#{sessionBean.timePage.time.mainPeriod.value}"/>
+								<h:outputText value="#{sessionBean.timePage.time.mainPeriod.valueId}"/>
+							</h:panelGrid>
+							 -->
+							
+						</h:panelGrid>
+						
+						<h:outputLabel value="Period (detail)"/>
+						<h:panelGrid columns="3" id="subPeriodForm">
+						
+							<p:selectOneMenu value="#{sessionBean.timePage.time.subPeriod.listId}">
+								<p:ajax event="change" update="subPeriodForm msgForm:msg" />
+								<f:selectItems value="#{sessionBean.timePage.subPeriodNameList}"/>
+							</p:selectOneMenu>
+							
+							<h:panelGrid columns="3" rendered="#{sessionBean.timePage.selectedSubPeriodIdaiChronontology}">
+								<h:outputText value="Value id"/>
+								<h:outputText value="Value"/>
+								<h:outputText value="URI"/>
+								<h:inputText value="#{sessionBean.timePage.subPeriodIdaiChronontologyValueId}"/>
+								<h:inputText value="#{sessionBean.timePage.subPeriodIdaiChronontologyValue}"/>
+								<h:inputText value="#{sessionBean.timePage.subPeriodIdaiChronontologyUri}"/>
+							</h:panelGrid>
+							
+							<h:panelGrid rendered="#{sessionBean.timePage.selectedSubPeriodFreeText}">
+								<h:inputText value="#{sessionBean.timePage.subPeriodFreeTextValueId}"/>
+							</h:panelGrid>
+							
+							<p:selectOneMenu value="#{sessionBean.timePage.subPeriodVlaTimeline3ValueId}" rendered="#{sessionBean.timePage.selectedSubPeriodVlaTimeline3}">
+								<f:selectItems value="#{sessionBean.timePage.subPeriodVlaTimeline3List}"/>
+							</p:selectOneMenu>
+							
+						</h:panelGrid>
+										
+						<h:outputLabel value="Comment time"/>
+						<h:panelGrid>
+						
+								<p:dataTable value="#{sessionBean.timePage.currentCommentList}" var="comment"
+									rendered="#{!empty sessionBean.timePage.currentCommentList}">
+									<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+										<h:outputText value="#{comment.id}"/>
+									</p:column>
+									<p:column headerText="Value">
+										<h:outputText value="#{comment.valueShort}"/>
+									</p:column>
+									<p:column headerText="Language">
+										<h:outputText value="#{comment.language}"/>
+									</p:column>
+									<p:column>
+										<p:commandButton value="Delete"
+											action="#{sessionBean.timePage.actionDeleteComment}"/>
+									</p:column>
+								</p:dataTable>
+								<h:panelGrid columns="3">
+								
+									<h:outputText value="Value"/>
+									<h:outputText value="Language"/>
+									<h:outputText value=""/>
+									
+									<h:inputTextarea value="#{sessionBean.timePage.currentComment.value}"  styleClass="dcTextArea"/>
+									<p:autoComplete value="#{sessionBean.timePage.currentComment.languageCode}" 
+										completeMethod="#{sessionBean.appBean.searchLanguageInShortListGer}"
+			                    		var="theme" 
+			                    		itemLabel="#{theme}" itemValue="#{theme.id}" 
+			                    		forceSelection="true" />
+									<p:commandButton value="Add comment"
+										action="#{sessionBean.timePage.actionAddComment}"/>
+								</h:panelGrid>
+						</h:panelGrid>
+								
+						<h:outputText/>
+						<h:panelGrid columns="2">
+							<p:commandButton
+								value="Save"
+								action="#{sessionBean.timePage.actionSave}"/>
+						</h:panelGrid>
+						
+						
+					</h:panelGrid>
+				</h:panelGrid>
+	
+			</h:panelGrid>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

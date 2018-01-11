@@ -1,0 +1,105 @@
+/* basic styles */
+h1, h2, h3, h4, h5 {
+    font-family: "Trebuchet MS",verdana,helvetica,sans-serif;
+    font-weight: bold;
+    color: $mid-gray;
+	&:first-child { margin-top: 0; }
+}
+h1 {
+	line-height: 1.15;
+	letter-spacing: 0.01em;
+	margin-bottom: 20px;
+}
+h2 {
+	font-size: 1.5em;
+}
+h3 {
+    font-size: 1.2em;
+}
+// h4, h5???
+
+ul{
+    margin: 1.5em 0;
+    padding-left: 2.4em;
+    ul{
+        margin: 0 0 0.3em 0;
+    }
+}
+
+a {
+	color: $dark-blue;
+	&:focus {
+		outline: none;
+		text-decoration: none;
+	}
+	&:hover {
+		background-color: $light-gray;
+		text-decoration: none;
+	}
+	&.image-link {
+		display: block;
+		&:hover {
+	    	background-color: transparent;
+	    }
+	}
+    img:hover{
+        border: none;
+        background-color: transparent;
+    }
+    &.no-bg { background-color: transparent; }
+}
+
+.strong {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+
+.clear, .clearfix {
+	@include clearfix;
+}
+
+// give a little more spacing to the bootstrap columns
+[class^="col-"],[class*=" col-"] {
+	padding: 0 25px;
+}
+
+// class for preserving linebreaks, collapse everything else 
+.whitespace {
+	white-space: pre-line;
+}
+
+
+
+/* basic layout */
+html {
+	overflow-x: auto;
+}
+
+body {
+	padding: 0 0 20px;
+	background: $light-gray;
+	width: 100vw;
+	min-width: 475px;
+	overflow: hidden;
+	overflow-y: auto;
+	font-size: 12px;
+	font-family: verdana, helvetica, sans-serif;
+    color: #2e2e2e;
+}
+
+.container {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+

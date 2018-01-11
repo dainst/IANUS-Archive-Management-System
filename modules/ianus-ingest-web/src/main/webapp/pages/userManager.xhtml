@@ -1,0 +1,126 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="userManagerForm">
+		<h:panelGrid columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="User Manager" />
+			</h:panelGrid>
+
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="1">
+				
+				<p:commandButton value="Add user" action="#{sessionBean.userManagerPage.actionCreateUser}"/>
+				
+				<p:dataTable var="user" value="#{sessionBean.userManagerPage.userList}"
+					styleClass="dataTable">
+					<p:column headerText="Id" rendered="#{sessionBean.appBean.debugMode}">
+						<h:outputText value="#{user.id}" />
+					</p:column>
+					<p:column headerText="User name">
+						<h:outputText value="#{user.userName}" />
+					</p:column>
+					<p:column headerText="Role">
+						<h:outputText value="#{user.role}" />
+					</p:column>
+					<p:column headerText="Name">
+						<h:outputText value="#{user.lastName}, #{user.firstName}" />
+					</p:column>
+					<p:column headerText="Email">
+						<h:outputText value="#{user.email}" />
+					</p:column>
+					<p:column headerText="SSH Account">
+						<h:outputText value="#{user.sshAccount}" />
+					</p:column>
+					<p:column>
+						<p:commandButton
+							value="Edit" action="#{sessionBean.userManagerPage.actionEditUser}"/>
+						<p:commandButton
+							value="Change password" action="#{sessionBean.userManagerPage.actionEditPassword}"/>
+						<p:commandButton
+							value="Delete" 
+							action="#{sessionBean.userManagerPage.actionDelete}">
+							<p:confirm header="Confirmation" message="Do you want to delete the user #{user.userName}?" icon="ui-icon-alert"/>
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="1" rendered="#{sessionBean.userManagerPage.passwordEdition}">
+				
+				<h:panelGrid columns="2">
+					
+					<h:outputLabel value="New password"/>
+					<h:inputSecret value="#{sessionBean.userManagerPage.newPassword}"/>
+					
+					<h:outputLabel value="Repeat password"/>
+					<h:inputSecret value="#{sessionBean.userManagerPage.repeatPassword}"/>
+					
+					<h:outputText/>
+					<p:panelGrid columns="2">
+						<p:commandButton
+							value="Save"
+							action="#{sessionBean.userManagerPage.actionSavePassword}"/>
+						<p:commandButton
+							value="Cancel"
+							action="#{sessionBean.userManagerPage.actionCancelEdition}"/>
+					</p:panelGrid>
+				</h:panelGrid>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="1" rendered="#{sessionBean.userManagerPage.userEdition}">
+				
+				<h:panelGrid columns="2">
+					
+					<h:outputLabel value="First name"/>
+					<h:inputText value="#{sessionBean.userManagerPage.currentUser.firstName}"/>
+					
+					<h:outputLabel value="Last name"/>
+					<h:inputText value="#{sessionBean.userManagerPage.currentUser.lastName}"/>
+				
+					<h:outputLabel value="User name"/>
+					<h:inputText value="#{sessionBean.userManagerPage.currentUser.userName}"/>
+					
+					<h:outputLabel value="Role"/>
+					<p:selectOneRadio value="#{sessionBean.userManagerPage.currentUser.role}">
+						<f:selectItems value="#{sessionBean.appBean.userRoleList}"/>
+					</p:selectOneRadio>
+				
+					<h:outputLabel value="Password" rendered="#{!sessionBean.userManagerPage.currentUser.persistent}"/>
+					<h:inputSecret value="#{sessionBean.userManagerPage.currentUser.password}" rendered="#{!sessionBean.userManagerPage.currentUser.persistent}"/>
+					
+					<h:outputLabel value="Repeat password" rendered="#{!sessionBean.userManagerPage.currentUser.persistent}"/>
+					<h:inputSecret value="#{sessionBean.userManagerPage.repeatPassword}" rendered="#{!sessionBean.userManagerPage.currentUser.persistent}"/>
+					
+					<h:outputLabel value="Email"/>
+					<h:inputText value="#{sessionBean.userManagerPage.currentUser.email}"/>
+					
+					<h:outputLabel value="SSH Account"/>
+					<h:inputText value="#{sessionBean.userManagerPage.currentUser.sshAccount}"/>
+					
+					<h:outputText/>
+					<p:panelGrid columns="2">
+						<p:commandButton
+							value="Save"
+							action="#{sessionBean.userManagerPage.actionSaveUser}"/>
+						<p:commandButton
+							value="Cancel"
+							action="#{sessionBean.userManagerPage.actionCancelEdition}"/>
+					</p:panelGrid>
+				</h:panelGrid>
+				 
+				
+			</h:panelGrid>
+
+			
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+	
+		<h:form id="actorLogoForm">
+			
+		
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="1" styleClass="pagePanelTitle">
+					<h:outputText value="Actor Logo Upload" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2" styleClass="mainControlPanel">
+					<p:commandButton
+						value="Back to #{sessionBean.actorLogoPage.sourceLabel}"
+						action="#{sessionBean.actorLogoPage.actionBack2MetadataDcPage}"/>
+					<p:commandButton
+						value="Delete Logo"
+						action="#{sessionBean.actorLogoPage.deleteLogo}"
+						rendered="#{sessionBean.actorLogoPage.logoExists}"/>
+				</h:panelGrid>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1" styleClass="mainControlPanel">
+				<h:outputLabel value="Actor"/>
+				
+				<h:panelGrid columns="2" columnClasses="firstColumn" >
+					<h:outputLabel value="Id"/>
+					<h:outputText value="#{sessionBean.actorLogoPage.actor.id}"/>
+					
+					<h:outputLabel value="Label"/>
+					<h:outputText value="#{sessionBean.actorLogoPage.actor.label}"/>
+					
+					<h:outputLabel value="Default Logo" rendered="#{sessionBean.actorLogoPage.defaultLogoAvailable}"/>
+					<p:graphicImage value="#{sessionBean.actorLogoPage.defaultLogo}" cache="false" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2" styleClass="mainControlPanel">
+					<p:column rendered="#{sessionBean.actorLogoPage.defaultLogoAvailable}">
+						<p:commandButton
+							value="Use Default Logo"
+							action="#{sessionBean.actorLogoPage.saveDefault}"/>
+							
+					</p:column>
+					<p:column>
+						<h:outputText value=" upload a custom logo: "/>
+						<p:fileUpload 
+							fileUploadListener="#{sessionBean.actorLogoPage.handleFileUpload}"
+							mode="advanced"
+							auto="true"
+							oncomplete="javascript:window.location.reload()"
+							dragDropSupport="true"
+					        update="messages"
+					        sizeLimit="100000000"
+					        fileLimit="1"
+					        allowTypes="/(\.|\/)png$/" />
+					 	<p:growl id="messages" showDetail="true" />
+					</p:column>
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2" columnClasses="firstColumn" >
+					<h:outputLabel value="Current Logo" rendered="#{sessionBean.actorLogoPage.logoExists}"/>
+					<p:graphicImage value="#{sessionBean.actorLogoPage.currentLogo}" cache="false" />
+				</h:panelGrid>
+					
+			</h:panelGrid>
+			
+			
+			<h:panelGrid columns="1" styleClass="pagePanel">
+				<h:panelGrid columns="2" styleClass="mainControlPanel">
+					<p:commandButton
+						value="Back to #{sessionBean.actorLogoPage.sourceLabel}"
+						action="#{sessionBean.actorLogoPage.actionBack2MetadataDcPage}"/>
+					<p:commandButton
+						value="Delete Logo"
+						action="#{sessionBean.actorLogoPage.deleteLogo}"
+						rendered="#{sessionBean.actorLogoPage.logoExists}"/>
+				</h:panelGrid>
+				
+			</h:panelGrid>
+			
+		</h:form>
+		
+	</ui:define>
+	
+</ui:composition>

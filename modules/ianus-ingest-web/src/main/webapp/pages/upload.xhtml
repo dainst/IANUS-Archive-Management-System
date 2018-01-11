@@ -1,0 +1,212 @@
+<!-- 
+ ##Upload Page in transfer-workflow
+
+
+	### Summary
+	This page gives the user the opportunity to add or remove data to an existing datacollection. 
+	The user can select a file, afterwards the checksum for this file is calculated on the client side. 
+	The user can use the upload button after the calculation is finished to upload the selected file and
+	the calculated checksum.
+	The validation (file must be bagIt format and zipped), the upload process and the functionality of the delete Button 
+	is implemented in "UploadPage.java" and the Helper classes.	 
+
+   ### Elements
+	Upload form: Primefaces file upload "simple", 
+				 inputHidden (for sending checksum to backend), 
+				 outputLabel (to show calculated checksum),	
+				 commandButton (disable/enable - after calculating checksum)
+	UploadStatusForm: general file information
+					  command button - refresh page
+					  command button - Delete file
+					  Status information: checksum evaluation, virus scan, BagIt consistency
+					  commandButton "delete" (disable/enable - check if checks are finished)
+
+   ### JS
+	JS used for clientside checksum calculation
+
+   ### Links
+	Camunda: transfer-workflow.bpmn
+	Confluence: http://confluence:8090/display/IAN/Transfer+Process+Definition 
+	Mockup: https://ianus.mybalsamiq.com/projects/objectview/2_Dateneingabeformular_Upload
+
+ 	@author jurzua
+	@author zoes
+    @see    UploadPage.java
+
+-->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:define name="privateContent">
+
+<!--	getting the JavaScripts:
+		spark-md5.min.js  is used for calculating the checksum of uploaded files (client side) -->
+
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/2.0.2/spark-md5.min.js">
+			
+		</script>
+		<script type="text/javascript"
+			src="#{sessionBean.appBean.contextRoot}/resources/js/common.js?ln=js">
+			
+		</script>
+<!-- JavaScript for client side file validation/ generating checksum in upload process 
+ This script is called after the user has choosen a file. -->
+		<h:outputScript target="body">
+
+/* <![CDATA[ */
+function checksum() {
+    var elements = $(".fileUploadClass");
+    var output = "";
+
+    if (elements[0].files[0]) {
+        var file = elements[0].files[0];
+        alert("Starting processing your file " + file.name + ". please wait until uploading is possible.");
+
+        var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice,
+            file = file,
+            chunkSize = 2097152, // Read in chunks of 2MB
+            chunks = Math.ceil(file.size / chunkSize),
+            currentChunk = 0,
+            spark = new SparkMD5.ArrayBuffer(),
+            fileReader = new FileReader();
+        fileReader.onload = function(e) {
+            console.log('read chunk nr', currentChunk + 1, 'of', chunks);
+            spark.append(e.target.result); // Append array buffer
+            currentChunk++;
+            if (currentChunk < chunks) {
+                loadNext();
+            } else {
+                console.log('finished loading');
+
+                output = spark.end();
+
+                console.log(output);
+                //alert('computed hash: ' + output); // Compute hash
+
+
+                var checksumClient = document.getElementById("uploadForm:checksumClient");
+                checksumClient.value = output;
+
+                var checksumClientShow = document.getElementById("uploadForm:calculatedChecksum");
+                checksumClientShow.innerHTML = "Calculated Checksum: " + output;
+                PF('button').enable();
+
+            }
+
+        };
+        fileReader.onerror = function() {
+            console.warn('oops, something went wrong.');
+        };
+
+        function loadNext() {
+            var start = currentChunk * chunkSize,
+                end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
+            fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+        }
+        loadNext();
+
+    } else {
+        alert('File not found');
+    }
+}
+
+
+/* ]]> */
+    	</h:outputScript>
+    	   	
+		<h:panelGrid columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Bagit Upload" />
+			</h:panelGrid>
+			<h:panelGrid styleClass="mainControlPanel">
+			
+					<h:panelGrid columns="1">
+						<p:commandButton value="Back to Information Package"
+							action="#{sessionBean.uploadPage.gotoIPPage}"/>
+						<h:outputLink target="_blank" value="http://confluence:8090/display/IAN/BagIt-Datei+erstellen">
+								<h:graphicImage value="#{sessionBean.appBean.imgHelp}"/>
+						</h:outputLink>
+					</h:panelGrid>	
+			
+<!-- The fileUpload magic -->
+				<h:form id="uploadForm" enctype="multipart/form-data">
+	<!-- fields for sending and showing the client checksum -->
+					<h:inputHidden id="checksumClient"
+						value="#{sessionBean.uploadPage.checksumClient}" />
+					<h:outputLabel id="calculatedChecksum"
+						value="Please select a file to calculate a checksum"
+						style="font-weight:bold" />
+	<!-- fileUpload simple (choose file...), after choosing a file the checksum JS is called -->
+					<p:fileUpload id="fileUpload" mode="simple"
+						value="#{sessionBean.uploadPage.file}"
+						styleClass="fileUploadClass"
+						a:onchange="if (tagName == 'INPUT') { if (!!value) { checksum(); } else {PF('button').disable()}; }" 
+						rendered="#{!sessionBean.guestUser}"/>
+	<!-- fileUpload Button (upload), after the calculation is finished the file may be uploaded (disable/enable) -->
+					<p:commandButton widgetVar="button" value="Upload"
+						actionListener="#{sessionBean.uploadPage.listenerUpload}"
+						ajax="false"
+						disabled="#{facesContext.renderResponse or not facesContext.postback}"
+						update="uploadForm uploadStatusForm msgForm:msg" 
+						rendered="#{!sessionBean.guestUser}"/>
+				</h:form>
+				
+<!-- The table for status information, delete action and refreshing of uploaded files -->
+				<h:form id="uploadStatusForm">
+	<!-- Refresh the uploaded file list -->
+					<p:commandButton value="Refresh"
+						action="#{sessionBean.uploadPage.actionRefresh}"
+						update="uploadStatusForm msgForm:msg" 
+						rendered="#{!sessionBean.guestUser}"/>
+	<!-- Show information of files -->
+					<p:dataTable value="#{sessionBean.uploadPage.bagitFileList}"
+						var="bagitFile">
+						<p:column headerText="File name">
+							<h:outputText value="#{bagitFile.fileName}" />
+						</p:column>
+						<p:column headerText="Checksum evaluation">
+							<h:outputText value="#{bagitFile.checksumEvaluation}" />
+						</p:column>
+						<p:column headerText="Virus scan">
+							<h:outputText id="virusEval" value="#{bagitFile.virusScan}" />
+							<h:outputLink target="_blank" value="#{sessionBean.appBean.contextRoot}/rest/retrieve/#{sessionBean.uploadPage.ip.prefix}/#{sessionBean.uploadPage.ip.id}#{bagitFile.relativePathVirusLogFile}">
+								<h:graphicImage value="#{sessionBean.appBean.imgDisplay}"/>
+							</h:outputLink>  
+						</p:column>
+						<p:column headerText="Bagit consistency">
+							<h:outputText id="bagItEval" value="#{bagitFile.bagitConsistency}" />
+							<h:outputLink target="_blank" value="#{sessionBean.appBean.contextRoot}/rest/retrieve/#{sessionBean.uploadPage.ip.prefix}/#{sessionBean.uploadPage.ip.id}#{bagitFile.bagitValidationLogFile}">
+								<h:graphicImage value="#{sessionBean.appBean.imgDisplay}"/>
+							</h:outputLink>  
+						</p:column>
+						<p:column headerText="Concept files">
+							<h:outputText id="conceptFilesEval" value="#{bagitFile.conceptualFiles}" />
+							<h:outputLink target="_blank" value="#{sessionBean.appBean.contextRoot}/rest/retrieve/#{sessionBean.uploadPage.ip.prefix}/#{sessionBean.uploadPage.ip.id}#{bagitFile.bagitConceptFilesLogFile}">
+								<h:graphicImage value="#{sessionBean.appBean.imgDisplay}"/>
+							</h:outputLink>  
+						</p:column>
+						<p:column>
+							<p:commandButton
+								value="Delete"
+								action="#{sessionBean.uploadPage.actionDeleteUploadedFile}"
+								disabled="#{!bagitFile.finished}"
+								rendered="#{!sessionBean.guestUser}">
+							</p:commandButton> 
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</h:panelGrid>
+			<h:panelGrid columns="1" styleClass="mainControlPanel">
+				<h:outputText value="Virus Scan limitations: ClamAV has problems scanning archives (.zip/rar/tar/gz/...) in the uploaded data. Make sure you manually checked existing archive files locally, using a tool other than ClamAV!" />
+			</h:panelGrid>
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>

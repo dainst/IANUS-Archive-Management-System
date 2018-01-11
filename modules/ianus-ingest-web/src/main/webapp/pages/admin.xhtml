@@ -1,0 +1,137 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form id="adminForm">
+		<h:panelGrid columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Admin dashboard" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanel" columns="2">
+				<h:outputLabel value="General"/>
+				<h:outputText/>
+				
+				<h:outputText value="Debug mode"/>
+				<h:panelGrid columns="2">
+					<h:outputText value="#{sessionBean.appBean.debugMode}"/>
+					<p:commandButton value="Change"
+						action="#{sessionBean.appBean.actionChangeDebugMode}"/>
+				</h:panelGrid>
+				
+				
+				<h:outputText value="Generate collection titles"/>
+				<p:commandButton value="Submit" action="#{sessionBean.adminPage.actionGenerateCollectionTitles}"/>
+				
+				<h:outputText value="Cloning repair"/>
+				<p:commandButton value="Submit" action="#{sessionBean.adminPage.actionCloningRepair}"/>
+				
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanel" columns="2">
+				
+				<h:outputLabel value="User accounts"/>
+				<p:commandButton value="Go user page" action="userManager"/>
+				
+				<h:outputLabel value="Conversion plan"/>
+				<p:commandButton value="Go conversion plan page" action="conversionPlan"/>
+				
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanel" columns="2">
+			
+				<h:outputLabel value="Process Deployment"/>
+				<h:outputText/>
+				
+				<h:outputText value="Deploy transfer workflow"/>
+				<h:commandButton value="Submit" actionListener="#{sessionBean.processEnginePage.listenerDeployTransferWF}"/>
+				
+				<h:outputText value="Deploy pre-ingest workflow"/>
+				<h:commandButton value="Submit" actionListener="#{sessionBean.processEnginePage.listenerDeployPreIngestWF}"/>
+				
+				<h:outputText value="Deploy ingest workflow"/>
+				<h:commandButton value="Submit" actionListener="#{sessionBean.processEnginePage.listenerDeployIngestWF}"/>
+				
+				<h:outputText value="Deploy dissemination workflow"/>
+				<h:commandButton value="Submit" actionListener="#{sessionBean.processEnginePage.listenerDeployDisseminationWF}"/>
+				
+				<h:outputText value="Create schema"/>
+				<h:commandButton value="Submit" actionListener="#{sessionBean.processEnginePage.listenerCreateSchema}"/>
+				
+				<h:outputText value="Remove SIPs"/>
+				<h:commandButton value="Submit" actionListener="#{sessionBean.processEnginePage.listenerRemoveSubmissions}"/>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="1">
+			
+				<h:outputLabel value="Process Instance"/>
+				<p:commandButton value="Update list"
+					actionListener="#{sessionBean.processEnginePage.listenerUpdateProcessInstanceList}"
+					update="adminForm"/>
+				<p:dataTable value="#{sessionBean.processEnginePage.processInstanceList}" var="process" rendered="#{!empty sessionBean.processEnginePage.processInstanceList}">
+					<p:column headerText="Id">
+						<h:outputText value="#{process.id}"/>
+					</p:column>
+					<p:column headerText="processDefinitionId">
+						<h:outputText value="#{process.processDefinitionId}"/>
+					</p:column>
+					<p:column headerText="activityId">
+						<h:outputText value="#{process.activityId}"/>
+					</p:column>
+					<p:column headerText="activityInstanceId">
+						<h:outputText value="#{process.activityInstanceId}"/>
+					</p:column>
+					<p:column headerText="processInstanceId">
+						<h:outputText value="#{process.processInstanceId}"/>
+					</p:column>
+					<p:column headerText="sequenceCounter">
+						<h:outputText value="#{process.sequenceCounter}"/>
+					</p:column>
+				</p:dataTable>
+				
+				
+			</h:panelGrid>
+			<h:panelGrid styleClass="mainControlPanel" columns="1">
+			
+				<h:outputLabel value="Historic Process Instance"/>
+				<p:commandButton value="Update list"
+					actionListener="#{sessionBean.processEnginePage.listenerUpdateHistoricProcessInstanceList}"
+					update="adminForm"/>
+				
+				<p:dataTable value="#{sessionBean.processEnginePage.historicProcessInstanceList}" var="process"
+					rendered="#{!empty sessionBean.processEnginePage.historicProcessInstanceList}">
+					<p:column headerText="Id">
+						<h:outputText value="#{process.id}"/>
+					</p:column>
+					<p:column headerText="Process definition id">
+						<h:outputText value="#{process.processDefinitionId}"/>
+					</p:column>
+					<p:column headerText="Process definition key">
+						<h:outputText value="#{process.processDefinitionKey}"/>
+					</p:column>
+					<p:column headerText="Start activity Id">
+						<h:outputText value="#{process.startActivityId}"/>
+					</p:column>
+					<p:column headerText="Super process instance Id">
+						<h:outputText value="#{process.superProcessInstanceId}"/>
+					</p:column>
+					<p:column headerText="Start user id">
+						<h:outputText value="#{process.startUserId}"/>
+					</p:column>
+					<p:column headerText="End activity id">
+						<h:outputText value="#{process.endActivityId}"/>
+					</p:column>
+				</p:dataTable>
+			
+			</h:panelGrid>
+			
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

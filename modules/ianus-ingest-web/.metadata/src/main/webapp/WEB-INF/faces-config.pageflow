@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14501137399220" configfile="/ianus-ingest-web/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="5746" id="pf14634909627602" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14853478242581 pf14919211538960 pf14919211589432 pf14919211631574 pf14919211681326 pf14919211786488 pf14919211786489 pf149192118426712 pf149192118848214 pf149192120269616 pf149192120648018 pf149192121156220 pf149192121498022 pf149192121973224 pf149192122369826 pf149192122867328 pf149192123301930 pf149192123711332 pf149192124167534 pf149192124540436 pf149192124973438 pf149192125356140 pf15076400710050 pf15076400710051 pf15076400710052 pf15076400710053 pf15076400710054 pf15090105379400 pf15095499917842 pf15113547634620 pf15113547634631" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/overviewDC.xhtml" x="338" y="178" id="pf14853478242582" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf14853478242581" path="/pages/overviewDC.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/preIngestReport.xhtml" x="338" y="562" id="pf14919211538971" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf14919211538960" path="/pages/preIngestReport.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/time.xhtml" x="338" y="946" id="pf14919211589443" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf14919211589432" path="/pages/metadata/time.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/relatedResource.xhtml" x="338" y="1330" id="pf14919211631575" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf14919211631574" path="/pages/metadata/relatedResource.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/initialMD.xhtml" x="338" y="1714" id="pf14919211681327" referenceLink="//@navigationRule.0/@navigationCase.10/@toViewId|" inlinks="pf14919211681326" path="/pages/metadata/initialMD.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/storage.xhtml" x="338" y="2098" id="pf149192117864810" referenceLink="//@navigationRule.0/@navigationCase.11/@toViewId|" inlinks="pf14919211786488" path="/pages/storage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/reference.xhtml" x="338" y="2482" id="pf149192117864811" referenceLink="//@navigationRule.0/@navigationCase.12/@toViewId|" inlinks="pf14919211786489" path="/pages/metadata/reference.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/publication.xhtml" x="338" y="2866" id="pf149192118426813" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf149192118426712" path="/pages/metadata/publication.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/collectionFile.xhtml" x="338" y="3250" id="pf149192118848215" referenceLink="//@navigationRule.0/@navigationCase.14/@toViewId|" inlinks="pf149192118848214" path="/pages/metadata/collectionFile.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/place.xhtml" x="338" y="3634" id="pf149192120269617" referenceLink="//@navigationRule.0/@navigationCase.15/@toViewId|" inlinks="pf149192120269616" path="/pages/metadata/place.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/dataCollection.xhtml" x="338" y="4018" id="pf149192120648019" referenceLink="//@navigationRule.0/@navigationCase.16/@toViewId|" inlinks="pf149192120648018" path="/pages/metadata/dataCollection.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadataEditor.xhtml" x="338" y="4402" id="pf149192121156221" referenceLink="//@navigationRule.0/@navigationCase.17/@toViewId|" inlinks="pf149192121156220" path="/pages/metadataEditor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/transfer.xhtml" x="338" y="4786" id="pf149192121498023" referenceLink="//@navigationRule.0/@navigationCase.18/@toViewId|" inlinks="pf149192121498022" path="/pages/transfer.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/admin.xhtml" x="338" y="5170" id="pf149192121973325" referenceLink="//@navigationRule.0/@navigationCase.20/@toViewId|" inlinks="pf149192121973224" path="/pages/admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/submission.xhtml" x="338" y="5554" id="pf149192122369827" referenceLink="//@navigationRule.0/@navigationCase.21/@toViewId|" inlinks="pf149192122369826" path="/pages/submission.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/files.xhtml" x="338" y="5938" id="pf149192122867329" referenceLink="//@navigationRule.0/@navigationCase.22/@toViewId|" inlinks="pf149192122867328" path="/pages/files.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/transferList.xhtml" x="338" y="6322" id="pf149192123301931" referenceLink="//@navigationRule.0/@navigationCase.24/@toViewId|" inlinks="pf149192123301930" path="/pages/transferList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/upload.xhtml" x="338" y="6706" id="pf149192123711333" referenceLink="//@navigationRule.0/@navigationCase.25/@toViewId|" inlinks="pf149192123711332" path="/pages/upload.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/submissionList.xhtml" x="338" y="7090" id="pf149192124167635" referenceLink="//@navigationRule.0/@navigationCase.26/@toViewId|" inlinks="pf149192124167534" path="/pages/submissionList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/disseminationList.xhtml" x="338" y="7474" id="pf149192124540437" referenceLink="//@navigationRule.0/@navigationCase.27/@toViewId|" inlinks="pf149192124540436" path="/pages/disseminationList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/activityOutput.xhtml" x="338" y="7858" id="pf149192124973439" referenceLink="//@navigationRule.0/@navigationCase.28/@toViewId|" inlinks="pf149192124973438" path="/pages/activityOutput.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/metadata/actor.xhtml" x="338" y="8242" id="pf149192125356241" referenceLink="//@navigationRule.0/@navigationCase.29/@toViewId|" inlinks="pf149192125356140" path="/pages/metadata/actor.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/collectionId.xhtml" x="338" y="8626" id="pf15076400710065" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf15076400710050" path="/pages/collectionId.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/actorLogo.xhtml" x="338" y="9010" id="pf15076400710066" referenceLink="//@navigationRule.0/@navigationCase.4/@toViewId|" inlinks="pf15076400710051" path="/pages/actorLogo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/assetUpload.xhtml" x="338" y="9394" id="pf15076400710067" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf15076400710052" path="/pages/assetUpload.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/rsyncUpload.xhtml" x="338" y="9778" id="pf15076400710068" referenceLink="//@navigationRule.0/@navigationCase.23/@toViewId|" inlinks="pf15076400710053" path="/pages/rsyncUpload.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/memoryUsage.xhtml" x="338" y="10162" id="pf15076400710069" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf15076400710054" path="/pages/memoryUsage.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/userAdmin.xhtml" x="338" y="10546" id="pf15090105379411" referenceLink="//@navigationRule.0/@navigationCase.19/@toViewId|" inlinks="pf15090105379400" path="/pages/userManager.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/archivalList.xhtml" x="338" y="11314" id="pf15095499917853" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf15095499917842" path="/pages/archivalList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/archival.xhtml" id="pf15113547634642" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15113547634620" path="/pages/archival.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/conversionPlan.xhtml" id="pf15113547634643" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15113547634631" path="/pages/conversionPlan.xhtml"/>
+  <links id="pf14853478242581" target="pf14853478242582" source="pf14634909627602" outcome="overviewDC" redirect="true"/>
+  <links id="pf14919211538960" target="pf14919211538971" source="pf14634909627602" outcome="preIngestReport" redirect="true"/>
+  <links id="pf14919211589432" target="pf14919211589443" source="pf14634909627602" outcome="time" redirect="true"/>
+  <links id="pf14919211631574" target="pf14919211631575" source="pf14634909627602" outcome="relatedResource" redirect="true"/>
+  <links id="pf14919211681326" target="pf14919211681327" source="pf14634909627602" outcome="initialMD" redirect="true"/>
+  <links id="pf14919211786488" target="pf149192117864810" source="pf14634909627602" outcome="storage" redirect="true"/>
+  <links id="pf14919211786489" target="pf149192117864811" source="pf14634909627602" outcome="reference" redirect="true"/>
+  <links id="pf149192118426712" target="pf149192118426813" source="pf14634909627602" outcome="publication" redirect="true"/>
+  <links id="pf149192118848214" target="pf149192118848215" source="pf14634909627602" outcome="collectionFile" redirect="true"/>
+  <links id="pf149192120269616" target="pf149192120269617" source="pf14634909627602" outcome="place" redirect="true"/>
+  <links id="pf149192120648018" target="pf149192120648019" source="pf14634909627602" outcome="dataCollection" redirect="true"/>
+  <links id="pf149192121156220" target="pf149192121156221" source="pf14634909627602" outcome="metadataEditor" redirect="true"/>
+  <links id="pf149192121498022" target="pf149192121498023" source="pf14634909627602" outcome="transfer" redirect="true"/>
+  <links id="pf149192121973224" target="pf149192121973325" source="pf14634909627602" outcome="admin" redirect="true"/>
+  <links id="pf149192122369826" target="pf149192122369827" source="pf14634909627602" outcome="submission" redirect="true"/>
+  <links id="pf149192122867328" target="pf149192122867329" source="pf14634909627602" outcome="files" redirect="true"/>
+  <links id="pf149192123301930" target="pf149192123301931" source="pf14634909627602" outcome="transferList" redirect="true"/>
+  <links id="pf149192123711332" target="pf149192123711333" source="pf14634909627602" outcome="upload" redirect="true"/>
+  <links id="pf149192124167534" target="pf149192124167635" source="pf14634909627602" outcome="submissionList" redirect="true"/>
+  <links id="pf149192124540436" target="pf149192124540437" source="pf14634909627602" outcome="disseminationList" redirect="true"/>
+  <links id="pf149192124973438" target="pf149192124973439" source="pf14634909627602" outcome="activityOutput" redirect="true"/>
+  <links id="pf149192125356140" target="pf149192125356241" source="pf14634909627602" outcome="actor" redirect="true"/>
+  <links id="pf15076400710050" target="pf15076400710065" source="pf14634909627602" outcome="collectionId" redirect="true"/>
+  <links id="pf15076400710051" target="pf15076400710066" source="pf14634909627602" outcome="actorLogo" redirect="true"/>
+  <links id="pf15076400710052" target="pf15076400710067" source="pf14634909627602" outcome="assetUpload" redirect="true"/>
+  <links id="pf15076400710053" target="pf15076400710068" source="pf14634909627602" outcome="rsyncUpload" redirect="true"/>
+  <links id="pf15076400710054" target="pf15076400710069" source="pf14634909627602" outcome="memoryUsage" redirect="true"/>
+  <links id="pf15090105379400" target="pf15090105379411" source="pf14634909627602" outcome="userManager" redirect="true"/>
+  <links id="pf15095499917842" target="pf15095499917853" source="pf14634909627602" outcome="archivalList" redirect="true"/>
+  <links id="pf15113547634620" target="pf15113547634642" source="pf14634909627602" outcome="archival" redirect="true"/>
+  <links id="pf15113547634631" target="pf15113547634643" source="pf14634909627602" outcome="conversionPlan" redirect="true"/>
+</pageflow:Pageflow>

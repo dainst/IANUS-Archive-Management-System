@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/privateTemplate.xhtml">
+
+	<ui:define name="privateContent">
+		<h:form>
+		<h:panelGrid columns="1" styleClass="pagePanel">
+			<h:panelGrid columns="1" styleClass="pagePanelTitle">
+				<h:outputText value="Memory Usage Page" />
+			</h:panelGrid>
+
+			<h:panelGrid styleClass="mainControlPanel">
+				<p:commandButton
+					value="Refresh"
+					action="#{sessionBean.memoryUsagePage.actionRefresh}"/>
+					
+				<p:commandButton
+					value="Call GC"/>
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="2" style="font-size: 20px;">
+				
+				<h:outputText value="Free memory"/>
+				<h:outputText value="#{sessionBean.memoryUsagePage.freeMemory}"/>
+				
+				<h:outputText value="Max memory"/>
+				<h:outputText value="#{sessionBean.memoryUsagePage.maxMemory}"/>
+				
+				<h:outputText value="Total memory"/>
+				<h:outputText value="#{sessionBean.memoryUsagePage.totalMemory}"/>
+				
+				<h:outputText value="Used memory"/>
+				<h:outputText value="#{sessionBean.memoryUsagePage.usedMemory}"/>
+				
+			</h:panelGrid>
+			
+			<h:panelGrid styleClass="mainControlPanel" columns="2">
+				<p:dataTable value="#{sessionBean.memoryUsagePage.memoryMXBeanList}" var="mxBean">
+					<p:column headerText="Name">
+						<h:outputText value="#{mxBean.name}"/>
+					</p:column>
+					<p:column headerText="Init">
+						<h:outputText value="#{mxBean.init}"/>
+					</p:column>
+					<p:column headerText="Max">
+						<h:outputText value="#{mxBean.max}"/>
+					</p:column>
+					<p:column headerText="Used">
+						<h:outputText value="#{mxBean.used}"/>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>	
+
+		</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
