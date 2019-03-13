@@ -27,7 +27,7 @@ public class ApplicationBean {
 	
 	
 	public ApplicationBean(){
-		this.dipList = Services.getInstance().getDaoService().getDipList(WorkflowIP.FINISHED, 10);
+		
 		this.loadProperties();
 	}
 	
@@ -43,6 +43,16 @@ public class ApplicationBean {
 
 
 	public List<DisseminationIP> getDipList() {
+		
+		List<DisseminationIP> dipList = Services.getInstance().getDaoService().getDipList(WorkflowIP.FINISHED, 10);
+		
+		return dipList;
+	}
+	
+	public List<DisseminationIP> getDipListbySearchTerm(String searchTerm) {
+		
+		List<DisseminationIP> dipList = Services.getInstance().getDaoService().getDipListbySearchTerm(WorkflowIP.FINISHED, 10, searchTerm);
+		
 		return dipList;
 	}
 

@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import de.ianus.ingest.core.Services;
 
@@ -71,5 +74,10 @@ public class DisseminationIP  extends WorkflowIP implements Serializable{
 			this.sip = Services.getInstance().getDaoService().getSip(this.sipId);
 		}
 		return sip;
+	}
+	
+	@Override
+	public String toString() {
+	   return ToStringBuilder.reflectionToString(this);
 	}
 }

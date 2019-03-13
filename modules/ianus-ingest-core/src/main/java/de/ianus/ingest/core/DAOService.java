@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.camunda.bpm.engine.RuntimeService;
+import org.hibernate.type.LongType;
 
 import de.ianus.ingest.core.bo.ActivityOutput;
 import de.ianus.ingest.core.bo.ArchivalIP;
@@ -50,8 +52,11 @@ import de.ianus.ingest.core.bo.ums.User;
 import de.ianus.ingest.core.conversionRoutine.bo.ConversionAction;
 import de.ianus.ingest.core.conversionRoutine.bo.ConversionRoutine;
 import de.ianus.ingest.core.utils.SortInformationPackage;
+import de.ianus.metadata.MetadataService;
 import de.ianus.metadata.bo.DataCollection;
 import de.ianus.metadata.bo.sort.SortDataCollection;
+import de.ianus.metadata.bo.utils.ElementOfList;
+
 
 /**
  * @author Jorge Urzua
@@ -2038,6 +2043,7 @@ public class DAOService {
 	 * @return
 	 */
 	public List<DisseminationIP> getDipList(String ipState, int maxResults){
+		
 		long start = System.currentTimeMillis();
 		
 		List<DataCollection> dcList = Services.getInstance().getMDService().getLWDataCollectionList();
@@ -2052,12 +2058,16 @@ public class DAOService {
 			try {
 				//getting the list of DIP filtered by state
 				Query queryDIP = null;
+				
 				if (StringUtils.isEmpty(ipState)) {
+					
 					queryDIP = em.createQuery("from DisseminationIP");
-				}else{
-					queryDIP = em.createQuery("from DisseminationIP where state = :state ");
-					//queryDIP = em.createQuery("from DisseminationIP where state = :state ORDER by presentationDate DESC");
+				}
+				else{
+					
+					queryDIP = em.createQuery("from DisseminationIP where state = :state");
 					queryDIP.setParameter("state", ipState);
+					
 				}
 				List<DisseminationIP> dipList = (List<DisseminationIP>)queryDIP.getResultList();
 				
@@ -2086,6 +2096,89 @@ public class DAOService {
 		return resultList;
 	}
 	
+	/**
+	 * Returns a list of DIP sorted by the attribute dataPresentation of the associated DataCollection.
+	 * @param ipState
+	 * @param maxResults
+	 * @param SearchTerm
+	 * @return
+	 */
+	public List<DisseminationIP> getDipListbySearchTerm(String ipState, int maxResults, String SearchTerm){
+			
+		// create object for resultList and EntityManager:
+		List<DisseminationIP> resultList = new ArrayList<DisseminationIP>();
+		EntityManager em = PersistenceManagerCore.getEntityManager();
+	
+		try {
+			// prepare transaction
+			em.getTransaction().begin();
+			
+			try {
+				// declare queryDip:
+				Query queryDIP = null;
+				
+				// check if search parameter are empty:
+				if (StringUtils.isEmpty(ipState) || StringUtils.isEmpty(SearchTerm)) {
+					
+					// query all from DisseminationIP:
+					queryDIP = em.createQuery("from DisseminationIP");
+				}
+				else {
+					
+					// query entries by SearchTerm and ipState:
+					queryDIP = em.createNativeQuery("Select DIP.* from DisseminationIP DIP "
+							+ "JOIN ianus_metadata.ElementOfList EOL ON DIP.metadataId = EOL.sourceId "
+							+ "JOIN ianus_metadata.TextAttribute TA ON DIP.metadataId = TA.sourceId "
+							+ "JOIN ianus_metadata.Institution INST ON DIP.metadataId = INST.sourceId "
+							+ "JOIN ianus_metadata.Person PERS ON DIP.metadataId = PERS.sourceId "
+							+ "JOIN ianus_metadata.Reference REF ON DIP.metadataId = REF.sourceId "
+							+ "JOIN ianus_metadata.Publication PUB ON REF.publicationId = PUB.id "
+							+ "WHERE DIP.CollectionLabel LIKE :SearchTerm and DIP.state = :state "
+							+ "OR EOL.value LIKE :SearchTerm "
+							+ "OR TA.value LIKE :SearchTerm "
+							+ "OR INST.department LIKE :SearchTerm OR INST.name LIKE :SearchTerm "
+							+ "OR PERS.lastName LIKE :SearchTerm "
+							+ "OR PUB.title LIKE :SearchTerm OR PUB.author LIKE :SearchTerm", DisseminationIP.class);
+					
+					// setParameter:
+					queryDIP.setParameter("SearchTerm", "%"+SearchTerm+"%");
+					queryDIP.setParameter("state", ipState);
+				}
+				// get results of query as dipList:
+				List<DisseminationIP> dipList = (List<DisseminationIP>)queryDIP.getResultList();
+				dipList.toString();
+				
+				// get and sort list of DataCollection as dcList
+				List<DataCollection> dcList = Services.getInstance().getMDService().getLWDataCollectionList();
+				Collections.sort(dcList, new SortDataCollection()); // by presentationDate from newest to oldest
+			
+				// map dipList to dcList and add each dip to resultList
+				for(DataCollection dc : dcList){
+					DisseminationIP dip = getDipFromDc(dc, dipList);
+					if(dip != null && !resultList.contains(dip)){
+						resultList.add(dip);
+					}
+				}
+				
+				// commit transaction
+				em.getTransaction().commit();
+			} 
+			catch (Exception e) {
+				if (em.getTransaction().isActive()) {
+		            em.getTransaction().rollback();
+		        }
+				throw e;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			em.close();
+		}
+		
+		return resultList;
+	}
+
+
 	private static void printDcList(List<DataCollection> list){
 		System.out.println();
 		System.out.println("**************************+");
@@ -2096,6 +2189,7 @@ public class DAOService {
 	}
 	
 	public static DisseminationIP getDipFromDc(DataCollection dc, List<DisseminationIP> dipList){
+		
 		for(DisseminationIP dip : dipList){
 			if(dip.getMetadataId().equals(dc.getId())){
 				return dip;

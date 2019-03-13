@@ -54,8 +54,6 @@
     <persistence-unit name="coreApp" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-
-
 		<!-- IANUS.curation.core.bo -->
 		<class>de.ianus.ingest.core.bo.TransferP</class>
 		<class>de.ianus.ingest.core.bo.ArchivalIP</class>

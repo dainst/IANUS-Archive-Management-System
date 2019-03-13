@@ -19,18 +19,11 @@ import de.ianus.ingest.core.premis.bo.PremisObject;
 import de.ianus.metadata.bo.DataCollection;
 import de.ianus.metadata.xml.XMLObject;
 
-
-
-
-
 public class XMLService {
-	
 	
 	
 	private WorkflowIP ip = null;
 	private DataCollection dc = null;
-	
-	
 	
 	
 	public XMLService(WorkflowIP wip) throws Exception {
@@ -93,12 +86,5 @@ public class XMLService {
 		
 		premis.toFile(this.ip.getMetadataFolder() + "/premis.xml");
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -5,11 +5,14 @@
 	
 	<div class="ribbon wide">
 		<div>
-			<a href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#version-info" id="logo-prototyp">Version 0.2</a>
+			<a href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#version-info" id="logo-prototyp">Version 0.3</a>
 		</div>
 	</div>
 	
 	<div class="container headerHome">
+	
+		<!-- searchBar -->
+		<jsp:include page="../components/collectionSearch.jsp"/>
 		
 		<a class="image-link" title="IANUS Startseite" href="http://www.ianus-fdz.de">Home</a>
 		

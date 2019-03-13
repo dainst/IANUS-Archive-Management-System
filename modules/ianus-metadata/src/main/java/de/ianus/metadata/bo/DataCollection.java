@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.google.gson.JsonObject;
 
@@ -57,7 +58,6 @@ public class DataCollection extends IANUSEntity{
 	public static String ENGLISH_CODE = "eng"; // english language code
 		
 	public DataCollection(){}
-	
 	
 	/**
 	 * <p>This constructor is used to clone the given DataCollection. 
@@ -116,7 +116,6 @@ public class DataCollection extends IANUSEntity{
 	
 	
 	// ***** >>Keywords
-	
 	@Transient
 	private Set<ElementOfList> mainDisciplineList = new LinkedHashSet<ElementOfList>();
 	
@@ -1343,6 +1342,9 @@ public class DataCollection extends IANUSEntity{
 	
 	@Override
 	public String toString(){
-		return "DataCollection [id=" + id + ", presentationDate=" + formatDate(presentationDate) + "]";
+		
+		return ToStringBuilder.reflectionToString(this);
+		// return "DataCollection [id=" + id + ", presentationDate=" + formatDate(presentationDate) + "]";
+		
 	}
 }

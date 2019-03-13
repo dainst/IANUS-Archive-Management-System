@@ -16,12 +16,7 @@ MDUtils mdUtil = new MDUtils(dc, sessionBean);
 %>
 
 
-
-
 <jsp:include page="../../components/collectionViewRight/keywords.jsp" />
-
-
-
 
 <%
 String actors = mdUtil.getActorsList();

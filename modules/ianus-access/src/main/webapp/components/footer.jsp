@@ -36,7 +36,7 @@
     
     <div class="mid">
 		<div>
-			<p>&copy; 2016 IANUS</p>
+			<p>&copy; 2019 IANUS</p>
 	        <p>
 		        <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">                   
 		            <img src="<%= sessionBean.getAppBean().getContext() %>/resources/images/CC-BY-SA.png" alt="Creative Commons Lizenzvertrag">
