@@ -70,25 +70,24 @@ String searchTerm = request.getParameter("q");
 	
 	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 		
-		<h2>Aktuelles</h2>
 		<p>
-			Dieses Datenportal liegt in einer frühen technischen und inhaltlichen Version vor. 
+			<font color = "red">!!!</font color> <b> IANUS nimmt wieder Daten an </b>. Seit dem Auslaufen der DFG-Förderung gab es eine lange Pause.
+			Details zum Archivieren mit IANUS finden Sie 
+			<a style="font-weight:bold" href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#dateneigentuemer"
+				title="Informationen für Dateneigentuemer">hier</a>. 
+		</p>
+		
+		<p>
+			Dieses Datenportal wird ständig weiterentwickelt. 
 			Unsere weiteren Planungen werden
-			<a href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#version-info"
+			<a style="font-weight:bold" href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#version-info"
 				title="Datenportal Planung">hier</a> beschrieben.
 		</p>
 	
-		<p>
-			IANUS nimmt aktuell aufgrund des Auslaufens der DFG-Förderung keine Datensammlungen mehr an 
-			(Stand: Dezember 2017).
-			Weitere Details <a
-				href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#dateneigentuemer"
-				title="Daten archivieren">hier</a>.
-		</p>
-	
+
 		<p>
 			Wie Sie die Daten herunterladen, nachnutzen und zitieren können,
-			erfahren Sie <a href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#datennutzer"
+			erfahren Sie <a style="font-weight:bold" href="<%= sessionBean.getAppBean().getContext() %>/pages/information.jsp#datennutzer"
 				title="Daten nutzen">hier</a>.
 		</p>
 	
