@@ -22,7 +22,7 @@
 		<groupId>de.ianus</groupId>
 		<artifactId>ianus.core</artifactId>
 		<relativePath>../..</relativePath>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -50,12 +50,12 @@
 		<dependency>
 			<groupId>de.ianus</groupId>
 			<artifactId>ianus-metadata</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>de.ianus</groupId>
 			<artifactId>ianus-ingest-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>	
 		<dependency>
 			<groupId>org.primefaces</groupId>

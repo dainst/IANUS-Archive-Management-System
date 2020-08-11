@@ -5,7 +5,7 @@
 	<groupId>de.ianus</groupId>
 	<artifactId>ianus-metadata</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>ianus-metadata</name>
 
 	<url>http://www.ianus-fdz.de/</url>
@@ -14,7 +14,7 @@
 		<groupId>de.ianus</groupId>
 		<artifactId>ianus.core</artifactId>
 		<relativePath>../..</relativePath>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>

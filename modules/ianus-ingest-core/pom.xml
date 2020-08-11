@@ -5,7 +5,7 @@
 	<groupId>de.ianus</groupId>
 	<artifactId>ianus-ingest-core</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>ianus-ingest-core</name>
 	<url>http://www.ianus-fdz.de/</url>
 
@@ -17,7 +17,7 @@
 		<groupId>de.ianus</groupId>
 		<artifactId>ianus.core</artifactId>
 		<relativePath>../..</relativePath>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
@@ -232,7 +232,7 @@
 		<dependency>
 			<groupId>de.ianus</groupId>
 			<artifactId>ianus-metadata</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
 		
 	</dependencies>
