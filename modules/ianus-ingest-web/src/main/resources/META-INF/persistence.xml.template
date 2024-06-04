@@ -47,7 +47,7 @@
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
          	<property name="javax.persistence.jdbc.user" value="DB_USER_NAME"/>
          	<property name="javax.persistence.jdbc.password" value="DB_PASSWORD"/>
-         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ianus_metadata?tinyInt1isBit=false"/>
+         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ianus_metadata?tinyInt1isBit=false&amp;serverTimezone=Europe/Berlin"/>
 			
 			<!-- <property name="show_sql">true</property> -->
 			<property name="current_session_context_class" value="thread" />
@@ -107,7 +107,7 @@
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
          	<property name="javax.persistence.jdbc.user" value="DB_USER_NAME"/>
          	<property name="javax.persistence.jdbc.password" value="DB_PASSWORD"/>
-         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ianus?tinyInt1isBit=false"/>
+         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ianus?tinyInt1isBit=false&amp;serverTimezone=Europe/Berlin"/>
 			
 			<!-- <property name="show_sql">true</property> -->
 			<property name="current_session_context_class" value="thread" />
