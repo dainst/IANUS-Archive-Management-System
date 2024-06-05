@@ -10,6 +10,6 @@ debug.mode=true
 
 ## Production Configuration ##
 dataportal.url=http://datenportal.ianus-fdz.de
-#home.url=http://195.37.32.7:8080/ianus-ingest-web
+home.url=http://datenportal.ianus-fdz.de/ianus-ingest-web
 #content.path=/data/ianus-storage
 #debug.mode=true
