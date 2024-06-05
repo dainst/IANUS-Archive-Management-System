@@ -8,11 +8,4 @@ document.root=/home/hendrik/IANUSworkspace/ianus.core/modules/ianus-access/targe
 
 
 ## Production Configuration ##
-
-
-
-#home.url=http://195.37.32.7
-#debug.mode=false
-#document.root=/var/lib/tomcat8/webapps/ROOT
-
-content.path=/data/ianus-storage
+home.url=http://datenportal.ianus-fdz.de
