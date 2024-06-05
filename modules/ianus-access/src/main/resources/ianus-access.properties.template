@@ -1,11 +1,11 @@
 ## Test & Development ##
 
-home.url=http://localhost:8080/ianus-access
+#home.url=http://localhost:8080/ianus-access
 #home.url=http://ianus-testing.dainst.de:8080/ianus-access
-debug.mode=true
-document.root=/home/hendrik/IANUSworkspace/ianus.core/modules/ianus-access/target/ianus-access
+#debug.mode=true
+#document.root=/home/hendrik/IANUSworkspace/ianus.core/modules/ianus-access/target/ianus-access
 
 
 
 ## Production Configuration ##
-home.url=http://datenportal.ianus-fdz.de
+#home.url=http://datenportal.ianus-fdz.de
