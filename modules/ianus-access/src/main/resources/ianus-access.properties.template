@@ -9,3 +9,7 @@
 
 ## Production Configuration ##
 #home.url=http://datenportal.ianus-fdz.de
+
+
+# Is this required?
+#content.path=/data/ianus-storage
