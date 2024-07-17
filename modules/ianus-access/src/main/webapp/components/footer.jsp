@@ -43,14 +43,6 @@
 		        </a>
 	        </p>
 	    </div>
-	    <div>
-			<p><a href="https://www.ianus-fdz.de/feedback" target="_blank">Feedback</a></p>
-			<p>
-				<a href="https://www.ianus-fdz.de/feedback" target="_blank">
-					<img src="https://www.ianus-fdz.de/it-empfehlungen/sites/all/themes/ianuszen/images/feedback-icon.png">
-				</a>
-			</p>
-		</div>
 	</div>
 	
     <a id="top-link" title="Zum Seitenanfang" href="#">&uarr;</a>
